@@ -2,6 +2,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 //import { createBottomTabNavigator } from 'react-navigation-tabs';
 //import { createDrawerNavigator } from 'react-navigation-drawer';
+import AuthenticationScreen from '../screens/AuthenticationScreen';
 import HomeScreen from '../screens/HomeScreen';
 import MARScreen from '../screens/MARScreen';
 import PARScreen from '../screens/PARScreen';
@@ -10,6 +11,7 @@ import AppAssistanceScreen from '../screens/AppAssistanceScreen';
 import MapScreen from '../screens/MapScreen';
 
 const NavigatorCA = createStackNavigator({
+    Login: AuthenticationScreen,
     Home: HomeScreen,
     Map: MapScreen,
     MAR: MARScreen,
@@ -19,4 +21,9 @@ const NavigatorCA = createStackNavigator({
     Map: MapScreen
 });
 
+
+
 export default createAppContainer(NavigatorCA);
+
+//Navigation Syntax
+//props.navigation.navigate({routeName: 'SomeIdentifier'});
