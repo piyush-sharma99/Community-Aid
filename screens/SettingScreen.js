@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
-const MARScreen = props => {
+const SettingScreen = props => {
     return(
         <View style={styles.screen}>
-            <Text>Make Assistance Request</Text>
+            <Text>settings</Text>
         </View>
     );
 };
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default MARScreen;
+export default SettingScreen;

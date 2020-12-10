@@ -4,21 +4,20 @@ import { createAppContainer } from 'react-navigation';
 //import { createDrawerNavigator } from 'react-navigation-drawer';
 import AuthenticationScreen from '../screens/AuthenticationScreen';
 import HomeScreen from '../screens/HomeScreen';
-import MARScreen from '../screens/MARScreen';
-import PARScreen from '../screens/PARScreen';
+import AssistanceRequestsScreen from '../screens/AssistanceRequestsScreen';
 import ManageARScreen from '../screens/ManageARScreen';
 import AppAssistanceScreen from '../screens/AppAssistanceScreen';
 import MapScreen from '../screens/MapScreen';
+import SettingScreen from '../screens/SettingScreen';
 
 const NavigatorCA = createStackNavigator({
     Login: AuthenticationScreen,
     Home: HomeScreen,
     Map: MapScreen,
-    MAR: MARScreen,
-    PAR: PARScreen,
+    AssistanceRequest: AssistanceRequestsScreen,
     ManageAR: ManageARScreen,
     App: AppAssistanceScreen,
-    Map: MapScreen
+    setting: SettingScreen
 });
 
 
