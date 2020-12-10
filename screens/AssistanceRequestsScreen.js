@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
-const PARScreen = props => {
+const AssistanceRequestScreen = props => {
     return(
         <View style={styles.screen}>
-            <Text>Pick-up Assistance Requests</Text>
+            <Text>Make Assistance Request</Text>
         </View>
     );
 };
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default PARScreen;
+export default AssistanceRequestScreen;

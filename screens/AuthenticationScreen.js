@@ -3,9 +3,6 @@ import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image} fro
 
 const AuthenticationScreen = props => {
     return(
-
-        
-
         <View style={styles.screen} >
         
         <Image 
@@ -24,6 +21,7 @@ const AuthenticationScreen = props => {
           <TextInput  
             style={styles.inputText}
             placeholder="Password..." 
+            secureTextEntry
             placeholderTextColor="#003f5c"/>
         </View>
 
@@ -34,8 +32,10 @@ const AuthenticationScreen = props => {
         </View>
 
         <View>
-        <TouchableOpacity style={styles.loginBtn}>
-          <Text style={styles.loginText}>Log In</Text>
+        <TouchableOpacity style={styles.loginBtn} onPress = {() => {
+            props.navigation.navigate({routeName: 'Home'});
+          }}>
+          <Text style={styles.loginText} >Log In</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.signBtn}>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
       },
       inputText:{
         height:50,
-        color:"white"
+        color:"black"
       },
 
       forgot:{
