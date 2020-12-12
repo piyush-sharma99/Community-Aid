@@ -79,7 +79,10 @@ const styles = StyleSheet.create({
         marginTop:30,
         marginBottom:20,
         justifyContent:"center",
-        padding:20
+        padding:20,
+        elevation: 10,
+        borderWidth: 4,
+        borderColor: "#fb5b5a"
       },
 
       inputViewPassword:{
@@ -90,7 +93,10 @@ const styles = StyleSheet.create({
         marginBottom:20,
         marginTop:10,
         justifyContent:"center",
-        padding:20
+        padding:20,
+        elevation: 10,
+        borderWidth: 4,
+        borderColor: "#fb5b5a"
       },
       inputText:{
         height:50,
