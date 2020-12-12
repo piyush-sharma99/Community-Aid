@@ -1,20 +1,127 @@
-import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
+import MapView from 'react-native-maps';
+import Input from 'react-native-input-style';
+import {Card} from 'react-native-paper';
+
 
 const MapScreen = props => {
-    return(
-        <View style={styles.screen}>
-            <Text>Map</Text>
+
+    const [radius, setradius] = useState('');
+
+    const mRegion={
+        latitude: 53.349804,
+        longitude: -6.260310,
+        latitudeDelta: 0.0933,
+        longitudeDelta: 0.0421
+
+    };
+
+    return (
+    <View style={styles.screen} >
+        <View style={styles.mapView}>
+        <MapView style={styles.map} region={mRegion} />
         </View>
+
+        <Card style={styles.cardView}>
+        <View style={styles.inputView} >
+          <TextInput  
+            style={styles.inputText}
+            placeholder="Radius..." 
+            placeholderTextColor="#003f5c"/>
+            </View>
+            <TouchableOpacity style={styles.Btn} onPress = {() => {}}>
+             <Text style={styles.subText} >Log In</Text>
+        </TouchableOpacity>
+            </Card>
+    </View>
     );
 };
 
+MapScreen.navigationOptions = {
+    headerTitle: 'MAP ',
+    headerStyle: {
+    backgroundColor: '#2E86C1'
+    },
+    headerTintColor:"white"
+    };
+    
+
 const styles = StyleSheet.create({
     screen: {
-        flex:1,
+        width:'100%',
+        height:'100%',
+        flex: 1,
+        backgroundColor: '#2E86C1',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    mapView: {
+        width:'95%',
+        height:'65%',
+        alignItems: 'center',
         justifyContent: 'center',
-        alignContent: 'center'
-    }
+        borderWidth: 3,
+        borderColor: "#fb5b5a",
+        backgroundColor: "#61dafb",
+        marginBottom: 20,
+        marginTop:-30,
+        shadowColor: 'black',
+        shadowOpacity: 2,
+        elevation: 10
+        
+    },
+    map: {
+        width:'100%',
+        height:'100%',
+        backgroundColor: "#61dafb",
+
+    },
+    cardView: {
+        width:'95%',
+        height:'25%',
+        backgroundColor:"#ffffff",
+        shadowColor: 'black',
+        alignItems: 'center',
+        borderRadius:25,
+        shadowOpacity: 2,
+        elevation: 10,
+    },
+    inputView:{
+        marginTop:30,
+        width:200,
+        backgroundColor:"#FDFEFE",
+        borderRadius:25,
+        height:50,
+        justifyContent:"center",
+        padding:20,
+        borderWidth: 4,
+        borderColor: "#fb5b5a",
+        shadowColor: 'black',
+        borderRadius:25,
+      },
+
+      inputText:{
+        height:50,
+        color:"black"
+      },
+
+      Btn:{
+        width:200,
+        backgroundColor:"#fb5b5a",
+        borderRadius:25,
+        height:50,
+        alignItems:"center",
+        justifyContent:"center",
+        marginTop:20,
+        marginBottom:5
+      },
+
+      subText:{
+        color:"white",
+        fontSize:20
+      },
+    
 });
 
 export default MapScreen;
