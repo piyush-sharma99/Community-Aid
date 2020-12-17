@@ -1,19 +1,30 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import SettingForm from '../components/SettingForm';
 
 const SettingScreen = props => {
     return(
         <View style={styles.screen}>
-            <Text>settings</Text>
+            <SettingForm />
         </View>
     );
 };
 
+SettingScreen.navigationOptions = {
+    headerTitle: 'Settings',
+    headerStyle: {
+    backgroundColor: '#2E86C1'
+    },
+    headerTintColor:"white"
+    };
+
 const styles = StyleSheet.create({
     screen: {
-        flex:1,
-        justifyContent: 'center',
-        alignContent: 'center'
+        justifyContent:"center",
+        flex: 1,
+        backgroundColor: '#2E86C1',
+        paddingRight:60,
+        paddingLeft:60
     }
 });
 

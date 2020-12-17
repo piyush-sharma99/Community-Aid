@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image} from 'react-native';
 
-const AuthenticationScreen = props => {
+const SignupScreen = props => {
     return(
         <View style={styles.screen} >
         
@@ -10,14 +10,28 @@ const AuthenticationScreen = props => {
         source={require('../assets/Logo.png')}
         />
 
-         <View style={styles.inputViewEmail} >
+        <View style={styles.inputView} >
+          <TextInput  
+            style={styles.inputText}
+            placeholder="Name..." 
+            placeholderTextColor="#003f5c"/>
+        </View>
+
+        <View style={styles.inputView} >
+          <TextInput  
+            style={styles.inputText}
+            placeholder="Number..." 
+            placeholderTextColor="#003f5c"/>
+        </View>
+
+         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
             placeholder="Email..." 
             placeholderTextColor="#003f5c"/>
         </View>
 
-        <View style={styles.inputViewPassword} >
+        <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
             placeholder="Password..." 
@@ -26,19 +40,9 @@ const AuthenticationScreen = props => {
         </View>
 
         <View>
-        <TouchableOpacity>
-          <Text style={styles.forgot}>Forgot Password?</Text>
-        </TouchableOpacity>
-        </View>
-
-        <View>
-        <TouchableOpacity style={styles.loginBtn} onPress = {() => {
+        <TouchableOpacity style={styles.signBtn} onPress = {() => {
             props.navigation.navigate({routeName: 'Home'});
-          }}>
-          <Text style={styles.loginText} >Log In</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.signBtn}>
+            }}>
           <Text style={styles.signText}>Sign Up</Text>
         </TouchableOpacity>
         </View>
@@ -47,9 +51,8 @@ const AuthenticationScreen = props => {
     );
 };
 
-AuthenticationScreen.navigationOptions = {
-headerTitle: 'Welcome',
-headerTitleStyle: { alignSelf: 'center' },
+SignupScreen.navigationOptions = {
+headerTitle: 'Sign up',
 headerStyle: {
 backgroundColor: '#2E86C1'
 },
@@ -68,15 +71,15 @@ const styles = StyleSheet.create({
 
     logo:{
         justifyContent:"center",
-        marginTop:-230
+        marginTop:-140
       },
 
-      inputViewEmail:{
+      inputView:{
         width:"80%",
         backgroundColor:"#FDFEFE",
         borderRadius:25,
         height:50,
-        marginTop:30,
+        marginTop:20,
         marginBottom:20,
         justifyContent:"center",
         padding:20,
@@ -85,19 +88,6 @@ const styles = StyleSheet.create({
         borderColor: "#fb5b5a"
       },
 
-      inputViewPassword:{
-        width:"80%",
-        backgroundColor:"#FDFEFE",
-        borderRadius:25,
-        height:50,
-        marginBottom:20,
-        marginTop:10,
-        justifyContent:"center",
-        padding:20,
-        elevation: 10,
-        borderWidth: 4,
-        borderColor: "#fb5b5a"
-      },
       inputText:{
         height:50,
         color:"black"
@@ -125,17 +115,6 @@ const styles = StyleSheet.create({
         marginTop:20
       },
 
-      loginBtn:{
-        width:200,
-        backgroundColor:"#fb5b5a",
-        borderRadius:25,
-        height:50,
-        alignItems:"center",
-        justifyContent:"center",
-        marginTop:20,
-        marginBottom:5
-      },
-
       signBtn:{
         width:200,
         backgroundColor:"#fb5b5a",
@@ -143,10 +122,10 @@ const styles = StyleSheet.create({
         height:50,
         alignItems:"center",
         justifyContent:"center",
-        marginTop:20,
+        marginTop:40,
         marginBottom:10
       },
       
 });
 
-export default AuthenticationScreen;
+export default SignupScreen;
