@@ -99,11 +99,11 @@ const styles = StyleSheet.create({
     },
 
     clickView: {
-            marginTop:15,
+            marginTop:20,
             width:'45%',
             backgroundColor:"#fb5b5a",
             borderRadius:25,
-            height:230,
+            height:220,
             margin:10,
             justifyContent:"center",
             shadowOpacity: 1,
