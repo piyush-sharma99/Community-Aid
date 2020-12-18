@@ -11,6 +11,11 @@ import ManageARScreen from '../screens/ManageARScreen';
 import AppAssistanceScreen from '../screens/AppAssistanceScreen';
 import MapScreen from '../screens/MapScreen';
 import SettingScreen from '../screens/SettingScreen';
+import MakeAssistanceRequestScreen from '../screens/MakeAssistanceRequestScreen';
+import PickUpAssistanceRequestScreen from '../screens/PickUpAssistanceRequestScreen';
+import ManageVolunteerRequestScreen from '../screens/ManageVolunteerRequestScreen';
+import ManageRequestScreens from '../screens/ManageRequestScreens';
+
 
 const NavigatorCA = createStackNavigator({
     Index: IndexScreen,
@@ -21,7 +26,14 @@ const NavigatorCA = createStackNavigator({
     AssistanceRequest: AssistanceRequestsScreen,
     ManageAR: ManageARScreen,
     App: AppAssistanceScreen,
-    setting: SettingScreen
+    setting: SettingScreen,
+    MakeR: MakeAssistanceRequestScreen,
+    PickUpR: PickUpAssistanceRequestScreen,
+    ManageVR: ManageVolunteerRequestScreen,
+    ManageR: ManageRequestScreens
+
+
+
 });
 
 

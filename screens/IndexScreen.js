@@ -113,6 +113,11 @@ const styles = StyleSheet.create({
         height:50,
         alignItems:"center",
         justifyContent:"center",
+        borderWidth: 3,
+        borderColor: '#fff',
+        borderRadius:15,
+        shadowOpacity: 1,
+        elevation:10,
         marginTop:20,
         marginBottom:5
       },
@@ -122,9 +127,14 @@ const styles = StyleSheet.create({
         backgroundColor:"#fb5b5a",
         borderRadius:25,
         height:50,
+        borderWidth: 3,
+        borderColor: '#fff',
+        borderRadius:15,
         alignItems:"center",
         justifyContent:"center",
         marginTop:20,
+        elevation:10,
+        shadowOpacity: 1,
         marginBottom:10
       },
       
