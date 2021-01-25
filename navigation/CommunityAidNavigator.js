@@ -6,6 +6,7 @@ import IndexScreen from '../screens/IndexScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
 import HomeScreen from '../screens/HomeScreen';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import AssistanceRequestsScreen from '../screens/AssistanceRequestsScreen';
 import ManageARScreen from '../screens/ManageARScreen';
 import AppAssistanceScreen from '../screens/AppAssistanceScreen';
@@ -17,9 +18,11 @@ import ManageVolunteerRequestScreen from '../screens/ManageVolunteerRequestScree
 import ManageRequestScreens from '../screens/ManageRequestScreens';
 
 
+
 const NavigatorCA = createStackNavigator({
     Index: IndexScreen,
     Login: LoginScreen,
+    Forgot: ForgotPasswordScreen,
     Signup: SignupScreen,
     Home: HomeScreen,
     Map: MapScreen,

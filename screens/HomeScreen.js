@@ -2,9 +2,20 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
 import {Card} from 'react-native-paper';
 import { FontAwesome5, AntDesign, FontAwesome, MaterialIcons, Feather} from '@expo/vector-icons';
+import * as firebase from 'firebase';
 
 
 const HomeScreen = props => {
+    logout = () => {
+        
+          
+            firebase.auth().signOut().then(() => {
+                props.navigation.navigate({routeName: 'Index'});
+              }).catch((error) => {
+                console.log(error.toString())
+              }); 
+    }
+
     return(
         <View style={styles.screen}>
 
@@ -63,9 +74,7 @@ const HomeScreen = props => {
             </Card>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.clickView} onPress = {() => {
-            props.navigation.navigate({routeName: 'AssistanceRequest'});
-          }}>
+        <TouchableOpacity style={styles.clickView} onPress = {logout}>
         <Card style={styles.cardView}>
                 <View style={styles.content}>
                     <AntDesign name="logout" size={70} color="white" />
