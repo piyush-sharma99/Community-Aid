@@ -1,26 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
-import MapView from 'react-native-maps';
-import Input from 'react-native-input-style';
+import MapView, {Marker} from 'react-native-maps';
 import {Card} from 'react-native-paper';
+import * as Location from 'expo-location';
+
 
 
 const MapScreen = props => {
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
 
-    const [radius, setradius] = useState('');
 
-    const mRegion={
-        latitude: 53.349804,
-        longitude: -6.260310,
-        latitudeDelta: 0.0933,
-        longitudeDelta: 0.0421
-
-    };
+    useEffect(() => {
+      (async () => {
+        let { status } = await Location.requestPermissionsAsync();
+        if (status !== 'granted') {
+          setErrorMsg('Permission to access location was denied');
+          return;
+        }
+  
+        let location = await Location.getCurrentPositionAsync({});
+        setLocation(location);
+      })();
+    }, []);
+  
+    let text = 'Waiting..';
+    let latitude = -9.062691;
+    let longitude = 53.270962;
+    if (errorMsg) {
+      text = errorMsg;
+    } else if (location) {
+      text = JSON.stringify(location);
+      longitude = location.coords.longitude;
+      latitude = location.coords.latitude;
+      
+    }
+    console.log(longitude);
+    console.log(latitude);
 
     return (
     <View style={styles.screen} >
         <View style={styles.mapView}>
-        <MapView style={styles.map} region={mRegion} />
+        <MapView style={styles.map} 
+        region={{
+          latitude: latitude,
+          longitude: longitude,
+          latitudeDelta: 0.02,
+          longitudeDelta: 0.30,
+        }}> 
+        <Marker coordinate = {{latitude: latitude, longitude:longitude}}/>
+        </MapView>
         </View>
 
         <Card style={styles.cardView}>

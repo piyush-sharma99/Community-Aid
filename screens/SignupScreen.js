@@ -1,54 +1,139 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image} from 'react-native';
+import * as firebase from 'firebase';
 
 const SignupScreen = props => {
-    return(
-        <View style={styles.screen} >
+
+  const db = firebase.firestore();
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordRepeat, setPasswordRepeat] = useState('');
+  
+
+  signUpUser = () => {
+    try{
+      if(name == '' ){
+      alert(' Field is empty!')
+            return;
+    }
+    else{
+      if(number == ''){
+        alert('Number Field is empty!')
+        return;
+    }
+    else{
+      if(email == ''){
+        alert('Email Field is empty!')
+        return;
+    }
+    else{
+      if(password == ''){
+        alert('Password Field is empty!')
+        return;
+    }
+    else{
+      if(password.length<6){
+        alert('Please enter a password more than 6 characters!')
+            return;
+    }
+    else{
+      if(passwordRepeat == password){
+
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(function (user) {
+          console.log(user),
+          props.navigation.navigate({routeName: 'Home'});
+          db.collection("users").doc(user.user.uid).set({
+            name: name,
+            number: number,
+            email: email
+          })
+          
+      });
+
+      }
+      else{
+
+        alert('Your passwords do not match!')
         
-        <Image 
-        style={styles.logo}
-        source={require('../assets/Logo.png')}
-        />
+      }
+     
+    }
+      
+    }
+      
+    }
 
-        <View style={styles.inputView} >
-          <TextInput  
-            style={styles.inputText}
-            placeholder="Name..." 
-            placeholderTextColor="#003f5c"/>
-        </View>
+    }
 
-        <View style={styles.inputView} >
-          <TextInput  
-            style={styles.inputText}
-            placeholder="Number..." 
-            placeholderTextColor="#003f5c"/>
-        </View>
+    }
+        
+    }  
+    catch(error){
+        console.log(error.toString())
+    }
+}
 
-         <View style={styles.inputView} >
-          <TextInput  
-            style={styles.inputText}
-            placeholder="Email..." 
-            placeholderTextColor="#003f5c"/>
-        </View>
+  return(
+    <View style={styles.screen} >
+        
+    <Image 
+    style={styles.logo}
+    source={require('../assets/Logo.png')}
+    />
 
-        <View style={styles.inputView} >
-          <TextInput  
-            style={styles.inputText}
-            placeholder="Password..." 
-            secureTextEntry
-            placeholderTextColor="#003f5c"/>
-        </View>
+    <View style={styles.inputView} >
+      <TextInput  
+        style={styles.inputText}
+        placeholder="Name..." 
+        placeholderTextColor="#003f5c"
+        onChangeText={(name) => setName(name)}/>
+    </View>
 
-        <View>
-        <TouchableOpacity style={styles.signBtn} onPress = {() => {
-            props.navigation.navigate({routeName: 'Home'});
-            }}>
-          <Text style={styles.signText}>Sign Up</Text>
-        </TouchableOpacity>
-        </View>
+    <View style={styles.inputView} >
+      <TextInput  
+        style={styles.inputText}
+        placeholder="Number..." 
+        placeholderTextColor="#003f5c"
+        onChangeText={(number) => setNumber(number)}/>
+    </View>
 
-        </View>
-    );
+     <View style={styles.inputView} >
+      <TextInput  
+        style={styles.inputText}
+        placeholder="Email..." 
+        placeholderTextColor="#003f5c"
+        onChangeText={(email) => setEmail(email)}/>
+    </View>
+
+    <View style={styles.inputView} >
+      <TextInput  
+        style={styles.inputText}
+        placeholder="Password..." 
+        secureTextEntry
+        placeholderTextColor="#003f5c"
+        onChangeText={(password) => setPassword(password)}/>
+    </View>
+    <View style={styles.inputView} >
+      <TextInput  
+        style={styles.inputText}
+        placeholder="Repeat Password..." 
+        secureTextEntry
+        placeholderTextColor="#003f5c"
+        onChangeText={(passwordRepeat) => setPasswordRepeat(passwordRepeat)}/>
+    </View>
+
+    <View>
+    <TouchableOpacity style={styles.signBtn}  onPress = {signUpUser}>
+      <Text style={styles.signText}>Sign Up</Text>
+    </TouchableOpacity>
+    </View>
+
+    </View>
+   
+);
+
 };
 
 SignupScreen.navigationOptions = {
@@ -71,7 +156,7 @@ const styles = StyleSheet.create({
 
     logo:{
         justifyContent:"center",
-        marginTop:-140
+        marginTop:-20
       },
 
       inputView:{
@@ -93,27 +178,11 @@ const styles = StyleSheet.create({
         color:"black"
       },
 
-      forgot:{
-        color:"white",
-        fontSize:11
-      },
-
-      loginText:{
-        color:"white",
-        fontSize:20
-      },
-
       signText:{
         color:"white",
         fontSize:20
       },
 
-      forgot:{
-        color:"white",
-        fontSize:15,
-        marginBottom:5,
-        marginTop:20
-      },
 
       signBtn:{
         width:200,
@@ -122,8 +191,13 @@ const styles = StyleSheet.create({
         height:50,
         alignItems:"center",
         justifyContent:"center",
-        marginTop:40,
-        marginBottom:10
+        borderWidth: 3,
+        borderColor: '#fff',
+        borderRadius:15,
+        shadowOpacity: 1,
+        elevation:10,
+        marginTop:50,
+        marginBottom:90
       },
       
 });

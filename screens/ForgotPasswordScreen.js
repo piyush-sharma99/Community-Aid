@@ -1,26 +1,30 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image} from 'react-native';
 import * as firebase from 'firebase';
-import { render } from 'react-dom';
-import Home from '../screens/HomeScreen';
 
-const LoginScreen = props => {
+
+const ForgotPasswordScreen = props => {
   
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+ 
 
-  logInUser = () => {
+  forgotPassword = () => {
     try{
       
-        firebase.auth().signInWithEmailAndPassword(email, password).then(function (user) {
-            console.log(user),
-            props.navigation.navigate({routeName: 'Home'});
-        });
+        firebase.auth().sendPasswordResetEmail(
+            email)
+            .then(function() {
+              alert('Check your email'),
+              props.navigation.navigate({routeName: 'Login'});
+            })
+            .catch(function(error) {
+              console.log(error),
+              alert('Oops! Error occured Email not sent! :{')
+            });
 
     }  
     catch(error){
-        console.log(error.toString()),
-        alert("Oops! Something went wrong!")
+        console.log(error.toString())
     }
 }
 
@@ -42,26 +46,9 @@ const LoginScreen = props => {
         onChangeText={(email) => setEmail(email)}/>
     </View>
 
-    <View style={styles.inputViewPassword} >
-      <TextInput  
-        style={styles.inputText}
-        placeholder="Password..." 
-        secureTextEntry
-        placeholderTextColor="#003f5c"
-        onChangeText={(password) => setPassword(password)}/>
-    </View>
-
     <View>
-    <TouchableOpacity>
-      <Text style={styles.forgot} onPress = {() => {
-            props.navigation.navigate({routeName: 'Forgot'});
-          }}>Forgot Password?</Text>
-    </TouchableOpacity>
-    </View>
-
-    <View>
-    <TouchableOpacity style={styles.loginBtn} onPress = {logInUser}  >
-      <Text style={styles.loginText} >Log In</Text>
+    <TouchableOpacity style={styles.ForgotBtn} onPress = {forgotPassword}  >
+      <Text style={styles.forgotText} >Send Password Reset Email</Text>
     </TouchableOpacity>
     </View>
 
@@ -70,8 +57,8 @@ const LoginScreen = props => {
 
 };
 
-LoginScreen.navigationOptions = {
-headerTitle: 'Log in',
+ForgotPasswordScreen.navigationOptions = {
+headerTitle: 'Reset Password',
 headerStyle: {
 backgroundColor: '#2E86C1'
 },
@@ -90,7 +77,7 @@ const styles = StyleSheet.create({
 
     logo:{
         justifyContent:"center",
-        marginTop:-230
+        marginTop:-320
       },
 
       inputViewEmail:{
@@ -106,49 +93,18 @@ const styles = StyleSheet.create({
         borderWidth: 4,
         borderColor: "#fb5b5a"
       },
-
-      inputViewPassword:{
-        width:"80%",
-        backgroundColor:"#FDFEFE",
-        borderRadius:25,
-        height:50,
-        marginBottom:20,
-        marginTop:10,
-        justifyContent:"center",
-        padding:20,
-        elevation: 10,
-        borderWidth: 4,
-        borderColor: "#fb5b5a"
-      },
       inputText:{
         height:50,
         color:"black"
       },
 
-      forgot:{
-        color:"white",
-        fontSize:11
-      },
-
-      loginText:{
+      forgotText:{
         color:"white",
         fontSize:20
       },
 
-      signText:{
-        color:"white",
-        fontSize:20
-      },
-
-      forgot:{
-        color:"white",
-        fontSize:15,
-        marginBottom:5,
-        marginTop:20
-      },
-
-      loginBtn:{
-        width:200,
+      ForgotBtn:{
+        width:300,
         backgroundColor:"#fb5b5a",
         borderRadius:25,
         height:50,
@@ -162,10 +118,12 @@ const styles = StyleSheet.create({
         marginTop:20,
         marginBottom:5
       },
+
+      
       
 });
 
 
 
 
-export default LoginScreen;
+export default ForgotPasswordScreen;
