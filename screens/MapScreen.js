@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
-import MapView, {Marker} from 'react-native-maps';
+import MapView, {Marker, Circle} from 'react-native-maps';
 import {Card} from 'react-native-paper';
 import * as Location from 'expo-location';
 
@@ -9,6 +9,10 @@ import * as Location from 'expo-location';
 const MapScreen = props => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [radius, setRadius] = useState(1000);
+  const [updateRadius, setUpdateRadius] = useState(1000);
+
+  
 
 
     useEffect(() => {
@@ -49,6 +53,11 @@ const MapScreen = props => {
           longitudeDelta: 0.30,
         }}> 
         <Marker coordinate = {{latitude: latitude, longitude:longitude}}/>
+        <Circle
+        center={{latitude: latitude, longitude:longitude}}
+        radius={updateRadius}
+        fillColor={'rgba(43, 98, 227, 0.2)'}
+         />
         </MapView>
         </View>
 
@@ -56,11 +65,13 @@ const MapScreen = props => {
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
-            placeholder="Radius..." 
-            placeholderTextColor="#003f5c"/>
+            placeholder="Radius in kilometers eg (3)..." 
+            placeholderTextColor="#003f5c"
+            onChangeText={(radius) => setRadius(parseInt(radius))}
+            />
             </View>
-            <TouchableOpacity style={styles.Btn} onPress = {() => {}}>
-             <Text style={styles.subText} >Log In</Text>
+            <TouchableOpacity style={styles.Btn} onPress = {()=>setUpdateRadius(radius * 1000)}>
+             <Text style={styles.subText} >Change radius</Text>
         </TouchableOpacity>
             </Card>
     </View>
@@ -118,7 +129,7 @@ const styles = StyleSheet.create({
     },
     inputView:{
         marginTop:30,
-        width:200,
+        width:250,
         backgroundColor:"#FDFEFE",
         borderRadius:25,
         height:50,
@@ -136,7 +147,7 @@ const styles = StyleSheet.create({
       },
 
       Btn:{
-        width:200,
+        width:250,
         backgroundColor:"#fb5b5a",
         borderRadius:25,
         height:50,
