@@ -1,14 +1,57 @@
-import React from 'react';
-import { StyleSheet, Text, View, ScrollView,TextInput, TouchableOpacity} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, ScrollView,TextInput, TouchableOpacity,FlatList, SafeAreaView} from 'react-native';
 import {Card} from 'react-native-paper';
+import * as firebase from 'firebase';
 
 const ManageRequestScreens = props => {
-    
+
+    const [requests, setRequests] = useState([]); // Initial empty array of users // Initial empty array of users
+    const db = firebase.firestore();
+
+    var user = firebase.auth().currentUser;
+
+    useEffect(() => {
+          db.collection('Assistance Request')
+          .where('uid', '==', user.uid)
+          .onSnapshot(querySnapshot => {
+            const requests = [];
+      
+            querySnapshot.forEach(documentSnapshot => {
+                requests.push({
+                ...documentSnapshot.data(),
+                key: documentSnapshot.request_ID,
+              });
+            });
+      
+            setRequests(requests);
+            console.log(requests);
+          });
+
+      }, []);
+
+
+    const renderRequest = ({ item }) => (
+        <View style={styles.screen} >
+                
+        <Card style={styles.cardView2}>
+
+            <View  >
+                <Text style={styles.text2}>Request ID: {item.request_ID}</Text>
+                <Text style={styles.text2}>Request Date: {item.date}</Text>
+                <Text style={styles.text2}>Request Type: {item.request_Type}</Text>
+                <Text style={styles.text2}>Request Description: {item.request_Description}</Text>
+                <Text style={styles.text2}>Request Status: {item.status}</Text>
+            </View>
+
+        </Card>
+    </View>
+      );
+ 
 
     return(
-            <ScrollView style={styles.scroll}>
-                <View style={styles.SubScreen} >
+            
                 <View style={styles.screen} >
+                <View style={styles.SubScreen} >
                 <Text style={styles.text}>Delete requests below:</Text>
                 
                     <Card style={styles.cardView1}>
@@ -30,55 +73,21 @@ const ManageRequestScreens = props => {
                 <View style={styles.Subheading}>
                         <Text style={styles.text2}> Your requests are below: </Text>
                     </View>
-                <View style={styles.screen} >
+
+
+             
+
+                <FlatList
+                style={{flex: 1, marginTop:20, padding:10}}
+                data={requests}
+                renderItem={renderRequest}
+                keyExtractor={item => item.request_ID}
+                />
                 
-                    <Card style={styles.cardView2}>
-
-                        <View  >
-                            <Text style={styles.text2}> Request ID: 1</Text>
-                            <Text style={styles.text2}> Date made: 1/1/2021</Text>
-                            <Text style={styles.text2}> Type: Guidance</Text>
-                            <Text style={styles.text2}> Description: Dont know how to fix my plumbing?</Text>
-                            <Text style={styles.text2}> Status: Done</Text>
-                        </View>
-
-                    </Card>
-
-                    
-                </View>
-                <View style={styles.screen} >
-                
-                    <Card style={styles.cardView2}>
-
-                        <View  >
-                            <Text style={styles.text2}> Request ID: 2</Text>
-                            <Text style={styles.text2}> Date made: 2/1/2021</Text>
-                            <Text style={styles.text2}> Type: Guidance</Text>
-                            <Text style={styles.text2}> Description: Dont know how to fix my machine?</Text>
-                            <Text style={styles.text2}> Status: To Do</Text>
-                        </View>
-
-                    </Card>
-                </View>
-                <View style={styles.screen} >
-                
-                    <Card style={styles.cardView2}>
-
-                        <View  >
-                            <Text style={styles.text2}> Request ID: 3</Text>
-                            <Text style={styles.text2}> Date made: 3/1/2021</Text>
-                            <Text style={styles.text2}> Type: hep</Text>
-                            <Text style={styles.text2}> Description: Go shopping forme?</Text>
-                            <Text style={styles.text2}> Status: To Do</Text>
-                        </View>
-
-                    </Card>
-                </View>
-
                     
                 </View>
                 
-            </ScrollView>
+            
     );
 };
 
@@ -94,20 +103,21 @@ headerTintColor:"white"
 const styles = StyleSheet.create({
     screen: {
         width:'100%',
+        height:'100%',
         flex:1,
         backgroundColor: '#2E86C1',
         alignItems: 'center',
         justifyContent: 'center'
     },
     SubScreen: {
+        marginTop:-30,
         width:'100%',
         backgroundColor: '#2E86C1',
         alignItems: 'center',
         justifyContent: 'center'
     },
     scroll: {
-        width:'100%',
-        height:'100%',
+       
         backgroundColor: '#2E86C1',
     },
     text: {
@@ -118,7 +128,7 @@ const styles = StyleSheet.create({
         color:"white",
         fontSize:20,
         textAlign: 'center',
-        marginTop:25,
+        marginTop:15,
         borderWidth: 3,
         borderColor: '#fb5b5a',
         borderRadius:15,
@@ -163,7 +173,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2,
         marginLeft:30,
         marginRight:30,
-        marginTop:-240,
+        marginTop:-270,
         borderColor: '#fb5b5a',
         fontSize: 30,
         color: '#fff',

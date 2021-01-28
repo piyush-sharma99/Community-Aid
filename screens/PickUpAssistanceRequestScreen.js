@@ -1,21 +1,66 @@
-import React from 'react';
-import { StyleSheet, Text, View, ScrollView,TextInput, TouchableOpacity} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, ScrollView,TextInput, TouchableOpacity,FlatList, SafeAreaView} from 'react-native';
 import {Card} from 'react-native-paper';
+import * as firebase from 'firebase';
+
 
 const PickUpAssistanceRequestScreen = props => {
+
+    const [requests, setRequests] = useState([]); // Initial empty array of users // Initial empty array of users
+    const db = firebase.firestore();
+    const [area, setArea] = useState('');
+
+    var user = firebase.auth().currentUser;
+
+    readRequest = () => {
+        db.collection('Assistance Request')
+        .where('area', '==', area)
+        .onSnapshot(querySnapshot => {
+          const requests = [];
+    
+          querySnapshot.forEach(documentSnapshot => {
+              requests.push({
+              ...documentSnapshot.data(),
+              key: documentSnapshot.request_ID,
+            });
+          });
+    
+          setRequests(requests);
+          console.log(requests);
+        });
+    };
+
+
+    const renderRequest = ({ item }) => (
+        <View style={styles.screen} >
+                
+        <Card style={styles.cardView2}>
+
+            <View  >
+                <Text style={styles.text2}>Request ID: {item.request_ID}</Text>
+                <Text style={styles.text2}>Request Date: {item.date}</Text>
+                <Text style={styles.text2}>Request Type: {item.request_Type}</Text>
+                <Text style={styles.text2}>Request Description: {item.request_Description}</Text>
+                <Text style={styles.text2}>Request Status: {item.status}</Text>
+            </View>
+
+        </Card>
+    </View>
+      );
+
+
     return(
-      <ScrollView style={styles.scroll}>
-      <View style={styles.SubScreen} >
+      <View style={styles.screen} >
       <View style={styles.screen} >
       <Text style={styles.text}>Search or Add Request below:</Text>
       
           <Card style={styles.cardView1}>
 
               <View style={styles.inputView} >
-                  <TextInput style={styles.inputText} placeholder="Area..." placeholderTextColor="#003f5c"/>
+                  <TextInput style={styles.inputText} placeholder="Area..." placeholderTextColor="#003f5c" onChangeText={(area) => setArea(area)}/>
               </View>
               <View>
-                  <TouchableOpacity style={styles.Btn} onPress = {() => {props.navigation.navigate({routeName: 'Home'}); }}>
+                  <TouchableOpacity style={styles.Btn}  onPress = {readRequest}>
                       <Text style={styles.Text}>Search</Text>
                       </TouchableOpacity>
               </View>
@@ -46,55 +91,21 @@ const PickUpAssistanceRequestScreen = props => {
       <View style={styles.Subheading}>
               <Text style={styles.text2}>Requests below: </Text>
           </View>
-      <View style={styles.screen} >
       
-          <Card style={styles.cardView2}>
 
-              <View  >
-                  <Text style={styles.text2}> Request ID: 1</Text>
-                  <Text style={styles.text2}> Date made: 1/1/2021</Text>
-                  <Text style={styles.text2}> Type: Guidance</Text>
-                  <Text style={styles.text2}> Description: Dont know how to fix my plumbing?</Text>
-                  <Text style={styles.text2}> Status: Done</Text>
-              </View>
+     
 
-          </Card>
-
-          
-      </View>
-      <View style={styles.screen} >
-      
-          <Card style={styles.cardView2}>
-
-              <View  >
-                  <Text style={styles.text2}> Request ID: 2</Text>
-                  <Text style={styles.text2}> Date made: 2/1/2021</Text>
-                  <Text style={styles.text2}> Type: Guidance</Text>
-                  <Text style={styles.text2}> Description: Dont know how to fix my machine?</Text>
-                  <Text style={styles.text2}> Status: To Do</Text>
-              </View>
-
-          </Card>
-      </View>
-      <View style={styles.screen} >
-      
-          <Card style={styles.cardView2}>
-
-              <View  >
-                  <Text style={styles.text2}> Request ID: 3</Text>
-                  <Text style={styles.text2}> Date made: 3/1/2021</Text>
-                  <Text style={styles.text2}> Type: hep</Text>
-                  <Text style={styles.text2}> Description: Go shopping forme?</Text>
-                  <Text style={styles.text2}> Status: To Do</Text>
-              </View>
-
-          </Card>
-      </View>
+        <FlatList
+        style={{flex: 1, marginTop:5}}
+        data={requests}
+        renderItem={renderRequest}
+        keyExtractor={item => item.request_ID}
+        />
+        
 
           
       </View>
       
-  </ScrollView>
     );
 };
 
@@ -129,20 +140,19 @@ const styles = StyleSheet.create({
   },
   text: {
       padding:10,
-      marginBottom: 20,
+      marginTop: -50,
       marginRight:40,
       marginLeft:40,
       color:"white",
       fontSize:20,
       textAlign: 'center',
-      marginTop:25,
       borderWidth: 3,
       borderColor: '#fb5b5a',
       borderRadius:15,
   
   },
   text2: {
-      padding:10,
+      padding:15,
       marginRight:40,
       marginLeft:40,
       color:"white",
@@ -180,7 +190,7 @@ const styles = StyleSheet.create({
       borderBottomWidth: 2,
       marginLeft:30,
       marginRight:30,
-      marginTop:-240,
+      marginTop:-235,
       borderColor: '#fb5b5a',
       fontSize: 30,
       color: '#fff',
@@ -202,12 +212,12 @@ const styles = StyleSheet.create({
   cardView1: {
       justifyContent: 'center',
       width:'90%',
-      height:'29%',
+      height:'45%',
+      marginTop:20,
       backgroundColor:"#fb5b5a",
       shadowColor: 'black',
       borderRadius:25,
       shadowOpacity: 1,
-      marginBottom:270,
       elevation: 10,
       alignItems:"center",
       shadowOffset: {
@@ -240,13 +250,12 @@ const styles = StyleSheet.create({
   cardView3: {
     justifyContent: 'center',
     width:'90%',
-    height:'75%',
+    height:'45%',
     backgroundColor:"#fb5b5a",
+    marginTop:-300,
     shadowColor: 'black',
     borderRadius:25,
     shadowOpacity: 1,
-    marginTop:-220,
-    marginBottom:280,
     elevation: 10,
     alignItems:"center",
     shadowOffset: {
