@@ -49,6 +49,8 @@ const SignupScreen = props => {
             number: number,
             email: email
           })
+
+          
           
       });
 

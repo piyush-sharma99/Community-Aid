@@ -12,9 +12,6 @@ const MapScreen = props => {
   const [radius, setRadius] = useState(1000);
   const [updateRadius, setUpdateRadius] = useState(1000);
 
-  
-
-
     useEffect(() => {
       (async () => {
         let { status } = await Location.requestPermissionsAsync();
