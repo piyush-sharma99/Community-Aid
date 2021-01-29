@@ -5,10 +5,38 @@ import * as firebase from 'firebase';
 
 const ManageRequestScreens = props => {
 
-    const [requests, setRequests] = useState([]); // Initial empty array of users // Initial empty array of users
+    const [requests, setRequests] = useState([]); 
     const db = firebase.firestore();
-
+    const [request, setRequest] = useState('');
     var user = firebase.auth().currentUser;
+
+    deleteRequest = () => {
+
+        try{
+            db.collection('Assistance Request').where('request_ID', '==', request).get()
+            .then(snapshot => {
+              snapshot.forEach(doc => {
+                const docID = doc.id;
+                console.log(docID);
+
+                db.collection("Assistance Request").doc(doc.id).update({
+                    uid: "request Deleted by user"
+          
+          
+                  })
+
+              });
+            })
+
+
+        }
+        catch(error){
+            console.log('Request was not deleted');
+            console.log(error.toString())
+          }
+
+
+    }
 
     useEffect(() => {
           db.collection('Assistance Request')
@@ -57,11 +85,11 @@ const ManageRequestScreens = props => {
                     <Card style={styles.cardView1}>
 
                         <View style={styles.inputView} >
-                            <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c"/>
+                            <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c" onChangeText={(request) => setRequest(request)}/>
                         </View>
 
                         <View>
-                            <TouchableOpacity style={styles.Btn} onPress = {() => {props.navigation.navigate({routeName: 'Home'}); }}>
+                            <TouchableOpacity style={styles.Btn} onPress = {deleteRequest}>
                                 <Text style={styles.Text}>Delete Request</Text>
                                 </TouchableOpacity>
                         </View>
@@ -78,7 +106,8 @@ const ManageRequestScreens = props => {
              
 
                 <FlatList
-                style={{flex: 1, marginTop:20, padding:10}}
+                horizontal={true}
+                style={{flex: 1}}
                 data={requests}
                 renderItem={renderRequest}
                 keyExtractor={item => item.request_ID}
@@ -212,18 +241,20 @@ const styles = StyleSheet.create({
          
     cardView2: {
         justifyContent: 'center',
-        width:'90%',
+        width:'70%',
+        height:'80%',
         backgroundColor:"#fb5b5a",
         shadowColor: 'black',
         borderRadius:25,
         borderWidth:3,
         borderColor:'#fff',
         shadowOpacity: 1,
-        marginTop:20,
-        marginBottom:20,
-        padding:20,
+        marginTop:30,
+        marginBottom:40,
+        padding:10,
+        marginLeft:-70,
         elevation: 10,
-        alignItems:"center",
+        alignItems: 'center',
         shadowOffset: {
             width: 3,
             height: 3

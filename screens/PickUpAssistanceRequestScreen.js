@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { StyleSheet, Text, View, ScrollView,TextInput, TouchableOpacity,FlatList, SafeAreaView} from 'react-native';
 import {Card} from 'react-native-paper';
 import * as firebase from 'firebase';
@@ -9,8 +9,39 @@ const PickUpAssistanceRequestScreen = props => {
     const [requests, setRequests] = useState([]); // Initial empty array of users // Initial empty array of users
     const db = firebase.firestore();
     const [area, setArea] = useState('');
+    const [request, setRequest] = useState('');
 
     var user = firebase.auth().currentUser;
+
+    addVid = () => {
+
+        try{
+            db.collection('Assistance Request').where('request_ID', '==', request).get()
+            .then(snapshot => {
+              snapshot.forEach(doc => {
+                const data = doc.data();
+                const docID = doc.id;
+                console.log(docID);
+                console.log(data);
+
+                db.collection("Assistance Request").doc(doc.id).update({
+                    vid: user.uid
+          
+          
+                  })
+
+              });
+            })
+
+
+        }
+        catch(error){
+            console.log('Data Not uploaded');
+            console.log(error.toString())
+          }
+
+
+    }
 
     readRequest = () => {
         db.collection('Assistance Request')
@@ -75,10 +106,10 @@ const PickUpAssistanceRequestScreen = props => {
           <Card style={styles.cardView3}>
 
               <View style={styles.inputView} >
-                  <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c"/>
+                  <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c" onChangeText={(request) => setRequest(request)}/>
               </View>
               <View>
-                  <TouchableOpacity style={styles.Btn} onPress = {() => {props.navigation.navigate({routeName: 'Home'}); }}>
+                  <TouchableOpacity style={styles.Btn} onPress = {addVid}>
                       <Text style={styles.Text}>ADD</Text>
                       </TouchableOpacity>
               </View>
@@ -96,7 +127,8 @@ const PickUpAssistanceRequestScreen = props => {
      
 
         <FlatList
-        style={{flex: 1, marginTop:5}}
+        style={{flex: 1, marginTop:10}}
+        horizontal={true}
         data={requests}
         renderItem={renderRequest}
         keyExtractor={item => item.request_ID}
@@ -229,7 +261,8 @@ const styles = StyleSheet.create({
        
   cardView2: {
       justifyContent: 'center',
-      width:'90%',
+      width:'60%',
+      height:'90%',
       backgroundColor:"#fb5b5a",
       shadowColor: 'black',
       borderRadius:25,
@@ -237,7 +270,7 @@ const styles = StyleSheet.create({
       borderColor:'#fff',
       shadowOpacity: 1,
       marginTop:20,
-      marginBottom:20,
+      marginBottom:40,
       padding:20,
       elevation: 10,
       alignItems:"center",

@@ -1,25 +1,110 @@
-import React from 'react';
-import { StyleSheet, Text, View, ScrollView,TextInput, TouchableOpacity} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, ScrollView,TextInput, TouchableOpacity,FlatList, SafeAreaView} from 'react-native';
 import {Card} from 'react-native-paper';
+import * as firebase from 'firebase';
 
 const ManageVolunteerRequestScreen = props => {
-    return(
-        <ScrollView style={styles.scroll}>
-        <View style={styles.SubScreen} >
+    const [requests, setRequests] = useState([]); 
+    const db = firebase.firestore();
+    const [request, setRequest] = useState('');
+    const [status, setStatus] = useState('');
+    var user = firebase.auth().currentUser;
+
+    editStatus = () => {
+
+        try{
+            db.collection('Assistance Request').where('request_ID', '==', request).get()
+            .then(snapshot => {
+              snapshot.forEach(doc => {
+                const docID = doc.id;
+                console.log(docID);
+
+                if(status == 'To Do' || status == 'todo' || status =='to do' || status == 'TODO' || status == 'TO DO' || status == 'ToDo' ||status == 'Todo' ||status == 'To do'){
+                    db.collection("Assistance Request").doc(doc.id).update({
+                        vid: "",
+                        status: 'To Do'
+              
+                      })
+
+
+                }
+                else{
+                    db.collection("Assistance Request").doc(doc.id).update({
+                        status: status
+              
+              
+                      })
+
+                }
+
+
+              });
+            })
+
+
+        }
+        catch(error){
+            console.log('Request was not deleted');
+            console.log(error.toString())
+          }
+
+
+    }
+
+
+    useEffect(() => {
+        db.collection('Assistance Request')
+        .where('vid', '==', user.uid)
+        .onSnapshot(querySnapshot => {
+          const requests = [];
+    
+          querySnapshot.forEach(documentSnapshot => {
+              requests.push({
+              ...documentSnapshot.data(),
+              key: documentSnapshot.request_ID,
+            });
+          });
+    
+          setRequests(requests);
+          console.log(requests);
+        });
+
+    }, []);
+
+    const renderRequest = ({ item }) => (
         <View style={styles.screen} >
+                
+        <Card style={styles.cardView2}>
+
+            <View  >
+                <Text style={styles.text2}>Request ID: {item.request_ID}</Text>
+                <Text style={styles.text2}>Request Date: {item.date}</Text>
+                <Text style={styles.text2}>Request Type: {item.request_Type}</Text>
+                <Text style={styles.text2}>Request Description: {item.request_Description}</Text>
+                <Text style={styles.text2}>Request Status: {item.status}</Text>
+            </View>
+
+        </Card>
+    </View>
+      );
+
+    return(
+        
+        <View style={styles.screen} >
+        <View style={styles.SubScreen} >
         <Text style={styles.text}>Edit Request below:</Text>
         
             <Card style={styles.cardView1}>
 
                 <View style={styles.inputView} >
-                    <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c"/>
+                    <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c" onChangeText={(request) => setRequest(request)}/>
                 </View>
                 <View style={styles.inputView} >
-                    <TextInput style={styles.inputText} placeholder="Edit Status..." placeholderTextColor="#003f5c"/>
+                    <TextInput style={styles.inputText} placeholder="Edit Status..." placeholderTextColor="#003f5c" onChangeText={(status) => setStatus(status)}/>
                 </View>
 
                 <View>
-                    <TouchableOpacity style={styles.Btn} onPress = {() => {props.navigation.navigate({routeName: 'Home'}); }}>
+                    <TouchableOpacity style={styles.Btn} onPress = {editStatus}>
                         <Text style={styles.Text}>Edit Request</Text>
                         </TouchableOpacity>
                 </View>
@@ -31,55 +116,20 @@ const ManageVolunteerRequestScreen = props => {
         <View style={styles.Subheading}>
                 <Text style={styles.text2}>Your picked up requests are below: </Text>
             </View>
-        <View style={styles.screen} >
+
+            <FlatList
+                horizontal={true}
+                style={{flex: 1}}
+                data={requests}
+                renderItem={renderRequest}
+                keyExtractor={item => item.request_ID}
+                />
         
-            <Card style={styles.cardView2}>
-
-                <View  >
-                    <Text style={styles.text2}> Request ID: 1</Text>
-                    <Text style={styles.text2}> Date made: 1/1/2021</Text>
-                    <Text style={styles.text2}> Type: Guidance</Text>
-                    <Text style={styles.text2}> Description: Dont know how to fix my plumbing?</Text>
-                    <Text style={styles.text2}> Status: Done</Text>
-                </View>
-
-            </Card>
-
-            
-        </View>
-        <View style={styles.screen} >
-        
-            <Card style={styles.cardView2}>
-
-                <View  >
-                    <Text style={styles.text2}> Request ID: 2</Text>
-                    <Text style={styles.text2}> Date made: 2/1/2021</Text>
-                    <Text style={styles.text2}> Type: Guidance</Text>
-                    <Text style={styles.text2}> Description: Dont know how to fix my machine?</Text>
-                    <Text style={styles.text2}> Status: To Do</Text>
-                </View>
-
-            </Card>
-        </View>
-        <View style={styles.screen} >
-        
-            <Card style={styles.cardView2}>
-
-                <View  >
-                    <Text style={styles.text2}> Request ID: 3</Text>
-                    <Text style={styles.text2}> Date made: 3/1/2021</Text>
-                    <Text style={styles.text2}> Type: hep</Text>
-                    <Text style={styles.text2}> Description: Go shopping forme?</Text>
-                    <Text style={styles.text2}> Status: To Do</Text>
-                </View>
-
-            </Card>
-        </View>
 
             
         </View>
         
-    </ScrollView>
+    
     );
 };
 
@@ -119,7 +169,7 @@ const styles = StyleSheet.create({
         color:"white",
         fontSize:20,
         textAlign: 'center',
-        marginTop:25,
+        marginTop:5,
         borderWidth: 3,
         borderColor: '#fb5b5a',
         borderRadius:15,
@@ -164,7 +214,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2,
         marginLeft:30,
         marginRight:30,
-        marginTop:-240,
+        marginTop:-290,
         borderColor: '#fb5b5a',
         fontSize: 30,
         color: '#fff',
@@ -204,6 +254,7 @@ const styles = StyleSheet.create({
     cardView2: {
         justifyContent: 'center',
         width:'90%',
+        height:'90%',
         backgroundColor:"#fb5b5a",
         shadowColor: 'black',
         borderRadius:25,
