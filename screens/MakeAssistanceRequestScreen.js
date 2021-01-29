@@ -65,7 +65,8 @@ const MakeAssistanceRequestScreen = props => {
           request_Type: requestType,
           longitude:longitude,
           latitude:latitude,
-          request_Description: requestDescription
+          request_Description: requestDescription,
+          vid: ""
 
 
         })
