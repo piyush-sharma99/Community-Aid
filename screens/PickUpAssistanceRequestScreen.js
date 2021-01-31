@@ -46,6 +46,7 @@ const PickUpAssistanceRequestScreen = props => {
     readRequest = () => {
         db.collection('Assistance Request')
         .where('area', '==', area)
+        .where('status', '==', 'To Do')
         .onSnapshot(querySnapshot => {
           const requests = [];
     

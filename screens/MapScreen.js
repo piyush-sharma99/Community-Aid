@@ -3,6 +3,9 @@ import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'rea
 import MapView, {Marker, Circle} from 'react-native-maps';
 import {Card} from 'react-native-paper';
 import * as Location from 'expo-location';
+import * as firebase from 'firebase';
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { FontAwesome } from '@expo/vector-icons'; 
 
 
 
@@ -10,7 +13,27 @@ const MapScreen = props => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [radius, setRadius] = useState(1000);
+  const [request, setRequest] = useState([]);
   const [updateRadius, setUpdateRadius] = useState(1000);
+  const db = firebase.firestore();
+
+  useEffect(() => {
+    db.collection('Assistance Request')
+    .where('status', '==', 'To Do')
+    .onSnapshot(querySnapshot => {
+      const requests = [];
+
+      querySnapshot.forEach(documentSnapshot => {
+          requests.push({
+          ...documentSnapshot.data(),
+          key: documentSnapshot.request_ID,
+        });
+      });
+      console.log(requests);
+      setRequest(requests);
+    });
+
+}, []);
 
     useEffect(() => {
       (async () => {
@@ -49,12 +72,30 @@ const MapScreen = props => {
           latitudeDelta: 0.02,
           longitudeDelta: 0.30,
         }}> 
-        <Marker coordinate = {{latitude: latitude, longitude:longitude}}/>
+
+        <Marker coordinate = {{latitude: latitude, longitude:longitude}}
+        title = "Your location">
+        <FontAwesome name="user-circle-o" size={25} color="blue" />
+        </Marker>
         <Circle
         center={{latitude: latitude, longitude:longitude}}
         radius={updateRadius}
         fillColor={'rgba(43, 98, 227, 0.2)'}
          />
+         {
+           request.map(marker => (
+            <Marker
+            key={marker.request_ID}
+            coordinate = {{latitude: marker.latitude, longitude: marker.longitude}}
+            title = {"Request Type: " + marker.request_Type}
+
+            description = {"Request ID: " + marker.request_ID + " & "+ "Area: " + marker.area}>
+            
+              <MaterialCommunityIcons name="map-marker-remove-variant" size={30} color="red" />
+            </Marker>
+
+           ))
+         }
         </MapView>
         </View>
 
