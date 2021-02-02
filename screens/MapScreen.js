@@ -135,17 +135,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     mapView: {
-        width:'95%',
+        width:'100%',
         height:'65%',
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 3,
-        borderColor: "#fb5b5a",
         backgroundColor: "#61dafb",
         marginBottom: 20,
-        marginTop:-30,
-        shadowColor: 'black',
-        shadowOpacity: 2,
+        marginTop:-59,
         elevation: 10
         
     },
@@ -158,12 +154,16 @@ const styles = StyleSheet.create({
     cardView: {
         width:'95%',
         height:'25%',
-        backgroundColor:"#ffffff",
+        backgroundColor:"#fb5b5a",
         shadowColor: 'black',
         alignItems: 'center',
         borderRadius:25,
         shadowOpacity: 2,
         elevation: 10,
+        shadowOffset: {
+          width: 3,
+          height: 3
+      }
     },
     inputView:{
         marginTop:30,
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         padding:20,
         borderWidth: 4,
-        borderColor: "#fb5b5a",
+        borderColor: "#2E86C1",
         shadowColor: 'black',
         borderRadius:25,
       },
@@ -186,13 +186,15 @@ const styles = StyleSheet.create({
 
       Btn:{
         width:250,
-        backgroundColor:"#fb5b5a",
-        borderRadius:25,
+        backgroundColor:"#2E86C1",
+        borderRadius:10,
         height:50,
         alignItems:"center",
         justifyContent:"center",
         marginTop:20,
-        marginBottom:5
+        marginBottom:5,
+        borderWidth:2,
+        borderColor: "white"
       },
 
       subText:{

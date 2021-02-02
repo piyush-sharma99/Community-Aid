@@ -59,7 +59,7 @@ const ManageRequestScreens = props => {
 
 
     const renderRequest = ({ item }) => (
-        <View style={styles.screen} >
+        <View style={styles.screen2} >
                 
         <Card style={styles.cardView2}>
 
@@ -106,7 +106,6 @@ const ManageRequestScreens = props => {
              
 
                 <FlatList
-                horizontal={true}
                 style={{flex: 1}}
                 data={requests}
                 renderItem={renderRequest}
@@ -138,6 +137,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+    screen2: {
+        width:410,
+        backgroundColor: '#2E86C1',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     SubScreen: {
         marginTop:-30,
         width:'100%',
@@ -164,7 +169,7 @@ const styles = StyleSheet.create({
     
     },
     text2: {
-        padding:10,
+        padding:15,
         marginRight:40,
         marginLeft:40,
         color:"white",
@@ -200,9 +205,9 @@ const styles = StyleSheet.create({
     Subheading: {
         alignSelf: 'stretch',
         borderBottomWidth: 2,
-        marginLeft:30,
-        marginRight:30,
-        marginTop:-270,
+        marginLeft:10,
+        marginRight:10,
+        marginTop:-290,
         borderColor: '#fb5b5a',
         fontSize: 30,
         color: '#fff',
@@ -241,18 +246,16 @@ const styles = StyleSheet.create({
          
     cardView2: {
         justifyContent: 'center',
-        width:'70%',
-        height:'80%',
+        width:400,
         backgroundColor:"#fb5b5a",
         shadowColor: 'black',
         borderRadius:25,
         borderWidth:3,
         borderColor:'#fff',
         shadowOpacity: 1,
-        marginTop:30,
-        marginBottom:40,
+        marginTop:10,
+        marginBottom:20,
         padding:10,
-        marginLeft:-70,
         elevation: 10,
         alignItems: 'center',
         shadowOffset: {
