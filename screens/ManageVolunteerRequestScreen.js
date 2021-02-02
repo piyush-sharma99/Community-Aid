@@ -25,19 +25,12 @@ const ManageVolunteerRequestScreen = props => {
                         status: 'To Do'
               
                       })
-
-
                 }
                 else{
                     db.collection("Assistance Request").doc(doc.id).update({
                         status: status
-              
-              
                       })
-
                 }
-
-
               });
             })
 
@@ -72,7 +65,7 @@ const ManageVolunteerRequestScreen = props => {
     }, []);
 
     const renderRequest = ({ item }) => (
-        <View style={styles.screen} >
+        <View style={styles.screen2} >
                 
         <Card style={styles.cardView2}>
 
@@ -118,7 +111,6 @@ const ManageVolunteerRequestScreen = props => {
             </View>
 
             <FlatList
-                horizontal={true}
                 style={{flex: 1}}
                 data={requests}
                 renderItem={renderRequest}
@@ -150,6 +142,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+    screen2: {
+        width:410,
+        backgroundColor: '#2E86C1',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    
     SubScreen: {
         width:'100%',
         backgroundColor: '#2E86C1',
@@ -169,14 +168,14 @@ const styles = StyleSheet.create({
         color:"white",
         fontSize:20,
         textAlign: 'center',
-        marginTop:5,
+        marginTop:-15,
         borderWidth: 3,
         borderColor: '#fb5b5a',
         borderRadius:15,
     
     },
     text2: {
-        padding:10,
+        padding:15,
         marginRight:40,
         marginLeft:40,
         color:"white",
@@ -192,7 +191,6 @@ const styles = StyleSheet.create({
         borderRadius:25,
         height:35,
         marginTop:15,
-        marginBottom:20,
         justifyContent:"center",
         padding:20,
         elevation: 10,
@@ -212,8 +210,8 @@ const styles = StyleSheet.create({
     Subheading: {
         alignSelf: 'stretch',
         borderBottomWidth: 2,
-        marginLeft:30,
-        marginRight:30,
+        marginLeft:10,
+        marginRight:10,
         marginTop:-290,
         borderColor: '#fb5b5a',
         fontSize: 30,
@@ -228,7 +226,7 @@ const styles = StyleSheet.create({
         height:35,
         alignItems:"center",
         justifyContent:'center',
-        marginTop:5,
+        marginTop:10,
         borderWidth:2,
         borderColor: "white"
         },
@@ -236,7 +234,7 @@ const styles = StyleSheet.create({
     cardView1: {
         justifyContent: 'center',
         width:'90%',
-        height:'39%',
+        height:'32%',
         backgroundColor:"#fb5b5a",
         shadowColor: 'black',
         borderRadius:25,
@@ -253,17 +251,16 @@ const styles = StyleSheet.create({
          
     cardView2: {
         justifyContent: 'center',
-        width:'90%',
-        height:'90%',
+        width:400,
         backgroundColor:"#fb5b5a",
         shadowColor: 'black',
         borderRadius:25,
         borderWidth:3,
         borderColor:'#fff',
         shadowOpacity: 1,
-        marginTop:20,
+        marginTop:10,
         marginBottom:20,
-        padding:20,
+        padding:10,
         elevation: 10,
         alignItems:"center",
         shadowOffset: {

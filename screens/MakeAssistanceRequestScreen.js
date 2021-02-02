@@ -70,10 +70,6 @@ const MakeAssistanceRequestScreen = props => {
 
 
         })
-
-        
-
-
         
         console.log('Data uploaded');
   })
@@ -135,6 +131,7 @@ const MakeAssistanceRequestScreen = props => {
             style={styles.inputText}
             placeholder="Request Description..." 
             placeholderTextColor="#003f5c"
+            multiline={true}
             onChangeText={(requestDescription) => setRequestDescription(requestDescription)}/>
         </View>
 
@@ -171,6 +168,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2E86C1',
 },
   text: {
+
     padding:10,
     marginBottom: 30,
     marginRight:40,
@@ -178,7 +176,7 @@ const styles = StyleSheet.create({
     color:"white",
     fontSize:30,
     textAlign: 'center',
-    marginTop:50,
+    marginTop:30,
     borderWidth: 3,
     borderColor: '#fb5b5a',
     borderRadius:15,
@@ -220,7 +218,11 @@ const styles = StyleSheet.create({
       },
 
       inputText:{
-        height:50,
+        height:60,
+        color:"black"
+      },
+      inputTextTwo:{
+        height:60,
         color:"black"
       },
 
@@ -237,14 +239,14 @@ const styles = StyleSheet.create({
         height:50,
         alignItems:"center",
         justifyContent:'center',
-        marginTop:20,
+        marginTop:30,
         borderWidth:2,
         borderColor: "white"
       },
       cardView: {
         justifyContent: 'center',
         width:'90%',
-        height:'75%',
+        height:'77%',
         backgroundColor:"#fb5b5a",
         shadowColor: 'black',
         borderRadius:25,

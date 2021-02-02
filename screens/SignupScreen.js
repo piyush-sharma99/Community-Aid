@@ -15,7 +15,7 @@ const SignupScreen = props => {
   signUpUser = () => {
     try{
       if(name == '' ){
-      alert(' Field is empty!')
+      alert(' Name is empty!')
             return;
     }
     else{
@@ -49,9 +49,7 @@ const SignupScreen = props => {
             number: number,
             email: email
           })
-
-          
-          
+  
       });
 
       }

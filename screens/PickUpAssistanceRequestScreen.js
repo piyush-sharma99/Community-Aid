@@ -64,7 +64,7 @@ const PickUpAssistanceRequestScreen = props => {
 
 
     const renderRequest = ({ item }) => (
-        <View style={styles.screen} >
+        <View style={styles.screen2} >
                 
         <Card style={styles.cardView2}>
 
@@ -97,15 +97,6 @@ const PickUpAssistanceRequestScreen = props => {
                       </TouchableOpacity>
               </View>
 
-          </Card>
-          
-          
-
-      </View>
-      <View style={styles.screen} >
-      
-          <Card style={styles.cardView3}>
-
               <View style={styles.inputView} >
                   <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c" onChangeText={(request) => setRequest(request)}/>
               </View>
@@ -117,9 +108,8 @@ const PickUpAssistanceRequestScreen = props => {
 
           </Card>
           
-          
-
       </View>
+
       <View style={styles.Subheading}>
               <Text style={styles.text2}>Requests below: </Text>
           </View>
@@ -128,8 +118,7 @@ const PickUpAssistanceRequestScreen = props => {
      
 
         <FlatList
-        style={{flex: 1, marginTop:10}}
-        horizontal={true}
+        style={{flex: 1}}
         data={requests}
         renderItem={renderRequest}
         keyExtractor={item => item.request_ID}
@@ -160,11 +149,16 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center'
   },
+  screen2: {
+    width:410,
+    backgroundColor: '#2E86C1',
+    alignItems: 'center',
+    justifyContent: 'center'
+},
+
   SubScreen: {
       width:'100%',
-      backgroundColor: '#2E86C1',
-      alignItems: 'center',
-      justifyContent: 'center'
+      backgroundColor: '#2E86C1'
   },
   scroll: {
       width:'100%',
@@ -173,7 +167,7 @@ const styles = StyleSheet.create({
   },
   text: {
       padding:10,
-      marginTop: -50,
+      marginTop: -90,
       marginRight:40,
       marginLeft:40,
       color:"white",
@@ -192,16 +186,16 @@ const styles = StyleSheet.create({
       fontSize:20,
       textAlign: 'center',
       
-  
+
   },
 
    inputView:{
       width:300,
       backgroundColor:"#FDFEFE",
       borderRadius:25,
-      height:35,
-      marginTop:15,
-      marginBottom:20,
+      height:20,
+      marginTop:20,
+      marginBottom:10,
       justifyContent:"center",
       padding:20,
       elevation: 10,
@@ -221,9 +215,9 @@ const styles = StyleSheet.create({
   Subheading: {
       alignSelf: 'stretch',
       borderBottomWidth: 2,
-      marginLeft:30,
-      marginRight:30,
-      marginTop:-235,
+      marginLeft:10,
+      marginRight:10,
+      marginTop:-100,
       borderColor: '#fb5b5a',
       fontSize: 30,
       color: '#fff',
@@ -234,10 +228,9 @@ const styles = StyleSheet.create({
       width:300,
       backgroundColor:"#2E86C1",
       borderRadius:10,
-      height:35,
+      height:30,
       alignItems:"center",
       justifyContent:'center',
-      marginTop:5,
       borderWidth:2,
       borderColor: "white"
       },
@@ -245,7 +238,7 @@ const styles = StyleSheet.create({
   cardView1: {
       justifyContent: 'center',
       width:'90%',
-      height:'45%',
+      height:'55%',
       marginTop:20,
       backgroundColor:"#fb5b5a",
       shadowColor: 'black',
@@ -262,17 +255,16 @@ const styles = StyleSheet.create({
        
   cardView2: {
       justifyContent: 'center',
-      width:'60%',
-      height:'90%',
+      width:400,
       backgroundColor:"#fb5b5a",
       shadowColor: 'black',
       borderRadius:25,
       borderWidth:3,
       borderColor:'#fff',
       shadowOpacity: 1,
-      marginTop:20,
-      marginBottom:40,
-      padding:20,
+      marginTop:10,
+      marginBottom:20,
+      padding:10,
       elevation: 10,
       alignItems:"center",
       shadowOffset: {
@@ -281,23 +273,8 @@ const styles = StyleSheet.create({
       },
       
   },
-  cardView3: {
-    justifyContent: 'center',
-    width:'90%',
-    height:'45%',
-    backgroundColor:"#fb5b5a",
-    marginTop:-300,
-    shadowColor: 'black',
-    borderRadius:25,
-    shadowOpacity: 1,
-    elevation: 10,
-    alignItems:"center",
-    shadowOffset: {
-        width: 3,
-        height: 3
-    },
     
-},
+
   
     
 });

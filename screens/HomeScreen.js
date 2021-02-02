@@ -142,6 +142,8 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'100%',
         backgroundColor:"#fb5b5a",
+        borderWidth:2,
+        borderColor: "white",
         shadowColor: 'black',
         borderRadius:25,
         shadowOpacity: 1,
