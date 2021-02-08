@@ -25,14 +25,17 @@ const PickUpAssistanceRequestScreen = props => {
                 console.log(data);
 
                 db.collection("Assistance Request").doc(doc.id).update({
-                    vid: user.uid
-          
+                    vid: user.uid,
+                    status: 'Assigned to a Volunteer'
           
                   })
 
-              });
-            })
 
+
+              });
+           
+           
+            })
 
         }
         catch(error){
@@ -46,7 +49,7 @@ const PickUpAssistanceRequestScreen = props => {
     readRequest = () => {
         db.collection('Assistance Request')
         .where('area', '==', area)
-        .where('status', '==', 'To Do')
+        .where('status', '==', 'Unassigned')
         .onSnapshot(querySnapshot => {
           const requests = [];
     
@@ -114,8 +117,6 @@ const PickUpAssistanceRequestScreen = props => {
               <Text style={styles.text2}>Requests below: </Text>
           </View>
       
-
-     
 
         <FlatList
         style={{flex: 1}}

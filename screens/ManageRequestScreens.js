@@ -20,7 +20,8 @@ const ManageRequestScreens = props => {
                 console.log(docID);
 
                 db.collection("Assistance Request").doc(doc.id).update({
-                    uid: "request Deleted by user"
+                    uid: "request Deleted by user",
+                    vid: ""
           
           
                   })
