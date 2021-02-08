@@ -14,12 +14,47 @@ const MapScreen = props => {
   const [errorMsg, setErrorMsg] = useState(null);
   const [radius, setRadius] = useState(1000);
   const [request, setRequest] = useState([]);
+  const [addRequest, setAddRequest] = useState('');
   const [updateRadius, setUpdateRadius] = useState(1000);
   const db = firebase.firestore();
+  var user = firebase.auth().currentUser;
+
+  addVid = () => {
+
+    try{
+        db.collection('Assistance Request').where('request_ID', '==', addRequest).get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            const data = doc.data();
+            const docID = doc.id;
+            console.log(docID);
+            console.log(data);
+
+            db.collection("Assistance Request").doc(doc.id).update({
+                vid: user.uid,
+                status: 'Assigned to a Volunteer'
+      
+              })
+
+
+
+          });
+       
+       
+        })
+
+    }
+    catch(error){
+        console.log('Data Not uploaded');
+        console.log(error.toString())
+      }
+
+
+}
 
   useEffect(() => {
     db.collection('Assistance Request')
-    .where('status', '==', 'To Do')
+    .where('status', '==', 'Unassigned')
     .onSnapshot(querySnapshot => {
       const requests = [];
 
@@ -101,6 +136,24 @@ const MapScreen = props => {
 
         <Card style={styles.cardView}>
         <View style={styles.inputView} >
+          
+          <TextInput  
+            style={styles.inputText}
+            placeholder="Add request" 
+            placeholderTextColor="#003f5c"
+            onChangeText={(addRequest) => setAddRequest(addRequest)}
+            />
+            </View>
+            <TouchableOpacity style={styles.Btn} onPress = {addVid}>
+             <Text style={styles.subText} >Add request</Text>
+
+        </TouchableOpacity>
+            </Card>
+
+        <Card style={styles.cardView}>
+
+        <View style={styles.inputView} >
+          
           <TextInput  
             style={styles.inputText}
             placeholder="Radius in kilometers eg (3)..." 
@@ -136,12 +189,11 @@ const styles = StyleSheet.create({
     },
     mapView: {
         width:'100%',
-        height:'65%',
+        height:'43%',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: "#61dafb",
         marginBottom: 20,
-        marginTop:-59,
         elevation: 10
         
     },
@@ -154,12 +206,14 @@ const styles = StyleSheet.create({
     cardView: {
         width:'95%',
         height:'25%',
+        padding:5,
         backgroundColor:"#fb5b5a",
         shadowColor: 'black',
         alignItems: 'center',
         borderRadius:25,
+        marginBottom:20,
         shadowOpacity: 2,
-        elevation: 10,
+        elevation: 5,
         shadowOffset: {
           width: 3,
           height: 3

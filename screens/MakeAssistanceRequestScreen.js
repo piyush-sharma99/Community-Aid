@@ -11,7 +11,7 @@ const MakeAssistanceRequestScreen = props => {
   const [errorMsg, setErrorMsg] = useState(null);
   const requestID = Math.random().toString(36).slice(2); //Incrementing a random key
   const [date, setDate] = useState('');
-  const [status] = useState('To Do');
+  const [status] = useState('Unassigned');
   const [address, setAddress] = useState('');
   const [area, setArea] = useState('');
   const [requestType, setRequestType] = useState('');
