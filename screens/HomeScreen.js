@@ -1,11 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
 import {Card} from 'react-native-paper';
 import { FontAwesome5, AntDesign, FontAwesome, MaterialIcons, Feather} from '@expo/vector-icons';
 import * as firebase from 'firebase';
+import * as Permissions from 'expo-permissions';
+import * as Notifications from 'expo-notifications';
 
 
 const HomeScreen = props => {
+    const db = firebase.firestore();
+    var user = firebase.auth().currentUser;
+
+    useEffect(() => {
+      Permissions.getAsync(Permissions.NOTIFICATIONS)
+        .then((statusObj) => {
+          if (statusObj.status !== 'granted') {
+            return Permissions.askAsync(Permissions.NOTIFICATIONS);
+          }
+          return statusObj;
+        })
+        .then((statusObj) => {
+          if (statusObj.status !== 'granted') {
+            throw new Error('Permission not granted!');
+          }
+        })
+        .then(() => {
+          return Notifications.getExpoPushTokenAsync();
+        })
+        .then((response) => {
+          const token = response.data;
+
+
+          db.collection("users").doc(user.uid).update({
+            expoToken: token
+  
+          });
+          
+        })
+        .catch((err) => {
+          console.log(err);
+          return null;
+        });
+    }, []);
+
     logout = () => {
         
           

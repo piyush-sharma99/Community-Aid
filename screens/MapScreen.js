@@ -19,6 +19,10 @@ const MapScreen = props => {
   const db = firebase.firestore();
   var user = firebase.auth().currentUser;
 
+
+
+
+  //make external component
   addVid = () => {
 
     try{
@@ -34,9 +38,29 @@ const MapScreen = props => {
                 vid: user.uid,
                 status: 'Assigned to a Volunteer'
       
+              }),
+
+                db.collection("users").doc(data.uid).get().then(snapshot => {
+                    const userInfo = snapshot.data();
+                    console.log(userInfo);
+
+                    fetch('https://exp.host/--/api/v2/push/send', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Accept-Encoding': 'gzip, deflate',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        to: userInfo.expoToken,
+                        data: { extraData: 'Request ID: ' + data.request_ID},
+                        title: 'Request made on ' + data.date + ' was picked up' ,
+                        body: 'Please check your assistance request of type:'  + '\r\n' + data.request_Type ,
+                    }),
+                    });
+            
+                    
               })
-
-
 
           });
        
@@ -45,7 +69,6 @@ const MapScreen = props => {
 
     }
     catch(error){
-        console.log('Data Not uploaded');
         console.log(error.toString())
       }
 
