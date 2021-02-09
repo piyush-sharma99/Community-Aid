@@ -1,7 +1,8 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ScrollView,TextInput, TouchableOpacity,FlatList, SafeAreaView} from 'react-native';
 import {Card} from 'react-native-paper';
 import * as firebase from 'firebase';
+
 
 
 const PickUpAssistanceRequestScreen = props => {
@@ -13,6 +14,7 @@ const PickUpAssistanceRequestScreen = props => {
 
     var user = firebase.auth().currentUser;
 
+ //make external component
     addVid = () => {
 
         try{
@@ -28,9 +30,29 @@ const PickUpAssistanceRequestScreen = props => {
                     vid: user.uid,
                     status: 'Assigned to a Volunteer'
           
+                  }),
+
+                    db.collection("users").doc(data.uid).get().then(snapshot => {
+                        const userInfo = snapshot.data();
+                        console.log(userInfo);
+
+                        fetch('https://exp.host/--/api/v2/push/send', {
+                        method: 'POST',
+                        headers: {
+                            Accept: 'application/json',
+                            'Accept-Encoding': 'gzip, deflate',
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            to: userInfo.expoToken,
+                            data: { extraData: 'Request ID: ' + data.request_ID},
+                            title: 'Request made on ' + data.date + ' was picked up' ,
+                            body: 'Please check your assistance request of type:'  + '\r\n' + data.request_Type ,
+                        }),
+                        });
+                
+                        
                   })
-
-
 
               });
            
@@ -39,7 +61,6 @@ const PickUpAssistanceRequestScreen = props => {
 
         }
         catch(error){
-            console.log('Data Not uploaded');
             console.log(error.toString())
           }
 
@@ -211,7 +232,7 @@ const styles = StyleSheet.create({
   
   Text:{
       color:"white",
-      fontSize:20
+      fontSize:15
   },
   Subheading: {
       alignSelf: 'stretch',

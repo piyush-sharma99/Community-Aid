@@ -1,23 +1,35 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import NavigatorCA from'./navigation/CommunityAidNavigator';
+import LoggedInNav from'./navigation/LoggedInNavigator';
 import * as firebase from 'firebase';
 import {firebaseConfig} from './apikey';
+import * as Notifications from 'expo-notifications';
 
+
+Notifications.setNotificationHandler({
+    handleNotification: async () => {
+      return {
+        shouldShowAlert: true,
+      };
+    },
+  });
+
+  Notifications.addNotificationResponseReceivedListener(
+    (response) => {
+      console.log(response);
+    }
+  );
+
+  Notifications.addNotificationReceivedListener(
+    (notification) => {
+      console.log(notification);
+    }
+  );
 
 firebase.initializeApp(firebaseConfig);
-
-firebase.auth().onAuthStateChanged(function (user) {
-  if( user){
-  console.log('Login successfull!!')
-  
-  }
-  else{
-    console.log('Not logged in!')
-  }
-    }); 
 
 const fetchFonts = () => {
 return Font.loadAsync({
@@ -28,6 +40,21 @@ return Font.loadAsync({
 
 export default function App() {
 const[fontLoaded, setFontLoaded] = useState(false);
+const[userLog, setUserLog] = useState(false);
+
+useEffect(() => {
+  firebase.auth().onAuthStateChanged(function (user) {
+    if(user){
+      setUserLog(true);
+    
+    }
+    else{
+      console.log('Not logged in!')
+    }
+      }); 
+
+}, []);
+
 
 if (!fontLoaded) {
   return (<AppLoading 
@@ -36,7 +63,15 @@ if (!fontLoaded) {
   />
   );
 }
-  
+else{
+  if(userLog == true){
+    return <LoggedInNav/>;
+
+  }
   return <NavigatorCA/>;
+
+}
+  
+  
   
 }
