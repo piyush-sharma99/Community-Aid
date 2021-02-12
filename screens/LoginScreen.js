@@ -1,30 +1,14 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image} from 'react-native';
 import * as firebase from 'firebase';
-import { render } from 'react-dom';
-import Home from '../screens/HomeScreen';
+import logInUser from '../functions/logInUser';
+
 
 const LoginScreen = props => {
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  logInUser = () => {
-    try{
-      
-        firebase.auth().signInWithEmailAndPassword(email, password).then(function (user) {
-            console.log(user),
-            props.navigation.navigate({routeName: 'Home'});
-        });
-
-    }  
-    catch(error){
-        console.log(error.toString()),
-        alert("Oops! Something went wrong!")
-    }
-}
-
-
+  const fb = firebase.auth();
 
   return(
     <View style={styles.screen} >
@@ -60,7 +44,7 @@ const LoginScreen = props => {
     </View>
 
     <View>
-    <TouchableOpacity style={styles.loginBtn} onPress = {logInUser}  >
+    <TouchableOpacity style={styles.loginBtn} onPress = {() => logInUser(fb, email, password, props)}  >
       <Text style={styles.loginText} >Log In</Text>
     </TouchableOpacity>
     </View>

@@ -2,10 +2,13 @@ import React, { useState} from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Alert } from 'react-native';
 import {Card} from 'react-native-paper';
 import * as firebase from 'firebase';
+import deleteProfile from '../functions/deleteProfile';
+import profileUpdate from '../functions/profileUpdate';
 
 const SettingScreen = props => {
 
 const db = firebase.firestore();
+const signout = firebase.auth();
 const [email, setEmail] = useState('');
 const [name, setName] = useState('');
 const [number, setNumber] = useState('');
@@ -13,119 +16,7 @@ const [confirm, setConfirm] = useState('');
 const [password, setPassword] = useState('');
 var user = firebase.auth().currentUser;
 
-const promptAlertDelete = () =>
-    Alert.alert(
-      "Delete Account",
-      "Are you sure you want to delete the account",
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        { text: "OK", onPress: () => {try{
 
-            if(confirm == 'Confirm'){
-                
-                user.delete().then(() => {
-                    props.navigation.navigate({routeName: 'Index'});
-                  });
-
-                  db.collection("users").doc(user.uid).delete();
-
-
-            }
-            else{
-                alert('Type Confirm exactly as stated in the field');
-                return;
-            }
-      
-            
-                
-        }  
-        catch(error){
-            console.log(error.toString()),
-            alert("Oops! Something went wrong!")
-        }} }
-      ],
-      { cancelable: false }
-    );
-
-
-
-    const promptAlertUpdate = () =>
-    Alert.alert(
-      "Update Information",
-      "Are you sure you want to update you profile information? (YOU WILL BE LOGGED OUT IF PASSWORD AND EMAIL ARE UPDARED!)",
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        { text: "OK", onPress: () => { 
-            try{
-
-            if(email != ''){
-
-               
-                user.updateEmail(email).then( 
-                    db.collection("users").doc(user.uid).update({
-                    email: email
-                }),
-                firebase.auth().signOut().then(() => {
-                    props.navigation.navigate({routeName: 'Index'});
-                  })
-                );
-
-            }
-            else{}
-
-            if(name != ''){
-
-                db.collection("users").doc(user.uid).update({
-                    name: name
-                })
-
-            }
-            else{}
-
-            if(number != ''){
-
-                db.collection("users").doc(user.uid).update({
-                    number: number
-                })
-
-            }
-            else{}
-
-            if(password != '' && password.length>6){
-
-                user.updatePassword(password).then(
-                    consol.log('Password Updated')
-                ),
-                firebase.auth().signOut().then(() => {
-                    props.navigation.navigate({routeName: 'Index'});
-                  })
-
-            }
-            else if(password.length<6){
-                alert('Password is too short')
-                
-            }
-            else{
-
-            }   
-    
-        }
-        catch(error){
-            console.log('data is updated');
-            console.log(error.toString())
-          }
-    } }
-      ],
-      { cancelable: false }
-    );
  
     return(
         <View style={styles.screen}>
@@ -147,7 +38,7 @@ const promptAlertDelete = () =>
                 <TextInput style={styles.text} placeholder="Change Password" underlineColorAndroid={'transparent'} placeholderTextColor="white" secureTextEntry onChangeText={(password) => setPassword(password)}  />
             </View>
             <View>
-                 <TouchableOpacity style={styles.btn} onPress = {promptAlertUpdate} >
+                 <TouchableOpacity style={styles.btn} onPress = {() => profileUpdate(user, signout, props, db, email, name, number, password)} >
                  <Text style={styles.btnText}>Update Profile</Text>
                  </TouchableOpacity>
             </View>
@@ -161,7 +52,7 @@ const promptAlertDelete = () =>
                 </View>
 
             <View>
-                <TouchableOpacity style={styles.btn2} onPress = {promptAlertDelete} >
+                <TouchableOpacity style={styles.btn2} onPress = {() => deleteProfile(user, props, db, confirm)} >
                 <Text style={styles.Text}>Delete</Text>
                 </TouchableOpacity>
 </View>

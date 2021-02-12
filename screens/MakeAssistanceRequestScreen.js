@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, ScrollView, Button, TouchableOpacity
 import {Card} from 'react-native-paper';
 import * as firebase from 'firebase';
 import * as Location from 'expo-location';
+import makeRequest from '../functions/makeRequest';
 
 const MakeAssistanceRequestScreen = props => {
 
@@ -43,47 +44,6 @@ const MakeAssistanceRequestScreen = props => {
     latitude = location.coords.latitude;
     
   }
-
-  UploadData = () =>{
-
-    try{
-      //reading user values
-      db.collection("users").doc(user.uid).get().then(snapshot => {
-        const userInfo = snapshot.data();
-
-        //uploading data to firestore
-        db.collection("Assistance Request").doc().set({
-          date: date,
-          uid: user.uid,
-          name: userInfo.name,
-          number: userInfo.number,
-          request_ID: requestID,
-          email: userInfo.email,
-          status: status,
-          address: address,
-          area: area,
-          request_Type: requestType,
-          longitude:longitude,
-          latitude:latitude,
-          request_Description: requestDescription,
-          vid: ""
-
-
-        })
-        
-        console.log('Data uploaded');
-  })
-
-  
-
-    }
-    catch(error){
-      console.log('Data Not uploaded');
-      console.log(error.toString())
-    }
-
-  };
-  
 
 
     return(
@@ -138,7 +98,7 @@ const MakeAssistanceRequestScreen = props => {
         </Card>
 
         <View>
-        <TouchableOpacity style={styles.Btn} onPress = {UploadData}>
+        <TouchableOpacity style={styles.Btn} onPress = {() => makeRequest(user, requestID, db, date, status, address, area, requestType, requestDescription, longitude, latitude)}>
           <Text style={styles.Text}>Submit</Text>
         </TouchableOpacity>
         </View>

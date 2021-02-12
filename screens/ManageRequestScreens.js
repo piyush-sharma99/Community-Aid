@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ScrollView,TextInput, TouchableOpacity,FlatList, SafeAreaView} from 'react-native';
 import {Card} from 'react-native-paper';
 import * as firebase from 'firebase';
+import deleteRequest from '../functions/deleteRequest';
+
 
 const ManageRequestScreens = props => {
 
@@ -9,35 +11,6 @@ const ManageRequestScreens = props => {
     const db = firebase.firestore();
     const [request, setRequest] = useState('');
     var user = firebase.auth().currentUser;
-
-    deleteRequest = () => {
-
-        try{
-            db.collection('Assistance Request').where('request_ID', '==', request).get()
-            .then(snapshot => {
-              snapshot.forEach(doc => {
-                const docID = doc.id;
-                console.log(docID);
-
-                db.collection("Assistance Request").doc(doc.id).update({
-                    uid: "request Deleted by user",
-                    vid: ""
-          
-          
-                  })
-
-              });
-            })
-
-
-        }
-        catch(error){
-            console.log('Request was not deleted');
-            console.log(error.toString())
-          }
-
-
-    }
 
     useEffect(() => {
           db.collection('Assistance Request')
@@ -90,7 +63,7 @@ const ManageRequestScreens = props => {
                         </View>
 
                         <View>
-                            <TouchableOpacity style={styles.Btn} onPress = {deleteRequest}>
+                            <TouchableOpacity style={styles.Btn} onPress = {() => deleteRequest(request, db)}>
                                 <Text style={styles.Text}>Delete Request</Text>
                                 </TouchableOpacity>
                         </View>

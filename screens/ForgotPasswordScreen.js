@@ -1,34 +1,13 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image} from 'react-native';
 import * as firebase from 'firebase';
+import forgotPassword from '../functions/forgotpassword'
 
 
 const ForgotPasswordScreen = props => {
   
   const [email, setEmail] = useState('');
- 
-
-  forgotPassword = () => {
-    try{
-      
-        firebase.auth().sendPasswordResetEmail(
-            email)
-            .then(function() {
-              alert('Check your email'),
-              props.navigation.navigate({routeName: 'Login'});
-            })
-            .catch(function(error) {
-              console.log(error),
-              alert('Oops! Error occured Email not sent! :{')
-            });
-
-    }  
-    catch(error){
-        console.log(error.toString())
-    }
-}
-
-
+  const fb = firebase.auth();
 
   return(
     <View style={styles.screen} >
@@ -47,7 +26,7 @@ const ForgotPasswordScreen = props => {
     </View>
 
     <View>
-    <TouchableOpacity style={styles.ForgotBtn} onPress = {forgotPassword}  >
+    <TouchableOpacity style={styles.ForgotBtn} onPress = {() => forgotPassword(fb, email, props)}  >
       <Text style={styles.forgotText} >Send Password Reset Email</Text>
     </TouchableOpacity>
     </View>
