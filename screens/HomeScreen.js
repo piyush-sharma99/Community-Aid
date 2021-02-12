@@ -5,11 +5,13 @@ import { FontAwesome5, AntDesign, FontAwesome, MaterialIcons, Feather} from '@ex
 import * as firebase from 'firebase';
 import * as Permissions from 'expo-permissions';
 import * as Notifications from 'expo-notifications';
+import logOut from '../functions/logOut';
 
 
 const HomeScreen = props => {
     const db = firebase.firestore();
     var user = firebase.auth().currentUser;
+    const fb = firebase.auth();
 
     useEffect(() => {
       Permissions.getAsync(Permissions.NOTIFICATIONS)
@@ -43,15 +45,6 @@ const HomeScreen = props => {
         });
     }, []);
 
-    logout = () => {
-        
-          
-            firebase.auth().signOut().then(() => {
-                props.navigation.navigate({routeName: 'Index'});
-              }).catch((error) => {
-                console.log(error.toString())
-              }); 
-    }
 
     return(
         <View style={styles.screen}>
@@ -111,7 +104,7 @@ const HomeScreen = props => {
             </Card>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.clickView} onPress = {logout}>
+        <TouchableOpacity style={styles.clickView} onPress = {() => logOut(fb, props)}>
         <Card style={styles.cardView}>
                 <View style={styles.content}>
                     <AntDesign name="logout" size={70} color="white" />

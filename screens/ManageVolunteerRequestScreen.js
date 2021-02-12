@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ScrollView,TextInput, TouchableOpacity,FlatList, SafeAreaView} from 'react-native';
 import {Card} from 'react-native-paper';
 import * as firebase from 'firebase';
+import editRequest from '../functions/editRequest';
 
 const ManageVolunteerRequestScreen = props => {
     const [requests, setRequests] = useState([]); 
@@ -10,39 +11,6 @@ const ManageVolunteerRequestScreen = props => {
     const [status, setStatus] = useState('');
     var user = firebase.auth().currentUser;
 
-    editStatus = () => {
-
-        try{
-            db.collection('Assistance Request').where('request_ID', '==', request).get()
-            .then(snapshot => {
-              snapshot.forEach(doc => {
-                const docID = doc.id;
-                console.log(docID);
-
-                if(status == 'To Do' || status == 'todo' || status =='to do' || status == 'TODO' || status == 'TO DO' || status == 'ToDo' ||status == 'Todo' ||status == 'To do'){
-                    db.collection("Assistance Request").doc(doc.id).update({
-                        vid: "",
-                        status: 'To Do'
-              
-                      })
-                }
-                else{
-                    db.collection("Assistance Request").doc(doc.id).update({
-                        status: status
-                      })
-                }
-              });
-            })
-
-
-        }
-        catch(error){
-            console.log('Request was not deleted');
-            console.log(error.toString())
-          }
-
-
-    }
 
 
     useEffect(() => {
@@ -64,6 +32,7 @@ const ManageVolunteerRequestScreen = props => {
 
     }, []);
 
+
     const renderRequest = ({ item }) => (
         <View style={styles.screen2} >
                 
@@ -81,6 +50,9 @@ const ManageVolunteerRequestScreen = props => {
     </View>
       );
 
+
+      
+
     return(
         
         <View style={styles.screen} >
@@ -93,11 +65,11 @@ const ManageVolunteerRequestScreen = props => {
                     <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c" onChangeText={(request) => setRequest(request)}/>
                 </View>
                 <View style={styles.inputView} >
-                    <TextInput style={styles.inputText} placeholder="Edit Status..." placeholderTextColor="#003f5c" onChangeText={(status) => setStatus(status)}/>
+                    <TextInput style={styles.inputText} placeholder="Edit Status...(type delete to remove)" placeholderTextColor="#003f5c" onChangeText={(status) => setStatus(status)}/>
                 </View>
 
                 <View>
-                    <TouchableOpacity style={styles.Btn} onPress = {editStatus}>
+                    <TouchableOpacity style={styles.Btn} onPress = {() => editRequest(db, request, status)}>
                         <Text style={styles.Text}>Edit Request</Text>
                         </TouchableOpacity>
                 </View>
@@ -116,9 +88,6 @@ const ManageVolunteerRequestScreen = props => {
                 renderItem={renderRequest}
                 keyExtractor={item => item.request_ID}
                 />
-        
-
-            
         </View>
         
     

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ScrollView,TextInput, TouchableOpacity,FlatList, SafeAreaView} from 'react-native';
 import {Card} from 'react-native-paper';
 import * as firebase from 'firebase';
+import addVid from '../functions/addvid';
 
 
 
@@ -10,63 +11,9 @@ const PickUpAssistanceRequestScreen = props => {
     const [requests, setRequests] = useState([]); // Initial empty array of users // Initial empty array of users
     const db = firebase.firestore();
     const [area, setArea] = useState('');
-    const [request, setRequest] = useState('');
-
+    const [request, setRequest] = useState('');   
     var user = firebase.auth().currentUser;
-
- //make external component
-    addVid = () => {
-
-        try{
-            db.collection('Assistance Request').where('request_ID', '==', request).get()
-            .then(snapshot => {
-              snapshot.forEach(doc => {
-                const data = doc.data();
-                const docID = doc.id;
-                console.log(docID);
-                console.log(data);
-
-                db.collection("Assistance Request").doc(doc.id).update({
-                    vid: user.uid,
-                    status: 'Assigned to a Volunteer'
-          
-                  }),
-
-                    db.collection("users").doc(data.uid).get().then(snapshot => {
-                        const userInfo = snapshot.data();
-                        console.log(userInfo);
-
-                        fetch('https://exp.host/--/api/v2/push/send', {
-                        method: 'POST',
-                        headers: {
-                            Accept: 'application/json',
-                            'Accept-Encoding': 'gzip, deflate',
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            to: userInfo.expoToken,
-                            data: { extraData: 'Request ID: ' + data.request_ID},
-                            title: 'Request made on ' + data.date + ' was picked up' ,
-                            body: 'Please check your assistance request of type:'  + '\r\n' + data.request_Type ,
-                        }),
-                        });
-                
-                        
-                  })
-
-              });
-           
-           
-            })
-
-        }
-        catch(error){
-            console.log(error.toString())
-          }
-
-
-    }
-
+    
     readRequest = () => {
         db.collection('Assistance Request')
         .where('area', '==', area)
@@ -125,7 +72,7 @@ const PickUpAssistanceRequestScreen = props => {
                   <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c" onChangeText={(request) => setRequest(request)}/>
               </View>
               <View>
-                  <TouchableOpacity style={styles.Btn} onPress = {addVid}>
+                  <TouchableOpacity style={styles.Btn} onPress = {addVid(request, db, user)}>
                       <Text style={styles.Text}>ADD</Text>
                       </TouchableOpacity>
               </View>
