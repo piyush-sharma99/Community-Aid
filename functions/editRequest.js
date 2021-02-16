@@ -1,6 +1,15 @@
 
 const editRequest = (db, request, status) => {
 
+  if(request == '' || request == ' '){
+    alert('Please fill in all of the fields!')
+              return;
+  } else if (status == '' || status == ' '){
+    alert('Please fill in all of the fields!')
+              return;
+
+  } else{
+
         try{
             db.collection('Assistance Request').where('request_ID', '==', request).get()
             .then(snapshot => {
@@ -9,12 +18,16 @@ const editRequest = (db, request, status) => {
                 const data = doc.data();
                 console.log(docID);
 
-                if(status == 'delete' || status == 'Delete' || status =='DELETE'){
+                if(status == 'delete' || status == 'Delete' || status =='DELETE' || status =='DELETE '|| status == 'Delete ' || status == 'delete '){
                     db.collection("Assistance Request").doc(doc.id).update({
                         vid: "",
                         status: 'Unassigned'
               
                       }),
+
+                      alert('Request was Unassigned successfully!'),
+
+
                          db.collection("users").doc(data.uid).get().then(snapshot => {
                         const userInfo = snapshot.data();
                         console.log(userInfo);
@@ -42,6 +55,8 @@ const editRequest = (db, request, status) => {
                     db.collection("Assistance Request").doc(doc.id).update({
                         status: status
                       }),
+
+                      alert('Request status updated successfully!'),
 
                       db.collection("users").doc(data.uid).get().then(snapshot => {
                         const userInfo = snapshot.data();
@@ -71,9 +86,11 @@ const editRequest = (db, request, status) => {
 
         }
         catch(error){
-            console.log('Request was not deleted');
+            console.log('Request status was not edited');
             console.log(error.toString())
           }
+
+        }
 
 
     }

@@ -13,6 +13,14 @@ const SignupScreen = props => {
   const [passwordRepeat, setPasswordRepeat] = useState('');
   const fb = firebase.auth();
 
+  resetFieldsOne = () => {
+    this.textInputOne.clear();     
+    this.textInputTwo.clear(); 
+    this.textInputThree.clear(); 
+    this.textInputFour.clear(); 
+    this.textInputFive.clear();  
+}
+
 
   return(
     <View style={styles.screen} >
@@ -27,7 +35,8 @@ const SignupScreen = props => {
         style={styles.inputText}
         placeholder="Name..." 
         placeholderTextColor="#003f5c"
-        onChangeText={(name) => setName(name)}/>
+        onChangeText={(name) => setName(name)}
+        ref={input => { this.textInputOne = input }}/>
     </View>
 
     <View style={styles.inputView} >
@@ -35,7 +44,8 @@ const SignupScreen = props => {
         style={styles.inputText}
         placeholder="Number..." 
         placeholderTextColor="#003f5c"
-        onChangeText={(number) => setNumber(number)}/>
+        onChangeText={(number) => setNumber(number)}
+        ref={input => { this.textInputTwo = input }}/>
     </View>
 
      <View style={styles.inputView} >
@@ -43,7 +53,8 @@ const SignupScreen = props => {
         style={styles.inputText}
         placeholder="Email..." 
         placeholderTextColor="#003f5c"
-        onChangeText={(email) => setEmail(email)}/>
+        onChangeText={(email) => setEmail(email)}
+        ref={input => { this.textInputThree = input }}/>
     </View>
 
     <View style={styles.inputView} >
@@ -52,7 +63,8 @@ const SignupScreen = props => {
         placeholder="Password..." 
         secureTextEntry
         placeholderTextColor="#003f5c"
-        onChangeText={(password) => setPassword(password)}/>
+        onChangeText={(password) => setPassword(password)}
+        ref={input => { this.textInputFour = input }}/>
     </View>
     <View style={styles.inputView} >
       <TextInput  
@@ -60,11 +72,12 @@ const SignupScreen = props => {
         placeholder="Repeat Password..." 
         secureTextEntry
         placeholderTextColor="#003f5c"
-        onChangeText={(passwordRepeat) => setPasswordRepeat(passwordRepeat)}/>
+        onChangeText={(passwordRepeat) => setPasswordRepeat(passwordRepeat)}
+        ref={input => { this.textInputFive = input }}/>
     </View>
 
     <View>
-    <TouchableOpacity style={styles.signBtn}  onPress = {() => signUpUser(name, number, email, password, passwordRepeat, fb, props, db)}>
+    <TouchableOpacity style={styles.signBtn}  onPress = {() => signUpUser(name, number, email, password, passwordRepeat, fb, props, db)} onPressIn = {resetFieldsOne}>
       <Text style={styles.signText}>Sign Up</Text>
     </TouchableOpacity>
     </View>

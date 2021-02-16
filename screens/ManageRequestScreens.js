@@ -31,6 +31,10 @@ const ManageRequestScreens = props => {
 
       }, []);
 
+      resetFields = () => {
+        this.textInputOne.clear();     
+    };
+
 
     const renderRequest = ({ item }) => (
         <View style={styles.screen2} >
@@ -59,11 +63,11 @@ const ManageRequestScreens = props => {
                     <Card style={styles.cardView1}>
 
                         <View style={styles.inputView} >
-                            <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c" onChangeText={(request) => setRequest(request)}/>
+                            <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c" onChangeText={(request) => setRequest(request)} ref={input => { this.textInputOne = input }}/>
                         </View>
 
                         <View>
-                            <TouchableOpacity style={styles.Btn} onPress = {() => deleteRequest(request, db)}>
+                            <TouchableOpacity style={styles.Btn} onPress = {() => deleteRequest(request, db)} onPressIn = {resetFields}>
                                 <Text style={styles.Text}>Delete Request</Text>
                                 </TouchableOpacity>
                         </View>

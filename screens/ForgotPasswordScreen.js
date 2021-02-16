@@ -9,6 +9,10 @@ const ForgotPasswordScreen = props => {
   const [email, setEmail] = useState('');
   const fb = firebase.auth();
 
+  resetFieldsOne = () => {
+    this.textInputOne.clear();     
+}
+
   return(
     <View style={styles.screen} >
     
@@ -22,11 +26,12 @@ const ForgotPasswordScreen = props => {
         style={styles.inputText}
         placeholder="Email..." 
         placeholderTextColor="#003f5c"
-        onChangeText={(email) => setEmail(email)}/>
+        onChangeText={(email) => setEmail(email)} 
+        ref={input => { this.textInputOne = input }}/>
     </View>
 
     <View>
-    <TouchableOpacity style={styles.ForgotBtn} onPress = {() => forgotPassword(fb, email, props)}  >
+    <TouchableOpacity style={styles.ForgotBtn} onPressIn = {() => forgotPassword(fb, email, props)} onPress = {resetFieldsOne}  >
       <Text style={styles.forgotText} >Send Password Reset Email</Text>
     </TouchableOpacity>
     </View>

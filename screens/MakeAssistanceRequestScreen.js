@@ -24,7 +24,7 @@ const MakeAssistanceRequestScreen = props => {
     (async () => {
       let { status } = await Location.requestPermissionsAsync();
       if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
+        setErrorMsg('Permission to access lo cation was denied');
         return;
       }
 
@@ -45,6 +45,15 @@ const MakeAssistanceRequestScreen = props => {
     
   }
 
+  resetFields = () => {
+    this.textInputOne.clear();
+    this.textInputTwo.clear();
+    this.textInputThree.clear();
+    this.textInputFour.clear();
+    this.textInputFive.clear();
+        
+}
+
 
     return(
 
@@ -59,7 +68,8 @@ const MakeAssistanceRequestScreen = props => {
             style={styles.inputText}
             placeholder="Date" 
             placeholderTextColor="#003f5c"
-            onChangeText={(date) => setDate(date)}/>
+            onChangeText={(date) => setDate(date)}
+            ref={input => { this.textInputOne = input }}/>
         </View>
 
       
@@ -68,14 +78,16 @@ const MakeAssistanceRequestScreen = props => {
             style={styles.inputText}
             placeholder="Address..." 
             placeholderTextColor="#003f5c"
-            onChangeText={(address) => setAddress(address)}/>
+            onChangeText={(address) => setAddress(address)}
+            ref={input => { this.textInputTwo = input }}/>
         </View>
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
             placeholder="Area..." 
             placeholderTextColor="#003f5c"
-            onChangeText={(area) => setArea(area)}/>
+            onChangeText={(area) => setArea(area)}
+            ref={input => { this.textInputThree = input }}/>
         </View>
 
         <View style={styles.inputView} >
@@ -83,7 +95,8 @@ const MakeAssistanceRequestScreen = props => {
             style={styles.inputText}
             placeholder="Request Type..." 
             placeholderTextColor="#003f5c"
-            onChangeText={(requestType) => setRequestType(requestType)}/>
+            onChangeText={(requestType) => setRequestType(requestType)}
+            ref={input => { this.textInputFour = input }}/>
         </View>
 
         <View style={styles.inputViewBig} >
@@ -92,13 +105,15 @@ const MakeAssistanceRequestScreen = props => {
             placeholder="Request Description..." 
             placeholderTextColor="#003f5c"
             multiline={true}
-            onChangeText={(requestDescription) => setRequestDescription(requestDescription)}/>
+            onChangeText={(requestDescription) => setRequestDescription(requestDescription)}
+            ref={input => { this.textInputFive = input }}/>
         </View>
 
         </Card>
 
         <View>
-        <TouchableOpacity style={styles.Btn} onPress = {() => makeRequest(user, requestID, db, date, status, address, area, requestType, requestDescription, longitude, latitude)}>
+        <TouchableOpacity style={styles.Btn} onPressIn = {() => makeRequest(user, requestID, db, date, status, address, area, requestType, requestDescription, longitude, latitude)}
+        onPress = {resetFields}>
           <Text style={styles.Text}>Submit</Text>
         </TouchableOpacity>
         </View>

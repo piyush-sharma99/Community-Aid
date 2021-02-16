@@ -9,12 +9,13 @@ const forgotPassword = (fb, email, props) => {
             })
             .catch(function(error) {
               console.log(error),
-              alert('Oops! Error occured Email not sent! :{')
+              alert(error)
             });
 
     }  
     catch(error){
-        console.log(error.toString())
+        console.log(error.toString()),
+              alert('Oops! Error occured Email not sent! :{')
     }
 }
 

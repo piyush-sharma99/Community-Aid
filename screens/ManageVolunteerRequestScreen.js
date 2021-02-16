@@ -50,7 +50,10 @@ const ManageVolunteerRequestScreen = props => {
     </View>
       );
 
-
+      resetFieldsOne = () => {
+        this.textInputOne.clear();     
+        this.textInputTwo.clear();  
+    }
       
 
     return(
@@ -62,14 +65,14 @@ const ManageVolunteerRequestScreen = props => {
             <Card style={styles.cardView1}>
 
                 <View style={styles.inputView} >
-                    <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c" onChangeText={(request) => setRequest(request)}/>
+                    <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c" onChangeText={(request) => setRequest(request)} ref={input => { this.textInputOne = input }}/>
                 </View>
                 <View style={styles.inputView} >
-                    <TextInput style={styles.inputText} placeholder="Edit Status...(type delete to remove)" placeholderTextColor="#003f5c" onChangeText={(status) => setStatus(status)}/>
+                    <TextInput style={styles.inputText} placeholder="Edit Status...(type delete to remove)" placeholderTextColor="#003f5c" onChangeText={(status) => setStatus(status)} ref={input => { this.textInputTwo = input }}/>
                 </View>
 
                 <View>
-                    <TouchableOpacity style={styles.Btn} onPress = {() => editRequest(db, request, status)}>
+                    <TouchableOpacity style={styles.Btn} onPressIn = {() => editRequest(db, request, status)} onPress = {resetFieldsOne}>
                         <Text style={styles.Text}>Edit Request</Text>
                         </TouchableOpacity>
                 </View>

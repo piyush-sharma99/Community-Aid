@@ -1,31 +1,26 @@
 const signUpUser = (name, number, email, password, passwordRepeat, fb, props, db) => {
     try{
-      if(name == '' ){
-      alert(' Name is empty!')
+      if(name == '' || name == ' ' ){
+      alert('One or many fields are empty!')
             return;
     }
-    else{
-      if(number == ''){
-        alert('Number Field is empty!')
+    else if(number == '' || number.length<10 || number == ' '){
+        alert('One or more fields are empty or incorrectly formatted!')
         return;
     }
-    else{
-      if(email == ''){
-        alert('Email Field is empty!')
+    else if(email == '' || email == ' '){
+        alert('One or many fields are empty!')
         return;
     }
-    else{
-      if(password == ''){
-        alert('Password Field is empty!')
+    else if(password == '' || password == ' '){
+        alert('One or many fields are empty!')
         return;
     }
-    else{
-      if(password.length<6){
+    else if(password.length<6 || password == '' || password == ' '){
         alert('Please enter a password more than 6 characters!')
             return;
     }
-    else{
-      if(passwordRepeat == password){
+    else if(passwordRepeat == password){
 
         fb.createUserWithEmailAndPassword(email, password).then(function (user) {
           console.log(user),
@@ -36,6 +31,9 @@ const signUpUser = (name, number, email, password, passwordRepeat, fb, props, db
             email: email
           })
   
+      }).catch(function(error) {
+        console.log(error),
+        alert(error)
       });
 
       }
@@ -46,16 +44,7 @@ const signUpUser = (name, number, email, password, passwordRepeat, fb, props, db
       }
      
     }
-      
-    }
-      
-    }
-
-    }
-
-    }
-        
-    }  
+   
     catch(error){
         console.log(error.toString())
     }

@@ -10,6 +10,11 @@ const LoginScreen = props => {
   const [password, setPassword] = useState('');
   const fb = firebase.auth();
 
+  resetFieldsOne = () => {
+    this.textInputOne.clear();     
+    this.textInputTwo.clear();  
+}
+
   return(
     <View style={styles.screen} >
     
@@ -23,7 +28,8 @@ const LoginScreen = props => {
         style={styles.inputText}
         placeholder="Email..." 
         placeholderTextColor="#003f5c"
-        onChangeText={(email) => setEmail(email)}/>
+        onChangeText={(email) => setEmail(email)}
+        ref={input => { this.textInputOne = input }}/>
     </View>
 
     <View style={styles.inputViewPassword} >
@@ -32,7 +38,8 @@ const LoginScreen = props => {
         placeholder="Password..." 
         secureTextEntry
         placeholderTextColor="#003f5c"
-        onChangeText={(password) => setPassword(password)}/>
+        onChangeText={(password) => setPassword(password)}
+        ref={input => { this.textInputTwo = input }}/>
     </View>
 
     <View>
@@ -44,7 +51,7 @@ const LoginScreen = props => {
     </View>
 
     <View>
-    <TouchableOpacity style={styles.loginBtn} onPress = {() => logInUser(fb, email, password, props)}  >
+    <TouchableOpacity style={styles.loginBtn} onPressIn = {() => logInUser(fb, email, password, props)} onPress = {resetFieldsOne} >
       <Text style={styles.loginText} >Log In</Text>
     </TouchableOpacity>
     </View>
