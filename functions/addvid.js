@@ -1,19 +1,32 @@
-const addVid = (request, db, user) => {
+const addVid = (addRequest, db, user) => {
+
+  if (addRequest == '' || addRequest == ' '){
+    alert('Request field was empty')
+              return;
+
+  } else{
 
     try{
-        db.collection('Assistance Request').where('request_ID', '==', request).get()
+        db.collection('Assistance Request').where('request_ID', '==', addRequest).get()
         .then(snapshot => {
           snapshot.forEach(doc => {
             const data = doc.data();
             const docID = doc.id;
             console.log(docID);
             console.log(data);
+            
+            if (user.uid == data.uid){
+              alert('This ticket was created by you!')
+              return;
+            } else {
 
             db.collection("Assistance Request").doc(doc.id).update({
                 vid: user.uid,
                 status: 'Assigned to a Volunteer'
       
               }),
+
+              
 
                 db.collection("users").doc(data.uid).get().then(snapshot => {
                     const userInfo = snapshot.data();
@@ -36,16 +49,18 @@ const addVid = (request, db, user) => {
             
                     
               })
+            }
 
           });
-       
-       
+
         })
 
     }
     catch(error){
-        console.log(error.toString())
+        console.log(error.toString()),
+        alert('OOPs something went wrong :(')
       }
+    }
 
 
 }

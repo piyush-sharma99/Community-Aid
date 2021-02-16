@@ -4,7 +4,10 @@ const logInUser = (fb, email, password, props) => {
         fb.signInWithEmailAndPassword(email, password).then(function (user) {
             console.log(user),
             props.navigation.navigate({routeName: 'Home'});
-        });
+        }).catch(function(error) {
+            console.log(error),
+            alert(error)
+          });
 
     }  
     catch(error){

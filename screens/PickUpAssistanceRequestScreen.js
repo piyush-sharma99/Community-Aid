@@ -11,10 +11,18 @@ const PickUpAssistanceRequestScreen = props => {
     const [requests, setRequests] = useState([]); // Initial empty array of users // Initial empty array of users
     const db = firebase.firestore();
     const [area, setArea] = useState('');
-    const [request, setRequest] = useState('');   
+    const [addRequest, setAddRequest] = useState('');   
     var user = firebase.auth().currentUser;
     
     readRequest = () => {
+
+        if (area == '' || area == ' '){
+            alert('Area field can not be empty!')
+              return;
+
+        }
+        else{
+        
         db.collection('Assistance Request')
         .where('area', '==', area)
         .where('status', '==', 'Unassigned')
@@ -31,8 +39,16 @@ const PickUpAssistanceRequestScreen = props => {
           setRequests(requests);
           console.log(requests);
         });
-    };
 
+    } 
+    };
+    
+    resetFieldsOne = () => {
+        this.textInputOne.clear();       
+    }
+    resetFieldsTwo = () => {
+        this.textInputTwo.clear();       
+    }
 
     const renderRequest = ({ item }) => (
         <View style={styles.screen2} >
@@ -60,19 +76,21 @@ const PickUpAssistanceRequestScreen = props => {
           <Card style={styles.cardView1}>
 
               <View style={styles.inputView} >
-                  <TextInput style={styles.inputText} placeholder="Area..." placeholderTextColor="#003f5c" onChangeText={(area) => setArea(area)}/>
+                  <TextInput style={styles.inputText} placeholder="Area..." placeholderTextColor="#003f5c" onChangeText={(area) => setArea(area)}
+                  ref={input => { this.textInputOne = input }}/>
               </View>
               <View>
-                  <TouchableOpacity style={styles.Btn}  onPress = {readRequest}>
+                  <TouchableOpacity style={styles.Btn}  onPressIn = {readRequest} onPress = {resetFieldsOne}>
                       <Text style={styles.Text}>Search</Text>
                       </TouchableOpacity>
               </View>
 
               <View style={styles.inputView} >
-                  <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c" onChangeText={(request) => setRequest(request)}/>
+                  <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c" onChangeText={(addRequest) => setAddRequest(addRequest)} 
+                  ref={input => { this.textInputTwo = input }}/>
               </View>
               <View>
-                  <TouchableOpacity style={styles.Btn} onPress = {addVid(request, db, user)}>
+                  <TouchableOpacity style={styles.Btn} onPress = {() => addVid(addRequest, db, user)} onPressIn = {resetFieldsTwo}>
                       <Text style={styles.Text}>ADD</Text>
                       </TouchableOpacity>
               </View>

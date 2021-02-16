@@ -66,6 +66,16 @@ const MapScreen = props => {
     console.log(longitude);
     console.log(latitude);
 
+
+    resetFieldsOne = () => {
+      this.textInputOne.clear();       
+  }
+  resetFieldsTwo = () => {
+      this.textInputTwo.clear();       
+  }
+
+
+
     return (
     <View style={styles.screen} >
         <View style={styles.mapView}>
@@ -111,9 +121,10 @@ const MapScreen = props => {
             placeholder="Add request" 
             placeholderTextColor="#003f5c"
             onChangeText={(addRequest) => setAddRequest(addRequest)}
+            ref={input => { this.textInputOne = input }}
             />
             </View>
-            <TouchableOpacity style={styles.Btn} onPress = {() => addVid(addRequest, db, user)}>
+            <TouchableOpacity style={styles.Btn} onPressIn = {() => addVid(addRequest, db, user)} onPress = {resetFieldsOne}>
              <Text style={styles.subText} >Add request</Text>
 
         </TouchableOpacity>
@@ -128,9 +139,10 @@ const MapScreen = props => {
             placeholder="Radius in kilometers eg (3)..." 
             placeholderTextColor="#003f5c"
             onChangeText={(radius) => setRadius(parseInt(radius))}
+            ref={input => { this.textInputTwo = input }}
             />
             </View>
-            <TouchableOpacity style={styles.Btn} onPress = {()=>setUpdateRadius(radius * 1000)}>
+            <TouchableOpacity style={styles.Btn} onPressIn = {()=>setUpdateRadius(radius * 1000)} onPress = {resetFieldsTwo}>
              <Text style={styles.subText} >Change radius</Text>
         </TouchableOpacity>
             </Card>

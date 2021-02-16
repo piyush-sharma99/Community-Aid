@@ -5,6 +5,32 @@ const makeRequest = (user, requestID, db, date, status, address, area, requestTy
       db.collection("users").doc(user.uid).get().then(snapshot => {
         const userInfo = snapshot.data();
 
+        if(date == '' || date == ' '){
+
+          alert('One or many fields are empty!')
+          return;
+
+        }
+        else if(address == '' || address == ' '){
+          alert('One or many fields are empty!')
+          return;
+
+        }
+        else if(area == '' || area == ' '){
+          alert('One or many fields are empty!')
+          return;
+
+        }
+        else if(requestType == '' || requestType == ' '){
+          alert('One or many fields are empty!')
+          return;
+
+        }else if(requestDescription == '' || requestDescription == ' '){
+          alert('One or many fields are empty!')
+          return;
+
+        } else{
+
         //uploading data to firestore
         db.collection("Assistance Request").doc().set({
           date: date,
@@ -23,9 +49,13 @@ const makeRequest = (user, requestID, db, date, status, address, area, requestTy
           vid: ""
 
 
-        })
+        }),
+
+        alert('Request was successfully created!'),
         
         console.log('Data uploaded');
+
+      } 
   })
 
   

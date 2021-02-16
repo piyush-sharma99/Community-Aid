@@ -57,7 +57,7 @@ Alert.alert(
               })
 
         }
-        else if(password.length<6){
+        else if(password.length<6 || password == '' || password == ' '){
             alert('Password is too short')
             
         }

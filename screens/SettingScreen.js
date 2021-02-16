@@ -16,6 +16,15 @@ const [confirm, setConfirm] = useState('');
 const [password, setPassword] = useState('');
 var user = firebase.auth().currentUser;
 
+resetFieldsOne = () => {
+    this.textInputOne.clear();  
+    this.textInputTwo.clear(); 
+    this.textInputThree.clear(); 
+    this.textInputFour.clear();    
+}
+resetFieldsTwo = () => {
+    this.textInputFive.clear();       
+}
 
  
     return(
@@ -25,20 +34,20 @@ var user = firebase.auth().currentUser;
               <Text style={styles.text3}>Edit account information below:</Text>
             
             <View style={styles.SettingForm}>
-                <TextInput style={styles.text} placeholder="Change Name" underlineColorAndroid={'transparent'} placeholderTextColor="white" onChangeText={(name) => setName(name)} />
+                <TextInput style={styles.text} placeholder="Change Name" underlineColorAndroid={'transparent'} placeholderTextColor="white" onChangeText={(name) => setName(name)} ref={input => { this.textInputOne = input }} />
             </View>
 
             <View style={styles.SettingForm}>
-                <TextInput style={styles.text} placeholder="Change Number" underlineColorAndroid={'transparent'} placeholderTextColor="white" onChangeText={(number) => setNumber(number)} />
+                <TextInput style={styles.text} placeholder="Change Number" underlineColorAndroid={'transparent'} placeholderTextColor="white" onChangeText={(number) => setNumber(number)} ref={input => { this.textInputTwo = input }} />
             </View>
             <View style={styles.SettingForm}>
-                <TextInput style={styles.text} placeholder="Change Email" underlineColorAndroid={'transparent'} placeholderTextColor="white" onChangeText={(email) => setEmail(email)}  />
+                <TextInput style={styles.text} placeholder="Change Email" underlineColorAndroid={'transparent'} placeholderTextColor="white" onChangeText={(email) => setEmail(email)} ref={input => { this.textInputThree = input }} />
             </View>
             <View style={styles.SettingForm}>
-                <TextInput style={styles.text} placeholder="Change Password" underlineColorAndroid={'transparent'} placeholderTextColor="white" secureTextEntry onChangeText={(password) => setPassword(password)}  />
+                <TextInput style={styles.text} placeholder="Change Password" underlineColorAndroid={'transparent'} placeholderTextColor="white" secureTextEntry onChangeText={(password) => setPassword(password)} ref={input => { this.textInputFour = input }} />
             </View>
             <View>
-                 <TouchableOpacity style={styles.btn} onPress = {() => profileUpdate(user, signout, props, db, email, name, number, password)} >
+                 <TouchableOpacity style={styles.btn} onPress = {() => profileUpdate(user, signout, props, db, email, name, number, password)}  onPressIn = {resetFieldsOne}>
                  <Text style={styles.btnText}>Update Profile</Text>
                  </TouchableOpacity>
             </View>
@@ -48,11 +57,11 @@ var user = firebase.auth().currentUser;
                     </View>
 
             <View style={styles.inputView} >
-                <TextInput style={styles.inputText} placeholder="Type 'Confirm' here then press delete..." placeholderTextColor="#003f5c" onChangeText={(confirm) => setConfirm(confirm)}/>
+                <TextInput style={styles.inputText} placeholder="Type 'Confirm' here then press delete..." placeholderTextColor="#003f5c" onChangeText={(confirm) => setConfirm(confirm)} ref={input => { this.textInputFive = input }} />
                 </View>
 
             <View>
-                <TouchableOpacity style={styles.btn2} onPress = {() => deleteProfile(user, props, db, confirm)} >
+                <TouchableOpacity style={styles.btn2} onPress = {() => deleteProfile(user, props, db, confirm)} onPressIn = {resetFieldsTwo} >
                 <Text style={styles.Text}>Delete</Text>
                 </TouchableOpacity>
 </View>
