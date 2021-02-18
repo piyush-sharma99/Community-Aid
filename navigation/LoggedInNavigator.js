@@ -1,7 +1,5 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
-//import { createBottomTabNavigator } from 'react-navigation-tabs';
-//import { createDrawerNavigator } from 'react-navigation-drawer';
 import IndexScreen from '../screens/IndexScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
@@ -16,6 +14,7 @@ import MakeAssistanceRequestScreen from '../screens/MakeAssistanceRequestScreen'
 import PickUpAssistanceRequestScreen from '../screens/PickUpAssistanceRequestScreen';
 import ManageVolunteerRequestScreen from '../screens/ManageVolunteerRequestScreen';
 import ManageRequestScreens from '../screens/ManageRequestScreens';
+import EditRequestScreen from '../screens/EditRequestScreen';
 
 
 
@@ -34,6 +33,7 @@ const LoggedInNav = createStackNavigator({
     Login: LoginScreen,
     Forgot: ForgotPasswordScreen,
     Signup: SignupScreen,
+    EditR: EditRequestScreen
 
 
 
