@@ -1,4 +1,6 @@
-const addVid = (addRequest, db, user) => {
+const addVidTwo = (item, db, user) => {
+  
+  const addRequest = item.request_ID;
 
   if (addRequest == '' || addRequest == ' '){
     alert('Request field was empty')
@@ -25,8 +27,6 @@ const addVid = (addRequest, db, user) => {
                 status: 'Assigned to a Volunteer'
       
               }),
-
-              alert('Request was picked up successfully!'),
 
               
 
@@ -67,4 +67,4 @@ const addVid = (addRequest, db, user) => {
 
 }
 
-export default addVid;
+export default addVidTwo;

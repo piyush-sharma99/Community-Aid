@@ -1,6 +1,8 @@
 import { Alert } from 'react-native';
 
-const deleteRequest = (request, db) => {
+const deleteRequest = (item, db) => {
+
+  const request = item.request_ID;
 
   if(request == '' || request == ' '){
     alert('request field was left empty!')

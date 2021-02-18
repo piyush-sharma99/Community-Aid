@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ScrollView,TextInput, TouchableOpacity,FlatList, SafeAreaView} from 'react-native';
 import {Card} from 'react-native-paper';
 import * as firebase from 'firebase';
-import addVid from '../functions/addvid';
+import addVid from '../functions/addvidTwo';
 
 
 
@@ -10,8 +10,7 @@ const PickUpAssistanceRequestScreen = props => {
 
     const [requests, setRequests] = useState([]); // Initial empty array of users // Initial empty array of users
     const db = firebase.firestore();
-    const [area, setArea] = useState('');
-    const [addRequest, setAddRequest] = useState('');   
+    const [area, setArea] = useState(''); 
     var user = firebase.auth().currentUser;
     
     readRequest = () => {
@@ -46,9 +45,7 @@ const PickUpAssistanceRequestScreen = props => {
     resetFieldsOne = () => {
         this.textInputOne.clear();       
     }
-    resetFieldsTwo = () => {
-        this.textInputTwo.clear();       
-    }
+  
 
     const renderRequest = ({ item }) => (
         <View style={styles.screen2} >
@@ -56,12 +53,17 @@ const PickUpAssistanceRequestScreen = props => {
         <Card style={styles.cardView2}>
 
             <View  >
-                <Text style={styles.text2}>Request ID: {item.request_ID}</Text>
-                <Text style={styles.text2}>Request Date: {item.date}</Text>
-                <Text style={styles.text2}>Request Type: {item.request_Type}</Text>
+                <Text style={styles.text2}>Request Date: {"\n"}{item.date}</Text>
+                <Text style={styles.text2}>Request Type: {"\n"}{item.request_Type}</Text>
                 <Text style={styles.text2}>Request Description: {item.request_Description}</Text>
-                <Text style={styles.text2}>Request Status: {item.status}</Text>
+                <Text style={styles.text2}>Request Status: {"\n"}{item.status}</Text>
             </View>
+
+            <View>
+                  <TouchableOpacity style={styles.Btn} onPress = {() => addVid(item, db, user)}>
+                      <Text style={styles.Text}>ADD</Text>
+                      </TouchableOpacity>
+              </View>
 
         </Card>
     </View>
@@ -69,7 +71,6 @@ const PickUpAssistanceRequestScreen = props => {
 
 
     return(
-      <View style={styles.screen} >
       <View style={styles.screen} >
       <Text style={styles.text}>Search or Add Request below:</Text>
       
@@ -85,20 +86,8 @@ const PickUpAssistanceRequestScreen = props => {
                       </TouchableOpacity>
               </View>
 
-              <View style={styles.inputView} >
-                  <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c" onChangeText={(addRequest) => setAddRequest(addRequest)} 
-                  ref={input => { this.textInputTwo = input }}/>
-              </View>
-              <View>
-                  <TouchableOpacity style={styles.Btn} onPress = {() => addVid(addRequest, db, user)} onPressIn = {resetFieldsTwo}>
-                      <Text style={styles.Text}>ADD</Text>
-                      </TouchableOpacity>
-              </View>
-
           </Card>
           
-      </View>
-
       <View style={styles.Subheading}>
               <Text style={styles.text2}>Requests below: </Text>
           </View>
@@ -131,6 +120,7 @@ headerTintColor:"white"
 const styles = StyleSheet.create({
   screen: {
       width:'100%',
+      height:'100%',
       flex:1,
       backgroundColor: '#2E86C1',
       alignItems: 'center',
@@ -147,26 +137,21 @@ const styles = StyleSheet.create({
       width:'100%',
       backgroundColor: '#2E86C1'
   },
-  scroll: {
-      width:'100%',
-      height:'100%',
-      backgroundColor: '#2E86C1',
-  },
   text: {
       padding:10,
-      marginTop: -90,
       marginRight:40,
       marginLeft:40,
       color:"white",
       fontSize:20,
       textAlign: 'center',
+      marginTop:15,
       borderWidth: 3,
       borderColor: '#fb5b5a',
       borderRadius:15,
   
   },
   text2: {
-      padding:15,
+      padding:5,
       marginRight:40,
       marginLeft:40,
       color:"white",
@@ -180,8 +165,6 @@ const styles = StyleSheet.create({
       width:300,
       backgroundColor:"#FDFEFE",
       borderRadius:25,
-      height:20,
-      marginTop:20,
       marginBottom:10,
       justifyContent:"center",
       padding:20,
@@ -191,7 +174,8 @@ const styles = StyleSheet.create({
       },
   
   inputText:{
-      height:50,
+      height:10,
+      width:'100%',
       color:"black"
   },
   
@@ -204,7 +188,7 @@ const styles = StyleSheet.create({
       borderBottomWidth: 2,
       marginLeft:10,
       marginRight:10,
-      marginTop:-100,
+      marginTop:10,
       borderColor: '#fb5b5a',
       fontSize: 30,
       color: '#fff',
@@ -212,10 +196,11 @@ const styles = StyleSheet.create({
   },
         
   Btn:{
-      width:300,
+      width:'100%',
       backgroundColor:"#2E86C1",
       borderRadius:10,
-      height:30,
+      height:40,
+      marginTop:10,
       alignItems:"center",
       justifyContent:'center',
       borderWidth:2,
@@ -225,7 +210,6 @@ const styles = StyleSheet.create({
   cardView1: {
       justifyContent: 'center',
       width:'90%',
-      height:'55%',
       marginTop:20,
       backgroundColor:"#fb5b5a",
       shadowColor: 'black',
@@ -233,6 +217,7 @@ const styles = StyleSheet.create({
       shadowOpacity: 1,
       elevation: 10,
       alignItems:"center",
+      padding:20,
       shadowOffset: {
           width: 3,
           height: 3
@@ -242,16 +227,16 @@ const styles = StyleSheet.create({
        
   cardView2: {
       justifyContent: 'center',
-      width:400,
+      width:'95%',
       backgroundColor:"#fb5b5a",
       shadowColor: 'black',
       borderRadius:25,
       borderWidth:3,
       borderColor:'#fff',
       shadowOpacity: 1,
-      marginTop:10,
+      marginTop:15,
       marginBottom:20,
-      padding:10,
+      padding:15,
       elevation: 10,
       alignItems:"center",
       shadowOffset: {

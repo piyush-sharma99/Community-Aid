@@ -9,7 +9,6 @@ const ManageRequestScreens = props => {
 
     const [requests, setRequests] = useState([]); 
     const db = firebase.firestore();
-    const [request, setRequest] = useState('');
     var user = firebase.auth().currentUser;
 
     useEffect(() => {
@@ -31,22 +30,26 @@ const ManageRequestScreens = props => {
 
       }, []);
 
-      resetFields = () => {
-        this.textInputOne.clear();     
-    };
-
 
     const renderRequest = ({ item }) => (
+        
         <View style={styles.screen2} >
                 
         <Card style={styles.cardView2}>
 
             <View  >
-                <Text style={styles.text2}>Request ID: {item.request_ID}</Text>
-                <Text style={styles.text2}>Request Date: {item.date}</Text>
-                <Text style={styles.text2}>Request Type: {item.request_Type}</Text>
+                <Text style={styles.text2}>Request Date: {"\n"}{item.date}</Text>
+                <Text style={styles.text2}>Request Type: {"\n"}{item.request_Type}</Text>
                 <Text style={styles.text2}>Request Description: {item.request_Description}</Text>
-                <Text style={styles.text2}>Request Status: {item.status}</Text>
+                <Text style={styles.text2}>Request Status: {"\n"}{item.status}</Text>
+                <TouchableOpacity style={styles.Btn} onPress = {() => deleteRequest(item, db)}>
+                                <Text style={styles.Text}>Delete Request</Text>
+                                </TouchableOpacity>
+                <TouchableOpacity style={styles.Btn} onPress = {() => {
+            props.navigation.navigate('EditR', {item}); }}>
+                                <Text style={styles.Text}>Edit Request</Text>
+                                </TouchableOpacity>
+                                
             </View>
 
         </Card>
@@ -57,31 +60,8 @@ const ManageRequestScreens = props => {
     return(
             
                 <View style={styles.screen} >
-                <View style={styles.SubScreen} >
-                <Text style={styles.text}>Delete requests below:</Text>
                 
-                    <Card style={styles.cardView1}>
-
-                        <View style={styles.inputView} >
-                            <TextInput style={styles.inputText} placeholder="Request ID..." placeholderTextColor="#003f5c" onChangeText={(request) => setRequest(request)} ref={input => { this.textInputOne = input }}/>
-                        </View>
-
-                        <View>
-                            <TouchableOpacity style={styles.Btn} onPress = {() => deleteRequest(request, db)} onPressIn = {resetFields}>
-                                <Text style={styles.Text}>Delete Request</Text>
-                                </TouchableOpacity>
-                        </View>
-
-                    </Card>
-                    
-
-                </View>
-                <View style={styles.Subheading}>
-                        <Text style={styles.text2}> Your requests are below: </Text>
-                    </View>
-
-
-             
+                <Text style={styles.text}>Requests made by you :</Text>
 
                 <FlatList
                 style={{flex: 1}}
@@ -121,17 +101,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    SubScreen: {
-        marginTop:-30,
-        width:'100%',
-        backgroundColor: '#2E86C1',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    scroll: {
-       
-        backgroundColor: '#2E86C1',
-    },
     text: {
         padding:10,
         marginBottom: 20,
@@ -147,7 +116,7 @@ const styles = StyleSheet.create({
     
     },
     text2: {
-        padding:15,
+        padding:5,
         marginRight:40,
         marginLeft:40,
         color:"white",
@@ -156,20 +125,6 @@ const styles = StyleSheet.create({
         
     
     },
-
-     inputView:{
-        width:300,
-        backgroundColor:"#FDFEFE",
-        borderRadius:25,
-        height:35,
-        marginTop:15,
-        marginBottom:15,
-        justifyContent:"center",
-        padding:20,
-        elevation: 10,
-        borderWidth: 4,
-        borderColor: "#2E86C1"
-        },
     
     inputText:{
         height:50,
@@ -180,60 +135,32 @@ const styles = StyleSheet.create({
         color:"white",
         fontSize:20
     },
-    Subheading: {
-        alignSelf: 'stretch',
-        borderBottomWidth: 2,
-        marginLeft:10,
-        marginRight:10,
-        marginTop:-290,
-        borderColor: '#fb5b5a',
-        fontSize: 30,
-        color: '#fff',
-        justifyContent:"center"
-    },
+  
           
     Btn:{
-        width:300,
+        width:'100%',
         backgroundColor:"#2E86C1",
         borderRadius:10,
-        height:35,
+        height:40,
         alignItems:"center",
         justifyContent:'center',
-        marginTop:5,
+        marginTop:10,
         borderWidth:2,
         borderColor: "white"
         },
-        
-    cardView1: {
-        justifyContent: 'center',
-        width:'90%',
-        height:'28%',
-        backgroundColor:"#fb5b5a",
-        shadowColor: 'black',
-        borderRadius:25,
-        shadowOpacity: 1,
-        marginBottom:270,
-        elevation: 10,
-        alignItems:"center",
-        shadowOffset: {
-            width: 3,
-            height: 3
-        },
-        
-    },
          
     cardView2: {
         justifyContent: 'center',
-        width:400,
+        width:'95%',
         backgroundColor:"#fb5b5a",
         shadowColor: 'black',
         borderRadius:25,
         borderWidth:3,
         borderColor:'#fff',
         shadowOpacity: 1,
-        marginTop:10,
+        marginTop:15,
         marginBottom:20,
-        padding:10,
+        padding:15,
         elevation: 10,
         alignItems: 'center',
         shadowOffset: {

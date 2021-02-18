@@ -16,6 +16,7 @@ import MakeAssistanceRequestScreen from '../screens/MakeAssistanceRequestScreen'
 import PickUpAssistanceRequestScreen from '../screens/PickUpAssistanceRequestScreen';
 import ManageVolunteerRequestScreen from '../screens/ManageVolunteerRequestScreen';
 import ManageRequestScreens from '../screens/ManageRequestScreens';
+import EditRequestScreen from '../screens/EditRequestScreen';
 
 
 
@@ -33,7 +34,8 @@ const NavigatorCA = createStackNavigator({
     MakeR: MakeAssistanceRequestScreen,
     PickUpR: PickUpAssistanceRequestScreen,
     ManageVR: ManageVolunteerRequestScreen,
-    ManageR: ManageRequestScreens
+    ManageR: ManageRequestScreens,
+    EditR: EditRequestScreen
 
 
 
