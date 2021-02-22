@@ -42,13 +42,13 @@ const ManageRequestScreens = props => {
                 <Text style={styles.text2}>Request Type: {"\n"}{item.request_Type}</Text>
                 <Text style={styles.text2}>Request Description: {item.request_Description}</Text>
                 <Text style={styles.text2}>Request Status: {"\n"}{item.status}</Text>
-                <TouchableOpacity style={styles.Btn} onPress = {() => deleteRequest(item, db)}>
-                                <Text style={styles.Text}>Delete Request</Text>
-                                </TouchableOpacity>
                 <TouchableOpacity style={styles.Btn} onPress = {() => {
-            props.navigation.navigate('EditR', {item}); }}>
-                                <Text style={styles.Text}>Edit Request</Text>
-                                </TouchableOpacity>
+                    props.navigation.navigate('EditR', {item}); }}>
+                    <Text style={styles.Text}>Edit Request</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.Btn} onPress = {() => deleteRequest(item, db)}>
+                    <Text style={styles.Text}>Delete Request</Text>
+                </TouchableOpacity>
                                 
             </View>
 

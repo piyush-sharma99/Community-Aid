@@ -11,12 +11,12 @@ const MakeAssistanceRequestScreen = props => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const requestID = Math.random().toString(36).slice(2); //Incrementing a random key
-  const [date, setDate] = useState('');
   const [status] = useState('Unassigned');
   const [address, setAddress] = useState('');
   const [area, setArea] = useState('');
   const [requestType, setRequestType] = useState('');
   const [requestDescription, setRequestDescription] = useState('');
+  const [currentDate, setCurrentDate] = useState('');
   var user = firebase.auth().currentUser;
 
 //async function that pulls users latitude and longitude
@@ -30,8 +30,20 @@ const MakeAssistanceRequestScreen = props => {
 
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
+
+      var date = new Date().getDate(); //Current Date
+    var month = new Date().getMonth() + 1; //Current Month
+    var year = new Date().getFullYear(); //Current Year
+    var hours = new Date().getHours(); //Current Hours
+    var min = new Date().getMinutes(); //Current Minutes
+    var sec = new Date().getSeconds(); //Current Seconds
+    setCurrentDate(
+      hours + '/' + min + '/' + sec
+      + '  ' + date + ':' + month + ':' + year
+    );
     })();
   }, []);
+
 
   let text = 'Waiting..';
   let latitude = -9.062691;
@@ -50,7 +62,7 @@ const MakeAssistanceRequestScreen = props => {
     this.textInputTwo.clear();
     this.textInputThree.clear();
     this.textInputFour.clear();
-    this.textInputFive.clear();
+    
         
 }
 
@@ -62,24 +74,14 @@ const MakeAssistanceRequestScreen = props => {
 
 <Text style={styles.text}>Fill the form below:</Text>
          <Card style={styles.cardView}>
-
-         <View style={styles.inputView} >
-          <TextInput  
-            style={styles.inputText}
-            placeholder="Date" 
-            placeholderTextColor="#003f5c"
-            onChangeText={(date) => setDate(date)}
-            ref={input => { this.textInputOne = input }}/>
-        </View>
-
-      
+           
          <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
             placeholder="Address..." 
             placeholderTextColor="#003f5c"
             onChangeText={(address) => setAddress(address)}
-            ref={input => { this.textInputTwo = input }}/>
+            ref={input => { this.textInputOne = input }}/>
         </View>
         <View style={styles.inputView} >
           <TextInput  
@@ -87,7 +89,7 @@ const MakeAssistanceRequestScreen = props => {
             placeholder="Area..." 
             placeholderTextColor="#003f5c"
             onChangeText={(area) => setArea(area)}
-            ref={input => { this.textInputThree = input }}/>
+            ref={input => { this.textInputTwo = input }}/>
         </View>
 
         <View style={styles.inputView} >
@@ -96,7 +98,7 @@ const MakeAssistanceRequestScreen = props => {
             placeholder="Request Type..." 
             placeholderTextColor="#003f5c"
             onChangeText={(requestType) => setRequestType(requestType)}
-            ref={input => { this.textInputFour = input }}/>
+            ref={input => { this.textInputThree = input }}/>
         </View>
 
         <View style={styles.inputViewBig} >
@@ -106,16 +108,18 @@ const MakeAssistanceRequestScreen = props => {
             placeholderTextColor="#003f5c"
             multiline={true}
             onChangeText={(requestDescription) => setRequestDescription(requestDescription)}
-            ref={input => { this.textInputFive = input }}/>
+            ref={input => { this.textInputFour = input }}/>
         </View>
+
+        <TouchableOpacity style={styles.Btn} onPressIn = {() => makeRequest(user, requestID, db, currentDate, status, address, area, requestType, requestDescription, longitude, latitude)}
+        onPress = {resetFields}>
+          <Text style={styles.Text}>Submit</Text>
+        </TouchableOpacity>
 
         </Card>
 
         <View>
-        <TouchableOpacity style={styles.Btn} onPressIn = {() => makeRequest(user, requestID, db, date, status, address, area, requestType, requestDescription, longitude, latitude)}
-        onPress = {resetFields}>
-          <Text style={styles.Text}>Submit</Text>
-        </TouchableOpacity>
+        
         </View>
 
         
@@ -149,7 +153,7 @@ const styles = StyleSheet.create({
     marginRight:40,
     marginLeft:40,
     color:"white",
-    fontSize:30,
+    fontSize:25,
     textAlign: 'center',
     marginTop:30,
     borderWidth: 3,
@@ -182,7 +186,7 @@ const styles = StyleSheet.create({
         width:300,
         backgroundColor:"#FDFEFE",
         borderRadius:25,
-        height:130,
+        height:100,
         marginTop:25,
         marginBottom:15,
         justifyContent:"center",
@@ -209,12 +213,13 @@ const styles = StyleSheet.create({
       
       Btn:{
         width:300,
-        backgroundColor:"#fb5b5a",
+        backgroundColor:'#2E86C1',
         borderRadius:15,
         height:50,
         alignItems:"center",
         justifyContent:'center',
-        marginTop:30,
+        marginTop:20,
+        marginBottom:20,
         borderWidth:2,
         borderColor: "white"
       },
@@ -222,10 +227,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width:'90%',
         height:'77%',
+        padding:10,
         backgroundColor:"#fb5b5a",
         shadowColor: 'black',
         borderRadius:25,
+        borderWidth: 3,
+        borderColor: 'white',
         shadowOpacity: 1,
+        marginTop:30,
         elevation: 10,
         alignItems:"center",
         shadowOffset: {
