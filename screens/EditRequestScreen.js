@@ -36,7 +36,7 @@ const EditRequestScreen = props => {
          <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
-            placeholder="Address..." 
+            placeholder= {'Current value: ' + request.address}
             placeholderTextColor="#003f5c"
             onChangeText={(address) => setAddress(address)}
             ref={input => { this.textInputOne  = input }}/>
@@ -44,7 +44,7 @@ const EditRequestScreen = props => {
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
-            placeholder="Area..." 
+            placeholder={'Current value:' + request.area} 
             placeholderTextColor="#003f5c"
             onChangeText={(area) => setArea(area)}
             ref={input => { this.textInputTwo = input }}/>
@@ -53,7 +53,7 @@ const EditRequestScreen = props => {
         <View style={styles.inputView} >
           <TextInput  
             style={styles.inputText}
-            placeholder="Request Type..." 
+            placeholder={'Current value: ' + request.request_Type} 
             placeholderTextColor="#003f5c"
             onChangeText={(requestType) => setRequestType(requestType)}
             ref={input => { this.textInputThree = input }}/>
@@ -62,7 +62,7 @@ const EditRequestScreen = props => {
         <View style={styles.inputViewBig} >
           <TextInput  
             style={styles.inputText}
-            placeholder="Request Description..." 
+            placeholder={'Current value: ' + request.request_Description} 
             placeholderTextColor="#003f5c"
             multiline={true}
             onChangeText={(requestDescription) => setRequestDescription(requestDescription)}
@@ -105,13 +105,13 @@ const styles = StyleSheet.create({
   text: {
 
     padding:10,
-    marginBottom: 30,
+    marginBottom: 50,
     marginRight:40,
     marginLeft:40,
     color:"white",
-    fontSize:30,
+    fontSize:20,
     textAlign: 'center',
-    marginTop:30,
+    marginTop:40,
     borderWidth: 3,
     borderColor: '#fb5b5a',
     borderRadius:15,

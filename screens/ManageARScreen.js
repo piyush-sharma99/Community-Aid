@@ -94,6 +94,8 @@ const styles = StyleSheet.create({
         borderRadius:25,
         shadowOpacity: 1,
         elevation: 10,
+        borderWidth: 3,
+        borderColor: 'white',
         shadowOffset: {
             width: 3,
             height: 3

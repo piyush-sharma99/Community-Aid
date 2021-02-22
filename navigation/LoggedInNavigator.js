@@ -15,6 +15,11 @@ import PickUpAssistanceRequestScreen from '../screens/PickUpAssistanceRequestScr
 import ManageVolunteerRequestScreen from '../screens/ManageVolunteerRequestScreen';
 import ManageRequestScreens from '../screens/ManageRequestScreens';
 import EditRequestScreen from '../screens/EditRequestScreen';
+import MapVideoScreen from '../screens/videoScreens/MapVideoScreen'
+import AssistanceVideoScreen from '../screens/videoScreens/AssistanceVideoScreen'
+import ManageVideoScreen from '../screens/videoScreens/ManageVideoScreen'
+import SettingsVideoScreen from '../screens/videoScreens/SettingsVideoScreen'
+import ForgotVideoScreen from '../screens/videoScreens/ForgotVideoScreen'
 
 
 
@@ -33,7 +38,12 @@ const LoggedInNav = createStackNavigator({
     Login: LoginScreen,
     Forgot: ForgotPasswordScreen,
     Signup: SignupScreen,
-    EditR: EditRequestScreen
+    EditR: EditRequestScreen,
+    MapV: MapVideoScreen,
+    AssistanceV: AssistanceVideoScreen,
+    ManageV: ManageVideoScreen,
+    SettingV: SettingsVideoScreen,
+    ForgotV: ForgotVideoScreen
 
 
 

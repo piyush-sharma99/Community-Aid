@@ -218,6 +218,8 @@ const styles = StyleSheet.create({
       elevation: 10,
       alignItems:"center",
       padding:20,
+      borderWidth: 3,
+      borderColor: 'white',
       shadowOffset: {
           width: 3,
           height: 3
