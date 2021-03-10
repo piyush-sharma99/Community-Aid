@@ -22,6 +22,7 @@ import AssistanceVideoScreen from '../screens/videoScreens/AssistanceVideoScreen
 import ManageVideoScreen from '../screens/videoScreens/ManageVideoScreen'
 import SettingsVideoScreen from '../screens/videoScreens/SettingsVideoScreen'
 import ForgotVideoScreen from '../screens/videoScreens/ForgotVideoScreen'
+import AboutUsScreen from '../screens/AboutUsScreen'
 
 
 
@@ -45,7 +46,8 @@ const NavigatorCA = createStackNavigator({
     AssistanceV: AssistanceVideoScreen,
     ManageV: ManageVideoScreen,
     SettingV: SettingsVideoScreen,
-    ForgotV: ForgotVideoScreen
+    ForgotV: ForgotVideoScreen,
+    About: AboutUsScreen
 
 
 

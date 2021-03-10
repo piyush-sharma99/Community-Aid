@@ -167,14 +167,13 @@ const styles = StyleSheet.create({
       borderRadius:25,
       marginBottom:10,
       justifyContent:"center",
-      padding:20,
+      padding:10,
       elevation: 10,
       borderWidth: 4,
       borderColor: "#2E86C1"
       },
   
   inputText:{
-      height:10,
       width:'100%',
       color:"black"
   },

@@ -51,7 +51,7 @@ const LoginScreen = props => {
     </View>
 
     <View>
-    <TouchableOpacity style={styles.loginBtn} onPressIn = {() => logInUser(fb, email, password, props)} onPress = {resetFieldsOne} >
+    <TouchableOpacity style={styles.loginBtn} onPress = {() => logInUser(fb, email, password, props)} onPressOut = {resetFieldsOne} >
       <Text style={styles.loginText} >Log In</Text>
     </TouchableOpacity>
     </View>
@@ -81,7 +81,9 @@ const styles = StyleSheet.create({
 
     logo:{
         justifyContent:"center",
-        marginTop:-230
+        marginTop:-230,
+        width:200,
+        height:200,
       },
 
       inputViewEmail:{

@@ -1,7 +1,9 @@
-const addVid = (addRequest, db, user) => {
+const addVid = (marker, db, user) => {
+  
+  const addRequest = marker.request_ID;
 
   if (addRequest == '' || addRequest == ' '){
-    alert('Request field was empty')
+    alert('issue has occured :(')
               return;
 
   } else{
@@ -25,8 +27,6 @@ const addVid = (addRequest, db, user) => {
                 status: 'Assigned to a Volunteer'
       
               }),
-
-              alert('Request was picked up successfully!'),
 
               
 

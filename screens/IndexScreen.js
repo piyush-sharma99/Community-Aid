@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 
 const IndexScreen = props => {
     return(
@@ -22,8 +22,13 @@ const IndexScreen = props => {
           }}>
           <Text style={styles.signText}>Sign Up</Text>
         </TouchableOpacity>
-        </View>
 
+        <TouchableOpacity style={styles.signBtn} onPress = {() => {
+            props.navigation.navigate({routeName: 'About'});
+          }}>
+          <Text style={styles.signText} >Learn more about us!</Text>
+        </TouchableOpacity>
+        </View>
         </View>
     );
 };
@@ -49,46 +54,10 @@ const styles = StyleSheet.create({
 
     logo:{
         justifyContent:"center",
-        marginTop:-230
+        marginTop:-300,
+        width:200,
+        height:200,
       },
-
-      inputViewEmail:{
-        width:"80%",
-        backgroundColor:"#FDFEFE",
-        borderRadius:25,
-        height:50,
-        marginTop:30,
-        marginBottom:20,
-        justifyContent:"center",
-        padding:20,
-        elevation: 10,
-        borderWidth: 4,
-        borderColor: "#fb5b5a"
-      },
-
-      inputViewPassword:{
-        width:"80%",
-        backgroundColor:"#FDFEFE",
-        borderRadius:25,
-        height:50,
-        marginBottom:20,
-        marginTop:10,
-        justifyContent:"center",
-        padding:20,
-        elevation: 10,
-        borderWidth: 4,
-        borderColor: "#fb5b5a"
-      },
-      inputText:{
-        height:50,
-        color:"black"
-      },
-
-      forgot:{
-        color:"white",
-        fontSize:11
-      },
-
       loginText:{
         color:"white",
         fontSize:20
@@ -98,16 +67,8 @@ const styles = StyleSheet.create({
         color:"white",
         fontSize:20
       },
-
-      forgot:{
-        color:"white",
-        fontSize:15,
-        marginBottom:5,
-        marginTop:20
-      },
-
       loginBtn:{
-        width:200,
+        width:300,
         backgroundColor:"#fb5b5a",
         borderRadius:25,
         height:50,
@@ -118,12 +79,12 @@ const styles = StyleSheet.create({
         borderRadius:15,
         shadowOpacity: 1,
         elevation:10,
-        marginTop:20,
+        marginTop:30,
         marginBottom:5
       },
 
       signBtn:{
-        width:200,
+        width:300,
         backgroundColor:"#fb5b5a",
         borderRadius:25,
         height:50,
@@ -137,6 +98,15 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
         marginBottom:10
       },
+      about:{
+        marginTop:60,
+        marginBottom:-70,
+        color:"white",
+        fontSize:20,
+
+      },
+      
+      
       
 });
 

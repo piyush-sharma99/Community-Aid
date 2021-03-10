@@ -1,8 +1,10 @@
 import React, { useState} from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView, Button, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image} from 'react-native';
 import {Card} from 'react-native-paper';
 import * as firebase from 'firebase';
 import editRequest from '../functions/editRequest';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 const EditRequestScreen = props => {
 
@@ -26,7 +28,7 @@ const EditRequestScreen = props => {
 
     return(
 
-      <ScrollView style={styles.scroll}>
+      <KeyboardAwareScrollView style={styles.container}>
         <View style={styles.screen} >
 
 <Text style={styles.text}>Fill in the fields you want to edit:</Text>
@@ -69,19 +71,20 @@ const EditRequestScreen = props => {
             ref={input => { this.textInputFour = input }}/>
         </View>
 
-        </Card>
+       
 
-        <View>
+        
         <TouchableOpacity style={styles.Btn} onPressIn = {() => editRequest(request, db, address, area, requestType, requestDescription, props)}
         onPress = {resetFields}>
           <Text style={styles.Text}>Edit</Text>
         </TouchableOpacity>
-        </View>
+        </Card>
+        
 
         
 
         </View>
-        </ScrollView>
+        </KeyboardAwareScrollView>
     );
 };
 
@@ -97,21 +100,22 @@ headerTintColor:"white"
 
 const styles = StyleSheet.create({
 
-  scroll: {
+  container: {
     width:'100%',
     height:'100%',
     backgroundColor: '#2E86C1',
+  
 },
   text: {
 
     padding:10,
-    marginBottom: 50,
+    marginBottom: 30,
     marginRight:40,
     marginLeft:40,
     color:"white",
-    fontSize:20,
+    fontSize:25,
     textAlign: 'center',
-    marginTop:40,
+    marginTop:30,
     borderWidth: 3,
     borderColor: '#fb5b5a',
     borderRadius:15,
@@ -169,12 +173,13 @@ const styles = StyleSheet.create({
       
       Btn:{
         width:300,
-        backgroundColor:"#fb5b5a",
+        backgroundColor:"#2E86C1",
         borderRadius:15,
         height:50,
         alignItems:"center",
         justifyContent:'center',
-        marginTop:30,
+        marginTop:20,
+        marginBottom:20,
         borderWidth:2,
         borderColor: "white"
       },
@@ -182,10 +187,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width:'90%',
         height:'77%',
+        padding:10,
         backgroundColor:"#fb5b5a",
         shadowColor: 'black',
         borderRadius:25,
         shadowOpacity: 1,
+        borderWidth: 3,
+        borderColor: 'white',
         elevation: 10,
         alignItems:"center",
         shadowOffset: {
