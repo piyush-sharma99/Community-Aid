@@ -4,6 +4,8 @@ import {Card} from 'react-native-paper';
 import * as firebase from 'firebase';
 import * as Location from 'expo-location';
 import makeRequest from '../functions/makeRequest';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 const MakeAssistanceRequestScreen = props => {
 
@@ -31,7 +33,7 @@ const MakeAssistanceRequestScreen = props => {
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
 
-      var date = new Date().getDate(); //Current Date
+    var date = new Date().getDate(); //Current Date
     var month = new Date().getMonth() + 1; //Current Month
     var year = new Date().getFullYear(); //Current Year
     var hours = new Date().getHours(); //Current Hours
@@ -69,7 +71,7 @@ const MakeAssistanceRequestScreen = props => {
 
     return(
 
-      <ScrollView style={styles.scroll}>
+      <KeyboardAwareScrollView style={styles.container}>
         <View style={styles.screen} >
 
 <Text style={styles.text}>Fill the form below:</Text>
@@ -118,14 +120,11 @@ const MakeAssistanceRequestScreen = props => {
 
         </Card>
 
-        <View>
-        
-        </View>
 
         
 
         </View>
-        </ScrollView>
+        </KeyboardAwareScrollView> 
     );
 };
 
@@ -141,10 +140,11 @@ headerTintColor:"white"
 
 const styles = StyleSheet.create({
 
-  scroll: {
+  container: {
     width:'100%',
     height:'100%',
     backgroundColor: '#2E86C1',
+  
 },
   text: {
 

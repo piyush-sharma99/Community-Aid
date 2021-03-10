@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image, } from 'react-native';
 import * as firebase from 'firebase';
-import signUpUser from '../functions/signUpUser'
+import signUpUser from '../functions/signUpUser';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const SignupScreen = props => {
 
@@ -23,6 +24,7 @@ const SignupScreen = props => {
 
 
   return(
+    <KeyboardAwareScrollView style={styles.container}>
     <View style={styles.screen} >
         
     <Image 
@@ -77,12 +79,13 @@ const SignupScreen = props => {
     </View>
 
     <View>
-    <TouchableOpacity style={styles.signBtn}  onPress = {() => signUpUser(name, number, email, password, passwordRepeat, fb, props, db)} onPressIn = {resetFieldsOne}>
+    <TouchableOpacity style={styles.signBtn}  onPress = {() => signUpUser(name, number, email, password, passwordRepeat, fb, props, db)} onPressOut = {resetFieldsOne}>
       <Text style={styles.signText}>Sign Up</Text>
     </TouchableOpacity>
     </View>
 
     </View>
+    </KeyboardAwareScrollView>
    
 );
 
@@ -105,6 +108,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+
+    container: {
+      backgroundColor: '#2E86C1',
+    
+  },
 
     logo:{
         justifyContent:"center",

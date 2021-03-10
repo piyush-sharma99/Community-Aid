@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
-import MapView, {Marker, Circle} from 'react-native-maps';
+import MapView, {Marker, Circle, Callout} from 'react-native-maps';
 import {Card} from 'react-native-paper';
 import * as Location from 'expo-location';
 import * as firebase from 'firebase';
@@ -70,14 +70,30 @@ const MapScreen = props => {
     resetFieldsOne = () => {
       this.textInputOne.clear();       
   }
-  resetFieldsTwo = () => {
-      this.textInputTwo.clear();       
-  }
+
 
 
 
     return (
     <View style={styles.screen} >
+
+<Card style={styles.cardView}>
+
+<View style={styles.inputView} >
+  
+  <TextInput  
+    style={styles.inputText}
+    placeholder="Radius in kilometers eg (3)..." 
+    placeholderTextColor="#003f5c"
+    onChangeText={(radius) => setRadius(parseInt(radius))}
+    ref={input => { this.textInputOne = input }}
+    />
+    </View>
+    <TouchableOpacity style={styles.Btn} onPressIn = {()=>setUpdateRadius(radius * 1000)} onPress = {resetFieldsOne}>
+     <Text style={styles.subText} >Change radius</Text>
+</TouchableOpacity>
+    </Card>
+
         <View style={styles.mapView}>
         <MapView style={styles.map} 
         region={{
@@ -100,12 +116,17 @@ const MapScreen = props => {
            request.map(marker => (
             <Marker
             key={marker.request_ID}
-            coordinate = {{latitude: marker.latitude, longitude: marker.longitude}}
-            title = {"Request Type: " + marker.request_Type}
-
-            description = {"Request ID: " + marker.request_ID + " & "+ "Area: " + marker.area}>
-            
+            coordinate = {{latitude: marker.latitude, longitude: marker.longitude}}>
               <MaterialCommunityIcons name="map-marker-remove-variant" size={30} color="red" />
+              <Callout style={styles.callOut}>
+                <Text>{"Request Type: " + marker.request_Type}</Text>
+                <Text>{"Area: " + marker.area}</Text>
+                <Text>{"Description: " + marker.request_Description}</Text>
+                <TouchableOpacity style={styles.BtnTwo} onPressIn = {() => addVid(marker, db, user)}>
+             <Text style={styles.subText} >Add request</Text>
+
+        </TouchableOpacity>
+              </Callout>
             </Marker>
 
            ))
@@ -113,39 +134,7 @@ const MapScreen = props => {
         </MapView>
         </View>
 
-        <Card style={styles.cardView}>
-        <View style={styles.inputView} >
-          
-          <TextInput  
-            style={styles.inputText}
-            placeholder="Add request" 
-            placeholderTextColor="#003f5c"
-            onChangeText={(addRequest) => setAddRequest(addRequest)}
-            ref={input => { this.textInputOne = input }}
-            />
-            </View>
-            <TouchableOpacity style={styles.Btn} onPressIn = {() => addVid(addRequest, db, user)} onPress = {resetFieldsOne}>
-             <Text style={styles.subText} >Add request</Text>
-
-        </TouchableOpacity>
-            </Card>
-
-        <Card style={styles.cardView}>
-
-        <View style={styles.inputView} >
-          
-          <TextInput  
-            style={styles.inputText}
-            placeholder="Radius in kilometers eg (3)..." 
-            placeholderTextColor="#003f5c"
-            onChangeText={(radius) => setRadius(parseInt(radius))}
-            ref={input => { this.textInputTwo = input }}
-            />
-            </View>
-            <TouchableOpacity style={styles.Btn} onPressIn = {()=>setUpdateRadius(radius * 1000)} onPress = {resetFieldsTwo}>
-             <Text style={styles.subText} >Change radius</Text>
-        </TouchableOpacity>
-            </Card>
+        
     </View>
     );
 };
@@ -170,11 +159,11 @@ const styles = StyleSheet.create({
     },
     mapView: {
         width:'100%',
-        height:'43%',
+        height:'75%',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: "#61dafb",
-        marginBottom: 20,
+        marginTop:10,
         elevation: 10
         
     },
@@ -186,13 +175,13 @@ const styles = StyleSheet.create({
     },
     cardView: {
         width:'95%',
-        height:'25%',
         padding:5,
         backgroundColor:"#fb5b5a",
         shadowColor: 'black',
         alignItems: 'center',
         borderRadius:25,
-        marginBottom:20,
+        marginBottom:10,
+        marginTop:20,
         shadowOpacity: 2,
         elevation: 5,
         borderWidth: 3,
@@ -203,7 +192,7 @@ const styles = StyleSheet.create({
       }
     },
     inputView:{
-        marginTop:30,
+        marginTop:10,
         width:250,
         backgroundColor:"#FDFEFE",
         borderRadius:25,
@@ -229,14 +218,30 @@ const styles = StyleSheet.create({
         alignItems:"center",
         justifyContent:"center",
         marginTop:20,
-        marginBottom:5,
+        marginBottom:10,
         borderWidth:2,
         borderColor: "white"
+      },
+      BtnTwo:{
+        width:240,
+        backgroundColor:"#fb5b5a",
+        borderRadius:10,
+        height:50,
+        alignItems:"center",
+        justifyContent:"center",
+        marginTop:10,
+        marginBottom:5,
+        marginLeft:5,
+        borderWidth:2,
+        borderColor: "#2E86C1"
       },
 
       subText:{
         color:"white",
         fontSize:20
+      },
+      callOut:{
+        width:250,
       },
     
 });

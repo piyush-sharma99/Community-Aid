@@ -61,7 +61,7 @@ const ManageRequestScreens = props => {
             
                 <View style={styles.screen} >
                 
-                <Text style={styles.text}>Requests made by you :</Text>
+                <Text style={styles.text}>Requests made by you:</Text>
 
                 <FlatList
                 style={{flex: 1}}

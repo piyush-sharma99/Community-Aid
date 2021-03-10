@@ -53,7 +53,7 @@ resetFieldsTwo = () => {
             </View>
 
             <View style={styles.Subheading}>
-                        <Text style={styles.text2}> Delete Account: </Text>
+                        <Text style={styles.text2}> Delete Account Below: </Text>
                     </View>
 
             <View style={styles.inputView} >
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     text3: {
         padding:10,
         marginRight:40,
-        marginTop:40,
+        marginTop:60,
         marginBottom:30,
         marginLeft:40,
         color:"white",
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
         elevation:10,
         borderColor: "white",
         borderRadius:15,
-        height:50,
+        height:40,
         alignItems:"center",
         justifyContent:"center",
         marginBottom:30
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
         elevation:10,
         borderColor: "white",
         borderRadius:15,
-        height:50,
+        height:40,
         alignItems:"center",
         justifyContent:"center",
         marginTop:10,
