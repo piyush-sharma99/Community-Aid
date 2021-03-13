@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput,TouchableOpacity } from 'react-native';
 import MapView, {Marker, Circle, Callout} from 'react-native-maps';
 import {Card} from 'react-native-paper';
 import * as Location from 'expo-location';
@@ -7,6 +7,7 @@ import * as firebase from 'firebase';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons'; 
 import addVid from '../functions/addvid';
+import reportRequestTwo from '../functions/reportRequestTwo'
 
 
 
@@ -15,7 +16,6 @@ const MapScreen = props => {
   const [errorMsg, setErrorMsg] = useState(null);
   const [radius, setRadius] = useState(1000);
   const [request, setRequest] = useState([]);
-  const [addRequest, setAddRequest] = useState('');
   const [updateRadius, setUpdateRadius] = useState(1000);
   const db = firebase.firestore();
   var user = firebase.auth().currentUser;
@@ -124,7 +124,9 @@ const MapScreen = props => {
                 <Text>{"Description: " + marker.request_Description}</Text>
                 <TouchableOpacity style={styles.BtnTwo} onPressIn = {() => addVid(marker, db, user)}>
              <Text style={styles.subText} >Add request</Text>
-
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.BtnTwo} onPressIn = {() => reportRequestTwo(marker, db, user)}>
+             <Text style={styles.subText} >Report request</Text>
         </TouchableOpacity>
               </Callout>
             </Marker>
@@ -226,7 +228,7 @@ const styles = StyleSheet.create({
         width:240,
         backgroundColor:"#fb5b5a",
         borderRadius:10,
-        height:50,
+        height:40,
         alignItems:"center",
         justifyContent:"center",
         marginTop:10,

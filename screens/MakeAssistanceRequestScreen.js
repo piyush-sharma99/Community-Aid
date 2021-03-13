@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView, Button, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
 import {Card} from 'react-native-paper';
 import * as firebase from 'firebase';
 import * as Location from 'expo-location';
@@ -153,6 +153,7 @@ const styles = StyleSheet.create({
     marginRight:40,
     marginLeft:40,
     color:"white",
+    fontWeight: "bold",
     fontSize:25,
     textAlign: 'center',
     marginTop:30,

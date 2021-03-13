@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, ScrollView,TextInput, TouchableOpacity,FlatList, SafeAreaView} from 'react-native';
+import React, { useState} from 'react';
+import { StyleSheet, Text, View,TextInput, TouchableOpacity,FlatList} from 'react-native';
 import {Card} from 'react-native-paper';
 import * as firebase from 'firebase';
 import addVid from '../functions/addvidTwo';
+import report from '../functions/reportRequest';
 
 
 
@@ -53,15 +54,27 @@ const PickUpAssistanceRequestScreen = props => {
         <Card style={styles.cardView2}>
 
             <View  >
-                <Text style={styles.text2}>Request Date: {"\n"}{item.date}</Text>
-                <Text style={styles.text2}>Request Type: {"\n"}{item.request_Type}</Text>
-                <Text style={styles.text2}>Request Description: {item.request_Description}</Text>
-                <Text style={styles.text2}>Request Status: {"\n"}{item.status}</Text>
+                
+                <Text style={styles.text2}>Request Date:</Text> 
+                <Text style={styles.text3}>{item.date}</Text>
+                <Text style={styles.text2}>Request Type:</Text> 
+                <Text style={styles.text3}>{item.request_Type}</Text>
+                <Text style={styles.text2}>Request Description:</Text> 
+                <Text style={styles.text3}>{item.request_Description}</Text>
+                <Text style={styles.text2}>Request Status:</Text> 
+                <Text style={styles.text3}>{item.status}</Text>
+                
             </View>
 
             <View>
                   <TouchableOpacity style={styles.Btn} onPress = {() => addVid(item, db, user)}>
                       <Text style={styles.Text}>ADD</Text>
+                      </TouchableOpacity>
+              </View>
+
+              <View>
+                  <TouchableOpacity style={styles.Btn} onPress = {() => report(item, db, user)}>
+                      <Text style={styles.Text}>REPORT</Text>
                       </TouchableOpacity>
               </View>
 
@@ -142,6 +155,7 @@ const styles = StyleSheet.create({
       marginRight:40,
       marginLeft:40,
       color:"white",
+      fontWeight: "bold",
       fontSize:20,
       textAlign: 'center',
       marginTop:15,
@@ -155,11 +169,23 @@ const styles = StyleSheet.create({
       marginRight:40,
       marginLeft:40,
       color:"white",
+      fontWeight: "bold",
       fontSize:20,
       textAlign: 'center',
       
 
   },
+
+  text3: {
+    padding:5,
+    marginRight:40,
+    marginLeft:40,
+    color:"white",
+    fontSize:20,
+    textAlign: 'center',
+    
+
+},
 
    inputView:{
       width:300,

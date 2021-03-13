@@ -63,6 +63,7 @@ AppAssistanceScreen.navigationOptions = {
           marginRight:40,
           marginLeft:40,
           color:"white",
+          fontWeight: "bold",
           fontSize:25,
           textAlign: 'center',
           marginTop:40,

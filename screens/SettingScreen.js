@@ -1,9 +1,11 @@
 import React, { useState} from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Alert } from 'react-native';
-import {Card} from 'react-native-paper';
 import * as firebase from 'firebase';
 import deleteProfile from '../functions/deleteProfile';
 import profileUpdate from '../functions/profileUpdate';
+import {Card} from 'react-native-paper';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 const SettingScreen = props => {
 
@@ -28,29 +30,32 @@ resetFieldsTwo = () => {
 
  
     return(
+        <KeyboardAwareScrollView style={styles.container}>
         <View style={styles.screen}>
               <View style={styles.structure}>
 
               <Text style={styles.text3}>Edit account information below:</Text>
-            
-            <View style={styles.SettingForm}>
-                <TextInput style={styles.text} placeholder="Change Name" underlineColorAndroid={'transparent'} placeholderTextColor="white" onChangeText={(name) => setName(name)} ref={input => { this.textInputOne = input }} />
-            </View>
 
-            <View style={styles.SettingForm}>
+              <Card style={styles.cardView}>
+            
+            
+                <TextInput style={styles.text1} placeholder="Change Name" underlineColorAndroid={'transparent'} placeholderTextColor="white" onChangeText={(name) => setName(name)} ref={input => { this.textInputOne = input }} />
+          
+
+          
                 <TextInput style={styles.text} placeholder="Change Number" underlineColorAndroid={'transparent'} placeholderTextColor="white" onChangeText={(number) => setNumber(number)} ref={input => { this.textInputTwo = input }} />
-            </View>
-            <View style={styles.SettingForm}>
+          
+           
                 <TextInput style={styles.text} placeholder="Change Email" underlineColorAndroid={'transparent'} placeholderTextColor="white" onChangeText={(email) => setEmail(email)} ref={input => { this.textInputThree = input }} />
-            </View>
-            <View style={styles.SettingForm}>
+          
                 <TextInput style={styles.text} placeholder="Change Password" underlineColorAndroid={'transparent'} placeholderTextColor="white" secureTextEntry onChangeText={(password) => setPassword(password)} ref={input => { this.textInputFour = input }} />
-            </View>
+           
             <View>
                  <TouchableOpacity style={styles.btn} onPress = {() => profileUpdate(user, signout, props, db, email, name, number, password)}  onPressIn = {resetFieldsOne}>
                  <Text style={styles.btnText}>Update Profile</Text>
                  </TouchableOpacity>
             </View>
+            </Card>
 
             <View style={styles.Subheading}>
                         <Text style={styles.text2}> Delete Account Below: </Text>
@@ -60,14 +65,15 @@ resetFieldsTwo = () => {
                 <TextInput style={styles.inputText} placeholder="Type 'Confirm' here then press delete..." placeholderTextColor="#003f5c" onChangeText={(confirm) => setConfirm(confirm)} ref={input => { this.textInputFive = input }} />
                 </View>
 
-            <View>
+            
                 <TouchableOpacity style={styles.btn2} onPress = {() => deleteProfile(user, props, db, confirm)} onPressIn = {resetFieldsTwo} >
                 <Text style={styles.Text}>Delete</Text>
                 </TouchableOpacity>
-</View>
+
 
         </View>
         </View>
+        </KeyboardAwareScrollView>
     );
 };
 
@@ -80,12 +86,19 @@ SettingScreen.navigationOptions = {
     };
 
 const styles = StyleSheet.create({
+    container: {
+        width:'100%',
+        height:'100%',
+        backgroundColor: '#2E86C1',
+      
+    },
     screen: {
         justifyContent:"center",
+        alignItems: 'center',
         flex: 1,
+        width:'100%',
+        height:'100%',
         backgroundColor: '#2E86C1',
-        paddingRight:60,
-        paddingLeft:60
     },
     structure: {
         alignSelf: 'stretch',
@@ -97,11 +110,11 @@ const styles = StyleSheet.create({
     text3: {
         padding:10,
         marginRight:40,
-        marginTop:60,
+        marginTop:130,
         marginBottom:30,
         marginLeft:40,
         color:"white",
-        fontSize:20,
+        fontSize:25,
         textAlign: 'center',
         backgroundColor:'#fb5b5a',
         borderWidth: 3,
@@ -114,6 +127,7 @@ const styles = StyleSheet.create({
         padding:15,
         marginRight:40,
         marginLeft:40,
+        fontWeight: "bold",
         color:"white",
         fontSize:20,
         textAlign: 'center',
@@ -121,22 +135,24 @@ const styles = StyleSheet.create({
     
     },
 
-    SettingForm: {
-        alignSelf: 'stretch',
-        borderBottomWidth: 2,
-        borderColor: '#fb5b5a',
-        fontSize: 30,
-        color: '#fff',
-        marginBottom:30,
-        justifyContent:"center"
-    },
-
     text:{  
-        alignSelf: 'stretch',
-        height:40,
-        marginBottom:2,
-        fontSize: 20,
-        color: '#fff'   
+        
+        height:30,
+        color: '#fff' ,
+        borderBottomWidth: 2,
+        borderColor: 'white',
+        fontSize: 25,
+        marginBottom:30,  
+    },
+    text1:{  
+        
+        height:30,
+        color: '#fff' ,
+        borderBottomWidth: 2,
+        marginTop:30,
+        borderColor: 'white',
+        fontSize: 25,
+        marginBottom:30,  
     },
 
     btnText:{
@@ -158,7 +174,8 @@ const styles = StyleSheet.create({
 
       btn:{
         width:'100%',
-        backgroundColor:"#fb5b5a",
+        height:30,
+        backgroundColor:"#2E86C1",
         borderWidth:2,
         shadowOpacity: 1,
         elevation:10,
@@ -167,10 +184,11 @@ const styles = StyleSheet.create({
         height:40,
         alignItems:"center",
         justifyContent:"center",
-        marginBottom:30
+        marginBottom:30,
+        marginTop:10
       },
       btn2:{
-        width:'100%',
+        width:'70%',
         backgroundColor:"#fb5b5a",
         borderWidth:2,
         shadowOpacity: 1,
@@ -181,15 +199,19 @@ const styles = StyleSheet.create({
         alignItems:"center",
         justifyContent:"center",
         marginTop:10,
+        marginLeft:60,
         marginBottom:10
       },
     inputView:{
-        width:300,
+        justifyContent:"center",
+        alignItems: 'center',
+        width:330,
         backgroundColor:"#FDFEFE",
         borderRadius:25,
         height:35,
         marginTop:15,
         marginBottom:15,
+        marginLeft:40,
         justifyContent:"center",
         padding:20,
         elevation: 10,
@@ -205,6 +227,26 @@ const styles = StyleSheet.create({
     Text:{
         color:"white",
         fontSize:20
+    },
+    cardView: {
+        justifyContent: 'center',
+        width:'90%',
+        padding:10,
+        marginRight:20,
+        marginLeft:20,
+        backgroundColor:"#fb5b5a",
+        shadowColor: 'black',
+        borderRadius:25,
+        borderWidth: 3,
+        borderColor: 'white',
+        shadowOpacity: 1,
+        marginTop:20,
+        elevation: 10,
+        alignItems:"center",
+        shadowOffset: {
+            width: 3,
+            height: 3
+        },
     },
       
 });
