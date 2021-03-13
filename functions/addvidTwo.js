@@ -3,7 +3,7 @@ const addVidTwo = (item, db, user) => {
   const addRequest = item.request_ID;
 
   if (addRequest == '' || addRequest == ' '){
-    alert('Request field was empty')
+    alert('issue has occured :(')
               return;
 
   } else{
