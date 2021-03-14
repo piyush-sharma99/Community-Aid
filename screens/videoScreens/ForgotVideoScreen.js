@@ -10,7 +10,7 @@ const ForgotVideoScreen = props => {
               <WebView
     style={styles.web}
     javaScriptEnabled={true}
-    source={{uri: 'https://youtu.be/Y8t64JLulLI'}}
+    source={{uri: 'https://youtu.be/o4n4U_88vic'}}
 />
 
 </View>

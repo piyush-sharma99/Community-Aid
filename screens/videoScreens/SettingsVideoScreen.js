@@ -10,7 +10,7 @@ const SettingsVideoScreen = props => {
               <WebView
     style={styles.web}
     javaScriptEnabled={true}
-    source={{uri: 'https://youtu.be/Y8t64JLulLI'}}
+    source={{uri: 'https://youtu.be/80VP9kSWZXQ'}}
 />
 
 </View>

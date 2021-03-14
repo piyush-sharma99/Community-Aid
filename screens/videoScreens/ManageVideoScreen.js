@@ -10,7 +10,7 @@ const ManageVideoScreen = props => {
               <WebView
     style={styles.web}
     javaScriptEnabled={true}
-    source={{uri: 'https://youtu.be/Y8t64JLulLI'}}
+    source={{uri: 'https://youtu.be/Cnqztwoczu0'}}
 />
 
 </View>

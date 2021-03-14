@@ -4,7 +4,7 @@ import { Alert } from 'react-native';
 const profileUpdate = (user, signout, props, db, email, name, number, password) =>
 Alert.alert(
   "Update Information",
-  "Are you sure you want to update you profile information? (YOU WILL BE LOGGED OUT IF PASSWORD AND EMAIL ARE UPDARED!)",
+  "Are you sure you want to update you profile information? (YOU WILL BE LOGGED OUT IF PASSWORD AND EMAIL ARE UPDATED!)",
   [
     {
       text: "Cancel",
@@ -48,22 +48,24 @@ Alert.alert(
         else{}
 
         if(password != '' && password.length>6){
+            if(password.length<6 || password == '' || password == ' '){
+                alert('Password is too short')
+                
+            }
+            else{
+                user.updatePassword(password).then(
+                    consol.log('Password Updated')
+                ),
+                signout.signOut().then(() => {
+                    props.navigation.navigate({routeName: 'Index'});
+                  })
+    
+            }   
 
-            user.updatePassword(password).then(
-                consol.log('Password Updated')
-            ),
-            signout.signOut().then(() => {
-                props.navigation.navigate({routeName: 'Index'});
-              })
-
-        }
-        else if(password.length<6 || password == '' || password == ' '){
-            alert('Password is too short')
             
-        }
-        else{
 
-        }   
+        }
+        else {}
 
     }
     catch(error){

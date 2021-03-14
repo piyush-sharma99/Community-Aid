@@ -10,7 +10,7 @@ const AssistanceVideoScreen = props => {
               <WebView
     style={styles.web}
     javaScriptEnabled={true}
-    source={{uri: 'https://youtu.be/Y8t64JLulLI'}}
+    source={{uri: 'https://youtu.be/8JHy_km3yM8'}}
 />
 
 </View>
