@@ -80,7 +80,7 @@ resetFieldsTwo = () => {
 SettingScreen.navigationOptions = {
     headerTitle: 'Settings',
     headerStyle: {
-    backgroundColor: '#2E86C1'
+    backgroundColor: '#2c8ffa'
     },
     headerTintColor:"white"
     };
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     container: {
         width:'100%',
         height:'100%',
-        backgroundColor: '#2E86C1',
+        backgroundColor: '#2c8ffa',
       
     },
     screen: {
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width:'100%',
         height:'100%',
-        backgroundColor: '#2E86C1',
+        backgroundColor: '#2c8ffa',
     },
     structure: {
         alignSelf: 'stretch',

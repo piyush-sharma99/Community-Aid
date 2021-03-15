@@ -92,7 +92,7 @@ EditRequestScreen.navigationOptions = {
 headerTitle: 'Edit Request Screen',
 headerTitleStyle: { alignSelf: 'center' },
 headerStyle: {
-backgroundColor: '#2E86C1'
+backgroundColor: '#2c8ffa'
 },
 headerTintColor:"white"
 };
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   container: {
     width:'100%',
     height:'100%',
-    backgroundColor: '#2E86C1',
+    backgroundColor: '#2c8ffa',
   
 },
   text: {
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'100%',
         flex: 1,
-        backgroundColor: '#2E86C1',
+        backgroundColor: '#2c8ffa',
         alignItems: 'center',
         justifyContent: 'center'
     },

@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import NavigatorCA from'./navigation/CommunityAidNavigator';

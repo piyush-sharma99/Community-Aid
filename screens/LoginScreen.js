@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, Image} from 'react-native';
 import * as firebase from 'firebase';
 import logInUser from '../functions/logInUser';
 
@@ -16,6 +16,7 @@ const LoginScreen = props => {
 }
 
   return(
+    
     <View style={styles.screen} >
     
     <Image 
@@ -57,6 +58,7 @@ const LoginScreen = props => {
     </View>
 
     </View>
+   
 );
 
 };
@@ -64,7 +66,7 @@ const LoginScreen = props => {
 LoginScreen.navigationOptions = {
 headerTitle: 'Log in',
 headerStyle: {
-backgroundColor: '#2E86C1'
+backgroundColor: '#2c8ffa'
 },
 headerTintColor:"white"
 };
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'100%',
         flex: 1,
-        backgroundColor: '#2E86C1',
+        backgroundColor: '#2c8ffa',
         alignItems: 'center',
         justifyContent: 'center'
     },

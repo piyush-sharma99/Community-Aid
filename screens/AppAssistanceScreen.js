@@ -48,7 +48,7 @@ const AppAssistanceScreen = props => {
 AppAssistanceScreen.navigationOptions = {
     headerTitle: 'Help ',
     headerStyle: {
-    backgroundColor: '#2E86C1'
+    backgroundColor: '#2c8ffa'
     },
     headerTintColor:"white"
     };
@@ -56,7 +56,7 @@ AppAssistanceScreen.navigationOptions = {
     const styles = StyleSheet.create({
         screen: {
             flex: 1,
-            backgroundColor: '#2E86C1',
+            backgroundColor: '#2c8ffa',
         },
         text: {
           padding:10,

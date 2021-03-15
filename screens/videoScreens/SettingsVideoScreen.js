@@ -26,7 +26,7 @@ const SettingsVideoScreen = props => {
 SettingsVideoScreen.navigationOptions = {
     headerTitle: 'Settings page Assistance ',
     headerStyle: {
-    backgroundColor: '#2E86C1'
+    backgroundColor: '#2c8ffa'
     },
     headerTintColor:"white"
     };
@@ -34,12 +34,12 @@ SettingsVideoScreen.navigationOptions = {
     const styles = StyleSheet.create({
         screen: {
             flex: 1,
-            backgroundColor: '#2E86C1',
+            backgroundColor: '#2c8ffa',
             
         },
         subScreen: {
             height:'50%',
-            backgroundColor: '#2E86C1',
+            backgroundColor: '#2c8ffa',
                 
         },
     

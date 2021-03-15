@@ -120,7 +120,7 @@ const HomeScreen = props => {
 HomeScreen.navigationOptions = {
     headerTitle: 'Home',
     headerStyle: {
-    backgroundColor: '#2E86C1'
+    backgroundColor: '#2c8ffa'
     },
     headerTintColor:"white"
     };
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'100%',
         flex: 1,
-        backgroundColor: '#2E86C1',
+        backgroundColor: '#2c8ffa',
         flexDirection:'row',
         flexWrap:'wrap'
         

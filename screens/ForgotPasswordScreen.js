@@ -44,7 +44,7 @@ const ForgotPasswordScreen = props => {
 ForgotPasswordScreen.navigationOptions = {
 headerTitle: 'Reset Password',
 headerStyle: {
-backgroundColor: '#2E86C1'
+backgroundColor: '#2c8ffa'
 },
 headerTintColor:"white"
 };
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'100%',
         flex: 1,
-        backgroundColor: '#2E86C1',
+        backgroundColor: '#2c8ffa',
         alignItems: 'center',
         justifyContent: 'center'
     },

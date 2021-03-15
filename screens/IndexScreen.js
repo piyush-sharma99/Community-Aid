@@ -1,11 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, ImageBackground} from 'react-native';
+
 
 const IndexScreen = props => {
+  
+
     return(
+      <ImageBackground source={require('../assets/BG.png')} style={styles.bImage}>
         <View style={styles.screen} >
         
-        <Image 
+       <Image 
         style={styles.logo}
         source={require('../assets/Logo.png')}
         />
@@ -30,6 +34,8 @@ const IndexScreen = props => {
         </TouchableOpacity>
         </View>
         </View>
+        </ImageBackground>
+        
     );
 };
 
@@ -37,20 +43,23 @@ IndexScreen.navigationOptions = {
 headerTitle: 'Welcome',
 headerTitleStyle: { alignSelf: 'center' },
 headerStyle: {
-backgroundColor: '#2E86C1'
+backgroundColor: '#2c8ffa'
 },
 headerTintColor:"white"
 };
 
 const styles = StyleSheet.create({
-    screen: {
+    bImage: {
         width:'100%',
         height:'100%',
-        flex: 1,
-        backgroundColor: '#2E86C1',
-        alignItems: 'center',
-        justifyContent: 'center'
     },
+    screen: {
+      width:'100%',
+      height:'100%',
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center'
+  },
 
     logo:{
         justifyContent:"center",

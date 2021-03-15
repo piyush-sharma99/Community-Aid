@@ -26,7 +26,7 @@ const AssistanceVideoScreen = props => {
 AssistanceVideoScreen.navigationOptions = {
     headerTitle: 'Assistance Request Assistance ',
     headerStyle: {
-    backgroundColor: '#2E86C1'
+    backgroundColor: '#2c8ffa'
     },
     headerTintColor:"white"
     };
@@ -34,12 +34,12 @@ AssistanceVideoScreen.navigationOptions = {
     const styles = StyleSheet.create({
         screen: {
             flex: 1,
-            backgroundColor: '#2E86C1',
+            backgroundColor: '#2c8ffa',
             
         },
         subScreen: {
             height:'50%',
-            backgroundColor: '#2E86C1',
+            backgroundColor: '#2c8ffa',
                 
         },
     
