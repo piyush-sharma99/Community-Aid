@@ -1,11 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
 import {Card} from 'react-native-paper';
 import { Octicons, Entypo} from '@expo/vector-icons';
 
 
 const ManageARScreen = props => {
     return(
+        <ImageBackground source={require('../assets/BG.png')} style={styles.bImage}>
+
         <View style={styles.screen}>
 
         <Text style={styles.text}>Choose one below:</Text>
@@ -33,6 +35,7 @@ const ManageARScreen = props => {
         </TouchableOpacity>
             
         </View>
+        </ImageBackground>
     );
 };
 
@@ -50,9 +53,13 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'100%',
         flex: 1,
-        backgroundColor: '#2c8ffa',
         flexWrap:'wrap'
         
+    },
+    
+    bImage: {
+        width:'100%',
+        height:'100%',
     },
 
     clickView: {

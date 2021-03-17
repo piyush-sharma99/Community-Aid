@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ImageBackground} from 'react-native';
 import * as firebase from 'firebase';
 import forgotPassword from '../functions/forgotpassword'
 
@@ -14,6 +14,7 @@ const ForgotPasswordScreen = props => {
 }
 
   return(
+    <ImageBackground source={require('../assets/BG.png')} style={styles.bImage}>
     <View style={styles.screen} >
     
     <Image 
@@ -37,6 +38,7 @@ const ForgotPasswordScreen = props => {
     </View>
 
     </View>
+    </ImageBackground>
 );
 
 };
@@ -54,11 +56,13 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'100%',
         flex: 1,
-        backgroundColor: '#2c8ffa',
         alignItems: 'center',
         justifyContent: 'center'
     },
-
+    bImage: {
+      width:'100%',
+      height:'100%',
+  },
     logo:{
         justifyContent:"center",
         marginTop:-320

@@ -1,7 +1,5 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
-//import { createBottomTabNavigator } from 'react-navigation-tabs';
-//import { createDrawerNavigator } from 'react-navigation-drawer';
 import IndexScreen from '../screens/IndexScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
@@ -17,11 +15,11 @@ import PickUpAssistanceRequestScreen from '../screens/PickUpAssistanceRequestScr
 import ManageVolunteerRequestScreen from '../screens/ManageVolunteerRequestScreen';
 import ManageRequestScreens from '../screens/ManageRequestScreens';
 import EditRequestScreen from '../screens/EditRequestScreen';
-import MapVideoScreen from '../screens/videoScreens/MapVideoScreen'
-import AssistanceVideoScreen from '../screens/videoScreens/AssistanceVideoScreen'
-import ManageVideoScreen from '../screens/videoScreens/ManageVideoScreen'
-import SettingsVideoScreen from '../screens/videoScreens/SettingsVideoScreen'
-import ForgotVideoScreen from '../screens/videoScreens/ForgotVideoScreen'
+import MapVideoScreen from '../screens/MapVideoScreen'
+import AssistanceVideoScreen from '../screens/AssistanceVideoScreen'
+import ManageVideoScreen from '../screens/ManageVideoScreen'
+import SettingsVideoScreen from '../screens/SettingsVideoScreen'
+import ForgotVideoScreen from '../screens/ForgotVideoScreen'
 import AboutUsScreen from '../screens/AboutUsScreen'
 
 

@@ -6,6 +6,7 @@ import LoggedInNav from'./navigation/LoggedInNavigator';
 import * as firebase from 'firebase';
 import {firebaseConfig} from './apikey';
 import * as Notifications from 'expo-notifications';
+import { Asset } from 'expo-asset';
 
 
 Notifications.setNotificationHandler({
@@ -30,15 +31,25 @@ Notifications.setNotificationHandler({
 
 firebase.initializeApp(firebaseConfig);
 
-const fetchFonts = () => {
-return Font.loadAsync({
+
+
+const fetchAsset = () => {
+  return (Asset.loadAsync([
+    require('./assets/BG.png'),
+    require('./assets/Logo.png'),
+]),
+
+Font.loadAsync({
   'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
   'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
-});
-};
+}) );
+
+  };
+
+
 
 export default function App() {
-const[fontLoaded, setFontLoaded] = useState(false);
+const[Loaded, setLoaded] = useState(false);
 const[userLog, setUserLog] = useState(false);
 
 useEffect(() => {
@@ -55,22 +66,22 @@ useEffect(() => {
 }, []);
 
 
-if (!fontLoaded) {
-  return (<AppLoading 
-  startAsync={fetchFonts}
-  onFinish={() => setFontLoaded(true)}
+if (!Loaded) {
+  return (<AppLoading
+    startAsync={fetchAsset}
+    onFinish={() => setLoaded(true)}
   />
   );
+  
 }
 else{
-  if(userLog == true){
-    return <LoggedInNav/>;
 
-  }
-  return <NavigatorCA/>;
-
+    if(userLog == true){
+      return <LoggedInNav/>;
+  
+    }
+    return <NavigatorCA/>;
+   
 }
-  
-  
-  
+   
 }

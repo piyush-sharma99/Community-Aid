@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, ScrollView,TextInput, TouchableOpacity,FlatList, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, ImageBackground,TextInput, TouchableOpacity,FlatList, SafeAreaView} from 'react-native';
 import {Card} from 'react-native-paper';
 import * as firebase from 'firebase';
 import editStatus from '../functions/editStatus';
@@ -79,6 +79,9 @@ const ManageVolunteerRequestScreen = props => {
       
 
     return(
+
+        <ImageBackground source={require('../assets/BG.png')} style={styles.bImage}>
+
         
         <View style={styles.screen} >
         <Text style={styles.text}>Update Requests below:</Text>
@@ -90,6 +93,7 @@ const ManageVolunteerRequestScreen = props => {
                 keyExtractor={item => item.request_ID}
                 />
         </View>
+        </ImageBackground>
         
     
     );
@@ -109,13 +113,15 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'100%',
         flex:1,
-        backgroundColor: '#2c8ffa',
         alignItems: 'center',
         justifyContent: 'center'
     },
+    bImage: {
+        width:'100%',
+        height:'100%',
+    },
     screen2: {
         width:410,
-        backgroundColor: '#2c8ffa',
         alignItems: 'center',
         justifyContent: 'center'
     },

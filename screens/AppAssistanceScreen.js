@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity} from 'react-native';
 
 
 const AppAssistanceScreen = props => {
     return(
+      <ImageBackground source={require('../assets/BG.png')} style={styles.bImage}>
         <View style={styles.screen}>
               <Text style={styles.text}>Pick the topic of confusion:</Text>
 
@@ -38,10 +39,8 @@ const AppAssistanceScreen = props => {
 
         </TouchableOpacity>
             
-            
-
-        
         </View>
+        </ImageBackground>
     );
 };
 
@@ -56,8 +55,11 @@ AppAssistanceScreen.navigationOptions = {
     const styles = StyleSheet.create({
         screen: {
             flex: 1,
-            backgroundColor: '#2c8ffa',
         },
+        bImage: {
+          width:'100%',
+          height:'100%',
+      },
         text: {
           padding:10,
           marginRight:40,

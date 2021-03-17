@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native';
 import {Card} from 'react-native-paper';
 import { FontAwesome5, AntDesign, FontAwesome, MaterialIcons, Feather} from '@expo/vector-icons';
 import * as firebase from 'firebase';
@@ -47,6 +47,7 @@ const HomeScreen = props => {
 
 
     return(
+      <ImageBackground source={require('../assets/BG.png')} style={styles.bImage}>
         <View style={styles.screen}>
 
         <TouchableOpacity style={styles.clickView} onPress = {() => {
@@ -114,6 +115,7 @@ const HomeScreen = props => {
         </TouchableOpacity>
             
         </View>
+        </ImageBackground>
     );
 };
 
@@ -131,12 +133,14 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'100%',
         flex: 1,
-        backgroundColor: '#2c8ffa',
         flexDirection:'row',
         flexWrap:'wrap'
         
     },
-
+    bImage: {
+      width:'100%',
+      height:'100%',
+  },
     clickView: {
             marginTop:20,
             width:'45%',

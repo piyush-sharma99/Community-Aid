@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 import * as firebase from 'firebase';
 import deleteProfile from '../functions/deleteProfile';
 import profileUpdate from '../functions/profileUpdate';
@@ -30,6 +30,7 @@ resetFieldsTwo = () => {
 
  
     return(
+        <ImageBackground source={require('../assets/BG.png')} style={styles.bImage}>
         <KeyboardAwareScrollView style={styles.container}>
         <View style={styles.screen}>
               <View style={styles.structure}>
@@ -74,6 +75,7 @@ resetFieldsTwo = () => {
         </View>
         </View>
         </KeyboardAwareScrollView>
+        </ImageBackground>
     );
 };
 
@@ -89,7 +91,6 @@ const styles = StyleSheet.create({
     container: {
         width:'100%',
         height:'100%',
-        backgroundColor: '#2c8ffa',
       
     },
     screen: {
@@ -98,7 +99,10 @@ const styles = StyleSheet.create({
         flex: 1,
         width:'100%',
         height:'100%',
-        backgroundColor: '#2c8ffa',
+    },
+    bImage: {
+        width:'100%',
+        height:'100%',
     },
     structure: {
         alignSelf: 'stretch',
