@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image, } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, Image, } from 'react-native';
 import * as firebase from 'firebase';
 import signUpUser from '../functions/signUpUser';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -24,7 +24,8 @@ const SignupScreen = props => {
 
 
   return(
-    <KeyboardAwareScrollView style={styles.container}>
+    <ImageBackground source={require('../assets/BG.png')} style={styles.bImage}>
+    <KeyboardAwareScrollView >
     <View style={styles.screen} >
         
     <Image 
@@ -86,6 +87,7 @@ const SignupScreen = props => {
 
     </View>
     </KeyboardAwareScrollView>
+    </ImageBackground>
    
 );
 
@@ -104,14 +106,13 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'100%',
         flex: 1,
-        backgroundColor: '#2c8ffa',
         alignItems: 'center',
         justifyContent: 'center'
     },
 
-    container: {
-      backgroundColor: '#2E86C1',
-    
+    bImage: {
+      width:'100%',
+      height:'100%',
   },
 
     logo:{

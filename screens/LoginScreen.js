@@ -16,6 +16,7 @@ const LoginScreen = props => {
 }
 
   return(
+    <ImageBackground source={require('../assets/BG.png')} style={styles.bImage}>
     
     <View style={styles.screen} >
     
@@ -58,6 +59,8 @@ const LoginScreen = props => {
     </View>
 
     </View>
+
+    </ImageBackground>
    
 );
 
@@ -76,10 +79,13 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'100%',
         flex: 1,
-        backgroundColor: '#2c8ffa',
         alignItems: 'center',
         justifyContent: 'center'
     },
+    bImage: {
+      width:'100%',
+      height:'100%',
+  },
 
     logo:{
         justifyContent:"center",

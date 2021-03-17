@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, Image} from 'react-native';
 import {Card} from 'react-native-paper';
 import * as firebase from 'firebase';
 import editRequest from '../functions/editRequest';
@@ -27,6 +27,8 @@ const EditRequestScreen = props => {
 
 
     return(
+
+      <ImageBackground source={require('../assets/BG.png')} style={styles.bImage}>
 
       <KeyboardAwareScrollView style={styles.container}>
         <View style={styles.screen} >
@@ -85,6 +87,7 @@ const EditRequestScreen = props => {
 
         </View>
         </KeyboardAwareScrollView>
+        </ImageBackground>
     );
 };
 
@@ -103,9 +106,15 @@ const styles = StyleSheet.create({
   container: {
     width:'100%',
     height:'100%',
-    backgroundColor: '#2c8ffa',
+    
   
 },
+
+bImage: {
+  width:'100%',
+  height:'100%',
+},
+
   text: {
 
     padding:10,
@@ -126,7 +135,7 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'100%',
         flex: 1,
-        backgroundColor: '#2c8ffa',
+        
         alignItems: 'center',
         justifyContent: 'center'
     },

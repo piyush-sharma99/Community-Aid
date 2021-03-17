@@ -1,30 +1,32 @@
 import React from 'react';
-import { StyleSheet, Text, View,} from 'react-native';
+import { StyleSheet, Text, View, ImageBackground} from 'react-native';
 import { WebView } from 'react-native-webview';
 
 
-const MapVideoScreen = props => {
+const ManageVideoScreen = props => {
     return(
+        <ImageBackground source={require('../assets/BG.png')} style={styles.bImage}>
         <View style={styles.screen}>
             <View style={styles.subScreen}>
               <WebView
     style={styles.web}
     javaScriptEnabled={true}
-    source={{uri: 'https://youtu.be/ZCSVUAULKWI'}}
+    source={{uri: 'https://youtu.be/Cnqztwoczu0'}}
 />
 
 </View>
 
 <View>
-    <Text style={styles.text}>The map page is designed for volunteers who would like to help others in their region. It allows volunteers to view requests in their area, view their area, set a radius ring on the map to measure distance and add requests on demand. To view a tutorial on how to use the features view the video above. </Text>
+    <Text style={styles.text}>The page is made for both users and volunteers. The users can use this page to delete requests and edit them in real time. The volunteers are able to unassign and edit the status of requests they have picked up. For a full tutorial view the video above. </Text>
 </View>
     
         </View>
+        </ImageBackground>
     );
 };
 
-MapVideoScreen.navigationOptions = {
-    headerTitle: 'Map Assistance ',
+ManageVideoScreen.navigationOptions = {
+    headerTitle: 'Manage Requests Assistance ',
     headerStyle: {
     backgroundColor: '#2c8ffa'
     },
@@ -33,17 +35,17 @@ MapVideoScreen.navigationOptions = {
 
     const styles = StyleSheet.create({
         screen: {
-            flex: 1,
-            backgroundColor: '#2c8ffa',
+            flex: 1
             
         },
         subScreen: {
-            height:'50%',
-            backgroundColor: '#2c8ffa',
+            height:'50%'
                 
         },
-    
-
+        bImage: {
+            width:'100%',
+            height:'100%',
+        },
           web:{
             marginRight:5,
             marginLeft:5,
@@ -79,4 +81,4 @@ MapVideoScreen.navigationOptions = {
         },
     });
 
-export default MapVideoScreen;
+export default ManageVideoScreen ;

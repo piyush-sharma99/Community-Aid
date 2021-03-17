@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View,} from 'react-native';
+import { StyleSheet, Text, View, ImageBackground} from 'react-native';
 import { WebView } from 'react-native-webview';
 
 
 const SettingsVideoScreen = props => {
     return(
+        <ImageBackground source={require('../assets/BG.png')} style={styles.bImage}>
         <View style={styles.screen}>
             <View style={styles.subScreen}>
               <WebView
@@ -20,6 +21,7 @@ const SettingsVideoScreen = props => {
 </View>
     
         </View>
+        </ImageBackground>
     );
 };
 
@@ -33,16 +35,18 @@ SettingsVideoScreen.navigationOptions = {
 
     const styles = StyleSheet.create({
         screen: {
-            flex: 1,
-            backgroundColor: '#2c8ffa',
+            flex: 1
             
         },
         subScreen: {
-            height:'50%',
-            backgroundColor: '#2c8ffa',
+            height:'50%'
                 
         },
-    
+        
+        bImage: {
+            width:'100%',
+            height:'100%',
+        },
 
           web:{
             marginRight:5,
@@ -51,8 +55,6 @@ SettingsVideoScreen.navigationOptions = {
             borderWidth:2,
             borderColor: '#fb5b5a',
             elevation: 10
-            
-            
             
           },
 

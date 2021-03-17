@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from 'react-native';
 import {Card} from 'react-native-paper';
-import { FontAwesome5, AntDesign, FontAwesome, MaterialIcons, Feather} from '@expo/vector-icons';
+import { FontAwesome5, FontAwesome} from '@expo/vector-icons';
 
 
 const AssistanceRequestsScreen = props => {
     return(
+        <ImageBackground source={require('../assets/BG.png')} style={styles.bImage}>
         <View style={styles.screen}>
 
         <Text style={styles.text}>Choose one below:</Text>
@@ -33,6 +34,7 @@ const AssistanceRequestsScreen = props => {
         </TouchableOpacity>
             
         </View>
+        </ImageBackground>
     );
 };
 
@@ -50,9 +52,13 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'100%',
         flex: 1,
-        backgroundColor: '#2c8ffa',
         flexWrap:'wrap'
         
+    },
+    
+    bImage: {
+        width:'100%',
+        height:'100%',
     },
 
     clickView: {
