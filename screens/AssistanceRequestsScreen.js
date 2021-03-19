@@ -25,7 +25,8 @@ const AssistanceRequestsScreen = props => {
         <TouchableOpacity style={styles.clickView} onPress = {() => {
             props.navigation.navigate({routeName: 'PickUpR'});
           }}>
-        <Card style={styles.cardView}>
+        <Card 
+        style={styles.cardView}>
                 <View style={styles.content}>
                     <FontAwesome5 name="hands-helping" size={70} color="white" />
                     <Text style={styles.textStyle}>Pick Up Assistance Requests</Text>
