@@ -13,6 +13,7 @@ import { Card } from "react-native-paper";
 import * as firebase from "firebase";
 import editStatus from "../functions/editStatus";
 import unassign from "../functions/unassign";
+import completeRequest from "../functions/completeRequest";
 
 const ManageVolunteerRequestScreen = (props) => {
   const [requests, setRequests] = useState([]);
@@ -84,6 +85,14 @@ const ManageVolunteerRequestScreen = (props) => {
             onPressIn={() => unassign(db, item)}
           >
             <Text style={styles.Text}>Cancel Request</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity
+            style={styles.Btn}
+            onPressIn={() => completeRequest(db, item)}
+          >
+            <Text style={styles.Text}>Completed</Text>
           </TouchableOpacity>
         </View>
       </Card>
