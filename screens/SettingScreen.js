@@ -177,11 +177,11 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     marginLeft: 40,
     color: "white",
+    fontWeight: "bold",
     fontSize: 25,
     textAlign: "center",
-    backgroundColor: "#fb5b5a",
     borderWidth: 3,
-    borderColor: "white",
+    borderColor: "#fb5b5a",
   },
 
   text2: {

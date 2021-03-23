@@ -31,7 +31,7 @@ const MakeAssistanceRequestScreen = (props) => {
     (async () => {
       let { status } = await Location.requestPermissionsAsync();
       if (status !== "granted") {
-        setErrorMsg("Permission to access lo cation was denied");
+        setErrorMsg("Permission to access location cation was denied");
         return;
       }
 
