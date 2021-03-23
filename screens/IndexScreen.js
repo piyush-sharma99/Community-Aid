@@ -6,7 +6,9 @@ import {
   TouchableOpacity,
   Image,
   ImageBackground,
+  Linking,
 } from "react-native";
+import { AntDesign, Entypo } from "@expo/vector-icons";
 
 const IndexScreen = (props) => {
   return (
@@ -42,6 +44,44 @@ const IndexScreen = (props) => {
             <Text style={styles.signText}>Learn more about us!</Text>
           </TouchableOpacity>
         </View>
+
+        <View style={styles.socials}>
+          <TouchableOpacity
+            style={styles.clickView}
+            onPress={() => {
+              Linking.openURL("https://www.facebook.com/");
+            }}
+          >
+            <View style={styles.content}>
+              <AntDesign name="facebook-square" size={80} color="white" />
+              <Text style={styles.textStyle}>Facebook</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.clickView}
+            onPress={() => {
+              Linking.openURL("https://www.instagram.com/");
+            }}
+          >
+            <View style={styles.content}>
+              <Entypo name="instagram-with-circle" size={80} color="white" />
+              <Text style={styles.textStyle}>Instagram</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.clickView}
+            onPress={() => {
+              Linking.openURL("https://www.linkedin.com/in/piyush-sharma1078/");
+            }}
+          >
+            <View style={styles.content}>
+              <AntDesign name="linkedin-square" size={80} color="white" />
+              <Text style={styles.textStyle}>linkedin</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     </ImageBackground>
   );
@@ -68,7 +108,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
+  socials: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
   logo: {
     justifyContent: "center",
     marginTop: -300,
@@ -120,6 +163,36 @@ const styles = StyleSheet.create({
     marginBottom: -70,
     color: "white",
     fontSize: 20,
+  },
+
+  clickView: {
+    marginTop: 120,
+    marginBottom: -120,
+    width: "25%",
+    borderRadius: 25,
+    height: 80,
+    margin: 10,
+    justifyContent: "center",
+    shadowOpacity: 1,
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+  },
+
+  content: {
+    flex: 1,
+    borderRadius: 25,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 15,
+    textAlign: "center",
+    marginTop: 10,
   },
 });
 

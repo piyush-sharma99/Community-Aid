@@ -23,6 +23,7 @@ const HomeScreen = (props) => {
   const db = firebase.firestore();
   var user = firebase.auth().currentUser;
   const fb = firebase.auth();
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     Permissions.getAsync(Permissions.NOTIFICATIONS)
@@ -53,8 +54,19 @@ const HomeScreen = (props) => {
       });
   }, []);
 
+  useEffect(() => {
+    db.collection("users")
+      .doc(user.uid)
+      .get()
+      .then((snapshot) => {
+        const userInfo = snapshot.data();
+        setUserName(userInfo.name);
+      });
+  }, []);
+
   return (
     <ImageBackground source={require("../assets/BG.png")} style={styles.bImage}>
+      <Text style={styles.text3}>Welcome {userName}</Text>
       <View style={styles.screen}>
         <TouchableOpacity
           style={styles.clickView}
@@ -148,7 +160,7 @@ const HomeScreen = (props) => {
 };
 
 HomeScreen.navigationOptions = {
-  headerTitle: "Home",
+  headerTitle: "Community Aid",
   headerStyle: {
     backgroundColor: "#2c8ffa",
   },
@@ -172,7 +184,7 @@ const styles = StyleSheet.create({
     width: "45%",
     backgroundColor: "#fb5b5a",
     borderRadius: 25,
-    height: 220,
+    height: 210,
     margin: 10,
     justifyContent: "center",
     shadowOpacity: 1,
@@ -213,6 +225,21 @@ const styles = StyleSheet.create({
       height: 3,
     },
   },
+
+  text3: {
+    padding: 10,
+    marginRight: 40,
+    marginTop: 10,
+    marginLeft: 40,
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 20,
+    textAlign: "center",
+    borderWidth: 3,
+    borderRadius: 15,
+    borderColor: "#fb5b5a",
+  },
+
   textStyle: {
     color: "white",
     fontSize: 15,

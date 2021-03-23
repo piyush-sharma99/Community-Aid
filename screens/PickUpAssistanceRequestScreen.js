@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   FlatList,
   ImageBackground,
+  Alert,
 } from "react-native";
 import { Card } from "react-native-paper";
 import * as firebase from "firebase";
@@ -21,7 +22,9 @@ const PickUpAssistanceRequestScreen = (props) => {
 
   readRequest = () => {
     if (area == "" || area == " ") {
-      alert("Area field can not be empty!");
+      Alert.alert("Error:", "Area field can not be empty!", [
+        { text: "OK", onPress: () => console.log("OK Pressed") },
+      ]);
       return;
     } else {
       db.collection("Assistance Request")
@@ -38,6 +41,9 @@ const PickUpAssistanceRequestScreen = (props) => {
           });
 
           setRequests(requests);
+          Alert.alert("Successful:", "All requests are displayed below", [
+            { text: "OK", onPress: () => console.log("OK Pressed") },
+          ]);
           console.log(requests);
         });
     }
@@ -102,8 +108,8 @@ const PickUpAssistanceRequestScreen = (props) => {
           <View>
             <TouchableOpacity
               style={styles.Btn}
-              onPressIn={readRequest}
-              onPress={resetFieldsOne}
+              onPress={readRequest}
+              onPressIn={resetFieldsOne}
             >
               <Text style={styles.Text}>Search</Text>
             </TouchableOpacity>

@@ -6,7 +6,6 @@ import {
   TextInput,
   ImageBackground,
   TouchableOpacity,
-  Image,
 } from "react-native";
 import { Card } from "react-native-paper";
 import * as firebase from "firebase";
