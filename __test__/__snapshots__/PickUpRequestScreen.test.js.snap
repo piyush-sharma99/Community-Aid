@@ -1,0 +1,253 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PickUpRequest renders correctly 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <Image
+    source={1}
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": "100%",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "height": "100%",
+        "justifyContent": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "borderColor": "#fb5b5a",
+          "borderRadius": 15,
+          "borderWidth": 3,
+          "color": "white",
+          "fontSize": 20,
+          "fontWeight": "bold",
+          "marginLeft": 40,
+          "marginRight": 40,
+          "marginTop": 15,
+          "padding": 10,
+          "textAlign": "center",
+        }
+      }
+    >
+      Search or Add Request below:
+    </Text>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fb5b5a",
+          "borderColor": "white",
+          "borderRadius": 25,
+          "borderWidth": 3,
+          "elevation": 10,
+          "justifyContent": "center",
+          "marginTop": 20,
+          "padding": 20,
+          "shadowColor": "black",
+          "shadowOffset": Object {
+            "height": 3,
+            "width": 3,
+          },
+          "shadowOpacity": 1,
+          "shadowRadius": 10,
+          "width": "90%",
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "flexGrow": 1,
+            "flexShrink": 1,
+          }
+        }
+      >
+        <View
+          index={0}
+          siblings={
+            Array [
+              "View",
+              "View",
+            ]
+          }
+          style={
+            Object {
+              "backgroundColor": "#FDFEFE",
+              "borderColor": "#2E86C1",
+              "borderRadius": 25,
+              "borderWidth": 4,
+              "elevation": 10,
+              "justifyContent": "center",
+              "marginBottom": 10,
+              "padding": 10,
+              "width": 300,
+            }
+          }
+          total={2}
+        >
+          <TextInput
+            allowFontScaling={true}
+            onChangeText={[Function]}
+            placeholder="Area..."
+            placeholderTextColor="#003f5c"
+            rejectResponderTermination={true}
+            style={
+              Object {
+                "color": "black",
+                "width": "100%",
+              }
+            }
+            underlineColorAndroid="transparent"
+          />
+        </View>
+        <View
+          index={1}
+          siblings={
+            Array [
+              "View",
+              "View",
+            ]
+          }
+          total={2}
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#2E86C1",
+                "borderColor": "white",
+                "borderRadius": 10,
+                "borderWidth": 2,
+                "height": 40,
+                "justifyContent": "center",
+                "marginTop": 10,
+                "opacity": 1,
+                "width": "100%",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "white",
+                  "fontSize": 15,
+                }
+              }
+            >
+              Search
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "borderBottomWidth": 2,
+          "borderColor": "#fb5b5a",
+          "color": "#fff",
+          "fontSize": 30,
+          "justifyContent": "center",
+          "marginLeft": 10,
+          "marginRight": 10,
+          "marginTop": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "white",
+            "fontSize": 20,
+            "fontWeight": "bold",
+            "marginLeft": 40,
+            "marginRight": 40,
+            "padding": 5,
+            "textAlign": "center",
+          }
+        }
+      >
+        Requests below: 
+      </Text>
+    </View>
+    <RCTScrollView
+      data={Array []}
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View />
+    </RCTScrollView>
+  </View>
+</View>
+`;

@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`forgotVideo renders correctly 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <Image
+    source={1}
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": "100%",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": "50%",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "overflow": "hidden",
+            },
+            undefined,
+          ]
+        }
+      >
+        <RNCWebView
+          cacheEnabled={true}
+          injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
+          injectedJavaScriptForMainFrameOnly={true}
+          javaScriptEnabled={true}
+          messagingEnabled={false}
+          onContentProcessDidTerminate={[Function]}
+          onHttpError={[Function]}
+          onLoadingError={[Function]}
+          onLoadingFinish={[Function]}
+          onLoadingProgress={[Function]}
+          onLoadingStart={[Function]}
+          onMessage={[Function]}
+          onShouldStartLoadWithRequest={[Function]}
+          source={
+            Object {
+              "uri": "https://youtu.be/o4n4U_88vic",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "overflow": "hidden",
+              },
+              Object {
+                "backgroundColor": "#ffffff",
+              },
+              Object {
+                "borderColor": "#fb5b5a",
+                "borderWidth": 2,
+                "elevation": 10,
+                "marginLeft": 5,
+                "marginRight": 5,
+                "marginTop": 30,
+              },
+            ]
+          }
+          useSharedProcessPool={true}
+        />
+      </View>
+    </View>
+    <View>
+      <Text
+        style={
+          Object {
+            "backgroundColor": "#fb5b5a",
+            "borderColor": "white",
+            "borderWidth": 3,
+            "color": "white",
+            "elevation": 5,
+            "fontSize": 20,
+            "marginBottom": 30,
+            "marginLeft": 40,
+            "marginRight": 40,
+            "marginTop": 40,
+            "padding": 10,
+            "shadowOffset": Object {
+              "height": 3,
+              "width": 3,
+            },
+            "shadowOpacity": 2,
+            "textAlign": "center",
+          }
+        }
+      >
+        This feature can be used by all users to reset their password in case they forgot their current one. For a full tutorial view the video shown above.
+      </Text>
+    </View>
+  </View>
+</View>
+`;
