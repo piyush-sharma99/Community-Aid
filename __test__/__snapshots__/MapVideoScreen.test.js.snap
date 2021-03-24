@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MapVideo renders correctly 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <Image
+    source={1}
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": "100%",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": "50%",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "overflow": "hidden",
+            },
+            undefined,
+          ]
+        }
+      >
+        <RNCWebView
+          cacheEnabled={true}
+          injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
+          injectedJavaScriptForMainFrameOnly={true}
+          javaScriptEnabled={true}
+          messagingEnabled={false}
+          onContentProcessDidTerminate={[Function]}
+          onHttpError={[Function]}
+          onLoadingError={[Function]}
+          onLoadingFinish={[Function]}
+          onLoadingProgress={[Function]}
+          onLoadingStart={[Function]}
+          onMessage={[Function]}
+          onShouldStartLoadWithRequest={[Function]}
+          source={
+            Object {
+              "uri": "https://youtu.be/ZCSVUAULKWI",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "flex": 1,
+                "overflow": "hidden",
+              },
+              Object {
+                "backgroundColor": "#ffffff",
+              },
+              Object {
+                "borderColor": "#fb5b5a",
+                "borderWidth": 2,
+                "elevation": 10,
+                "marginLeft": 5,
+                "marginRight": 5,
+                "marginTop": 30,
+              },
+            ]
+          }
+          useSharedProcessPool={true}
+        />
+      </View>
+    </View>
+    <View>
+      <Text
+        style={
+          Object {
+            "backgroundColor": "#fb5b5a",
+            "borderColor": "white",
+            "borderWidth": 3,
+            "color": "white",
+            "elevation": 5,
+            "fontSize": 20,
+            "marginBottom": 30,
+            "marginLeft": 40,
+            "marginRight": 40,
+            "marginTop": 40,
+            "padding": 10,
+            "shadowOffset": Object {
+              "height": 3,
+              "width": 3,
+            },
+            "shadowOpacity": 2,
+            "textAlign": "center",
+          }
+        }
+      >
+        The map page is designed for volunteers who would like to help others in their region. It allows volunteers to view requests in their area, view their area, set a radius ring on the map to measure distance and add requests on demand. To view a tutorial on how to use the features view the video above.
+         
+      </Text>
+    </View>
+  </View>
+</View>
+`;

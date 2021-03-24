@@ -1,0 +1,346 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Index renders correctly 1`] = `
+<View
+  accessibilityIgnoresInvertColors={true}
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+>
+  <Image
+    source={1}
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": "100%",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "height": "100%",
+        "justifyContent": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 200,
+          "justifyContent": "center",
+          "marginTop": -300,
+          "width": 200,
+        }
+      }
+    />
+    <View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#fb5b5a",
+            "borderColor": "#fff",
+            "borderRadius": 15,
+            "borderWidth": 3,
+            "elevation": 10,
+            "height": 50,
+            "justifyContent": "center",
+            "marginBottom": 5,
+            "marginTop": 30,
+            "opacity": 1,
+            "shadowOpacity": 1,
+            "width": 300,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 20,
+            }
+          }
+        >
+          Log In
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#fb5b5a",
+            "borderColor": "#fff",
+            "borderRadius": 15,
+            "borderWidth": 3,
+            "elevation": 10,
+            "height": 50,
+            "justifyContent": "center",
+            "marginBottom": 10,
+            "marginTop": 20,
+            "opacity": 1,
+            "shadowOpacity": 1,
+            "width": 300,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 20,
+            }
+          }
+        >
+          Sign Up
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#fb5b5a",
+            "borderColor": "#fff",
+            "borderRadius": 15,
+            "borderWidth": 3,
+            "elevation": 10,
+            "height": 50,
+            "justifyContent": "center",
+            "marginBottom": 10,
+            "marginTop": 20,
+            "opacity": 1,
+            "shadowOpacity": 1,
+            "width": 300,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 20,
+            }
+          }
+        >
+          Learn more about us!
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "borderRadius": 25,
+            "height": 80,
+            "justifyContent": "center",
+            "margin": 10,
+            "marginBottom": -120,
+            "marginTop": 120,
+            "opacity": 1,
+            "shadowOffset": Object {
+              "height": 3,
+              "width": 3,
+            },
+            "shadowOpacity": 1,
+            "width": "25%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderRadius": 25,
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text />
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 15,
+                "fontWeight": "bold",
+                "marginTop": 10,
+                "textAlign": "center",
+              }
+            }
+          >
+            Facebook
+          </Text>
+        </View>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "borderRadius": 25,
+            "height": 80,
+            "justifyContent": "center",
+            "margin": 10,
+            "marginBottom": -120,
+            "marginTop": 120,
+            "opacity": 1,
+            "shadowOffset": Object {
+              "height": 3,
+              "width": 3,
+            },
+            "shadowOpacity": 1,
+            "width": "25%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderRadius": 25,
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text />
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 15,
+                "fontWeight": "bold",
+                "marginTop": 10,
+                "textAlign": "center",
+              }
+            }
+          >
+            Instagram
+          </Text>
+        </View>
+      </View>
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "borderRadius": 25,
+            "height": 80,
+            "justifyContent": "center",
+            "margin": 10,
+            "marginBottom": -120,
+            "marginTop": 120,
+            "opacity": 1,
+            "shadowOffset": Object {
+              "height": 3,
+              "width": 3,
+            },
+            "shadowOpacity": 1,
+            "width": "25%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderRadius": 25,
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text />
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 15,
+                "fontWeight": "bold",
+                "marginTop": 10,
+                "textAlign": "center",
+              }
+            }
+          >
+            linkedin
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
