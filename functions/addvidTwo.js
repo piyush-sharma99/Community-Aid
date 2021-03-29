@@ -1,3 +1,23 @@
+/*
+ *  ClassName: addvidTwo.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://firebase.google.com/docs
+ * @reference https://www.udemy.com/course/react-native-the-practical-guide/
+ * @reference https://docs.expo.io/
+ */
+
+/*
+ * The function below carries out the following:
+ * #1: Takes in inputs from the mapScreen.js
+ * #2: Reads request details from firebase
+ * #3: Updates the firebase assistance request if it can be added
+ * #4: Then a notification is sent to the user that created the assistance request using expo notifications and a post request
+ */
 const addVidTwo = (item, db, user) => {
   const addRequest = item.request_ID;
 

@@ -1,3 +1,16 @@
+/*
+ *  ClassName: PickUpAssistanceRequestScreen.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://www.udemy.com/course/react-native-the-practical-guide/
+ * @reference https://www.youtube.com/watch?v=iMCM1NceGJY
+ */
+
+//Imports
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -14,12 +27,15 @@ import * as firebase from "firebase";
 import addVid from "../functions/addvidTwo";
 import report from "../functions/reportRequest";
 
+//Main Component
 const PickUpAssistanceRequestScreen = (props) => {
-  const [requests, setRequests] = useState([]); // Initial empty array of users // Initial empty array of users
+  //Initialising Variables
+  const [requests, setRequests] = useState([]);
   const db = firebase.firestore();
   const [area, setArea] = useState("");
   var user = firebase.auth().currentUser;
 
+  //The function below reads assistance requests available for pickup in the area provided by the user
   readRequest = () => {
     if (area == "" || area == " ") {
       Alert.alert("Error:", "Area field can not be empty!", [
@@ -49,10 +65,12 @@ const PickUpAssistanceRequestScreen = (props) => {
     }
   };
 
+  //Function that empties fields
   resetFieldsOne = () => {
     this.textInputOne.clear();
   };
 
+  //The function below takes data previously read above and displays it using the structure below in a flatlist format
   const renderRequest = ({ item }) => (
     <View style={styles.screen2}>
       <Card style={styles.cardView2}>
@@ -121,6 +139,7 @@ const PickUpAssistanceRequestScreen = (props) => {
         </View>
 
         <FlatList
+          //Flatlist for reading and displaying data
           style={{ flex: 1 }}
           data={requests}
           renderItem={renderRequest}
@@ -131,6 +150,7 @@ const PickUpAssistanceRequestScreen = (props) => {
   );
 };
 
+//Navigation options: changing header displayed on the page
 PickUpAssistanceRequestScreen.navigationOptions = {
   headerTitle: "Pick Up Assistance Request",
   headerTitleStyle: { alignSelf: "center" },
@@ -140,6 +160,7 @@ PickUpAssistanceRequestScreen.navigationOptions = {
   headerTintColor: "white",
 };
 
+//CSS
 const styles = StyleSheet.create({
   screen: {
     width: "100%",
