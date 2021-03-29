@@ -1,3 +1,16 @@
+/*
+ *  ClassName: SettingScreen.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://www.udemy.com/course/react-native-the-practical-guide/
+ *
+ */
+
+//Imports
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -14,7 +27,9 @@ import profileUpdate from "../functions/profileUpdate";
 import { Card } from "react-native-paper";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
+//Main Component
 const SettingScreen = (props) => {
+  //Initialising Variables
   const db = firebase.firestore();
   const signout = firebase.auth();
   const [email, setEmail] = useState("");
@@ -24,6 +39,7 @@ const SettingScreen = (props) => {
   const [password, setPassword] = useState("");
   var user = firebase.auth().currentUser;
 
+  //Empties fields upon use
   resetFieldsOne = () => {
     this.textInputOne.clear();
     this.textInputTwo.clear();
@@ -139,6 +155,7 @@ const SettingScreen = (props) => {
   );
 };
 
+//Navigation options: changing header displayed on the page
 SettingScreen.navigationOptions = {
   headerTitle: "Settings",
   headerStyle: {
@@ -147,6 +164,7 @@ SettingScreen.navigationOptions = {
   headerTintColor: "white",
 };
 
+//CSS
 const styles = StyleSheet.create({
   container: {
     width: "100%",

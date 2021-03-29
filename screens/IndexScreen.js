@@ -1,3 +1,16 @@
+/*
+ *  ClassName: IndexScreen.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://www.udemy.com/course/react-native-the-practical-guide/
+ * @reference https://icons.expo.fyi/
+ */
+
+//Imports
 import React from "react";
 import {
   StyleSheet,
@@ -10,6 +23,7 @@ import {
 } from "react-native";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 
+//Main Component
 const IndexScreen = (props) => {
   return (
     <ImageBackground source={require("../assets/BG.png")} style={styles.bImage}>
@@ -87,6 +101,7 @@ const IndexScreen = (props) => {
   );
 };
 
+//Navigation options: changing header displayed on the page
 IndexScreen.navigationOptions = {
   headerTitle: "Welcome",
   headerTitleStyle: { alignSelf: "center" },
@@ -96,6 +111,7 @@ IndexScreen.navigationOptions = {
   headerTintColor: "white",
 };
 
+//CSS
 const styles = StyleSheet.create({
   bImage: {
     width: "100%",
@@ -114,7 +130,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     justifyContent: "center",
-    marginTop: -300,
+    marginTop: -210,
     width: 200,
     height: 200,
   },

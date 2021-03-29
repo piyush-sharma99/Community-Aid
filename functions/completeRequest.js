@@ -1,3 +1,23 @@
+/*
+ *  ClassName: ManageVolunteerRequest.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://firebase.google.com/docs
+ * @reference https://docs.expo.io/
+ */
+
+/*
+ * The function below carries out the following:
+ * #1: Takes in inputs from the ManageVolunteerRequest.js
+ * #2: Reads request details from firebase
+ * #3: Updates the firebase assistance request in order to complete it
+ * #4: The assistance is stored into a new collection on firebase
+ * #5: The user that created the request gets a notification
+ */
 const completeRequest = (db, item) => {
   const request = item.request_ID;
 

@@ -1,3 +1,15 @@
+/*
+ *  ClassName: MakeAssistanceRequestScreen.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://www.udemy.com/course/react-native-the-practical-guide/
+ */
+
+//Imports
 import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
@@ -13,7 +25,9 @@ import * as Location from "expo-location";
 import makeRequest from "../functions/makeRequest";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
+//Main Component
 const MakeAssistanceRequestScreen = (props) => {
+  //Initialising Variables
   const db = firebase.firestore();
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -38,6 +52,7 @@ const MakeAssistanceRequestScreen = (props) => {
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
 
+      // Gets the current date
       var date = new Date().getDate(); //Current Date
       var month = new Date().getMonth() + 1; //Current Month
       var year = new Date().getFullYear(); //Current Year
@@ -50,9 +65,12 @@ const MakeAssistanceRequestScreen = (props) => {
     })();
   }, []);
 
+  // Setting default lat and long for the map
   let text = "Waiting..";
   let latitude = -9.062691;
   let longitude = 53.270962;
+
+  //Pulling and storing users lat and long
   if (errorMsg) {
     text = errorMsg;
   } else if (location) {
@@ -61,6 +79,7 @@ const MakeAssistanceRequestScreen = (props) => {
     latitude = location.coords.latitude;
   }
 
+  //empty fields function
   resetFields = () => {
     this.textInputOne.clear();
     this.textInputTwo.clear();
@@ -152,6 +171,7 @@ const MakeAssistanceRequestScreen = (props) => {
   );
 };
 
+//Navigation options: changing header displayed on the page
 MakeAssistanceRequestScreen.navigationOptions = {
   headerTitle: "Make Assistance Request",
   headerTitleStyle: { alignSelf: "center" },
@@ -161,6 +181,7 @@ MakeAssistanceRequestScreen.navigationOptions = {
   headerTintColor: "white",
 };
 
+//CSS
 const styles = StyleSheet.create({
   container: {
     width: "100%",

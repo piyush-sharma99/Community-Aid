@@ -1,3 +1,20 @@
+/*
+ *  ClassName: profileUpdate.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://firebase.google.com/docs
+ * @reference https://docs.expo.io/
+ */
+
+/*
+ * The function below carries out the following:
+ * #1: Takes in inputs from the SettingsScreen.js
+ * #2: Checks inputs and updated user data in firebase
+ */
 import { Alert } from "react-native";
 
 const profileUpdate = (

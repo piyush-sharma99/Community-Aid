@@ -1,3 +1,17 @@
+/*
+ *  ClassName: makeRequest.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://firebase.google.com/docs
+ * @reference https://docs.expo.io/
+ */
+
+//The function below takes inputs from the MakeAssistanceRequestScreen.js and checks the ifromation for validity
+//If all imputs are valid an assistance request is created by storing data to firebase collesction called "Assistance Request"
 const makeRequest = (
   user,
   requestID,

@@ -1,3 +1,17 @@
+/*
+ *  ClassName: signUpUser.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://firebase.google.com/docs
+ * @reference https://docs.expo.io/
+ */
+
+//This function recieves inputs from the SignupScreen.js and checks the inputs before allowing for the creation of a user account
+//After login it navigates the user to the HomeScreen.js
 const signUpUser = (
   name,
   number,

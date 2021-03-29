@@ -1,3 +1,15 @@
+/*
+ *  ClassName: EditRequestScreen.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://www.udemy.com/course/react-native-the-practical-guide/
+ */
+
+//Imports
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -12,7 +24,9 @@ import * as firebase from "firebase";
 import editRequest from "../functions/editRequest";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
+//Main Component
 const EditRequestScreen = (props) => {
+  //Initialising Variables
   const db = firebase.firestore();
   const request = props.navigation.getParam("item");
   const [address, setAddress] = useState("");
@@ -21,6 +35,7 @@ const EditRequestScreen = (props) => {
   const [requestDescription, setRequestDescription] = useState("");
   var user = firebase.auth().currentUser;
 
+  //Clear fields after use
   resetFields = () => {
     this.textInputOne.clear();
     this.textInputTwo.clear();
@@ -28,6 +43,7 @@ const EditRequestScreen = (props) => {
     this.textInputFour.clear();
   };
 
+  //The function below takes data previously read above and displays it using the structure below in a flatlist format
   return (
     <ImageBackground source={require("../assets/BG.png")} style={styles.bImage}>
       <KeyboardAwareScrollView style={styles.container}>
@@ -108,6 +124,7 @@ const EditRequestScreen = (props) => {
   );
 };
 
+//Navigation options: changing header displayed on the page
 EditRequestScreen.navigationOptions = {
   headerTitle: "Edit Request Screen",
   headerTitleStyle: { alignSelf: "center" },
@@ -117,6 +134,7 @@ EditRequestScreen.navigationOptions = {
   headerTintColor: "white",
 };
 
+//CSS
 const styles = StyleSheet.create({
   container: {
     width: "100%",

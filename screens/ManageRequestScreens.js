@@ -1,3 +1,16 @@
+/*
+ *  ClassName: ManageRequestScreen.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://www.udemy.com/course/react-native-the-practical-guide/
+ * @reference https://www.youtube.com/watch?v=iMCM1NceGJY
+ */
+
+//Imports
 import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
@@ -12,11 +25,14 @@ import { Card } from "react-native-paper";
 import * as firebase from "firebase";
 import deleteRequest from "../functions/deleteRequest";
 
+//Main Component
 const ManageRequestScreens = (props) => {
+  //Initialising Variables
   const [requests, setRequests] = useState([]);
   const db = firebase.firestore();
   var user = firebase.auth().currentUser;
 
+  //The function below reads assistance requests that were created by the user
   useEffect(() => {
     db.collection("Assistance Request")
       .where("uid", "==", user.uid)
@@ -35,6 +51,7 @@ const ManageRequestScreens = (props) => {
       });
   }, []);
 
+  //The function below takes data previously read above and displays it using the structure below in a flatlist format
   const renderRequest = ({ item }) => (
     <View style={styles.screen2}>
       <Card style={styles.cardView2}>
@@ -72,6 +89,7 @@ const ManageRequestScreens = (props) => {
         <Text style={styles.text}>Requests made by you:</Text>
 
         <FlatList
+          //Flatlist for reading and displaying data
           style={{ flex: 1 }}
           data={requests}
           renderItem={renderRequest}
@@ -82,6 +100,7 @@ const ManageRequestScreens = (props) => {
   );
 };
 
+//Navigation options: changing header displayed on the page
 ManageRequestScreens.navigationOptions = {
   headerTitle: "Assistance Requests",
   headerTitleStyle: { alignSelf: "center" },
@@ -91,6 +110,7 @@ ManageRequestScreens.navigationOptions = {
   headerTintColor: "white",
 };
 
+//CSS
 const styles = StyleSheet.create({
   bImage: {
     width: "100%",
