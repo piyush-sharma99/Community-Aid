@@ -1,3 +1,16 @@
+/*
+ *  ClassName: ManageVolunteerRequestScreen.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://www.udemy.com/course/react-native-the-practical-guide/
+ * @reference https://www.youtube.com/watch?v=iMCM1NceGJY
+ */
+
+//Imports
 import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
@@ -15,13 +28,16 @@ import editStatus from "../functions/editStatus";
 import unassign from "../functions/unassign";
 import completeRequest from "../functions/completeRequest";
 
+//Main Component
 const ManageVolunteerRequestScreen = (props) => {
+  //Initialising Variables
   const [requests, setRequests] = useState([]);
   const db = firebase.firestore();
   const [request, setRequest] = useState("");
   const [status, setStatus] = useState("");
   var user = firebase.auth().currentUser;
 
+  //The function below reads assistance requests available for picked up by the user
   useEffect(() => {
     db.collection("Assistance Request")
       .where("vid", "==", user.uid)
@@ -40,10 +56,12 @@ const ManageVolunteerRequestScreen = (props) => {
       });
   }, []);
 
+  //Function that empties fields
   resetFieldsOne = () => {
     this.textInputTwo.clear();
   };
 
+  //The function below takes data previously read above and displays it using the structure below in a flatlist format
   const renderRequest = ({ item }) => (
     <View style={styles.screen2}>
       <Card style={styles.cardView2}>
@@ -105,6 +123,7 @@ const ManageVolunteerRequestScreen = (props) => {
         <Text style={styles.text}>Update Requests below:</Text>
 
         <FlatList
+          //Flatlist for reading and displaying data
           style={{ flex: 1 }}
           data={requests}
           renderItem={renderRequest}
@@ -115,6 +134,7 @@ const ManageVolunteerRequestScreen = (props) => {
   );
 };
 
+//Navigation options: changing header displayed on the page
 ManageVolunteerRequestScreen.navigationOptions = {
   headerTitle: "Manage Volunteer Requests",
   headerTitleStyle: { alignSelf: "center" },
@@ -124,6 +144,7 @@ ManageVolunteerRequestScreen.navigationOptions = {
   headerTintColor: "white",
 };
 
+//CSS
 const styles = StyleSheet.create({
   screen: {
     width: "100%",

@@ -1,3 +1,15 @@
+/*
+ *  ClassName: LoginScreen.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://www.udemy.com/course/react-native-the-practical-guide/
+ */
+
+//Imports
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -11,11 +23,14 @@ import {
 import * as firebase from "firebase";
 import logInUser from "../functions/logInUser";
 
+//Main Component
 const LoginScreen = (props) => {
+  //Initialising variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const fb = firebase.auth();
 
+  //The function below clears fields after use
   resetFieldsOne = () => {
     this.textInputOne.clear();
     this.textInputTwo.clear();
@@ -78,6 +93,7 @@ const LoginScreen = (props) => {
   );
 };
 
+//Navigation options: changing header displayed on the page
 LoginScreen.navigationOptions = {
   headerTitle: "Log in",
   headerStyle: {
@@ -86,6 +102,7 @@ LoginScreen.navigationOptions = {
   headerTintColor: "white",
 };
 
+//CSS
 const styles = StyleSheet.create({
   screen: {
     width: "100%",

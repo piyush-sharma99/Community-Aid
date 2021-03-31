@@ -1,7 +1,22 @@
+/*
+ *  ClassName: AssistanceVideoScreen.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://www.udemy.com/course/react-native-the-practical-guide/
+ * @reference https://www.youtube.com/watch?v=8zT6CYu0iYQ
+ *
+ */
+
+//Imports
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { WebView } from "react-native-webview";
 
+//Main Component
 const AssistanceVideoScreen = (props) => {
   return (
     <ImageBackground source={require("../assets/BG.png")} style={styles.bImage}>
@@ -27,6 +42,7 @@ const AssistanceVideoScreen = (props) => {
   );
 };
 
+//Navigation options: changing header displayed on the page
 AssistanceVideoScreen.navigationOptions = {
   headerTitle: "Assistance Request Assistance ",
   headerStyle: {
@@ -35,6 +51,7 @@ AssistanceVideoScreen.navigationOptions = {
   headerTintColor: "white",
 };
 
+//CSS
 const styles = StyleSheet.create({
   screen: {
     flex: 1,

@@ -1,3 +1,17 @@
+/*
+ *  ClassName: MapScreen.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://www.udemy.com/course/react-native-the-practical-guide/
+ * @reference https://www.youtube.com/watch?v=AzjWv1X-uyg&t=1398s
+ * @reference https://www.youtube.com/watch?v=q4fW3h9Mb7M
+ */
+
+//Imports
 import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
@@ -16,7 +30,9 @@ import { FontAwesome } from "@expo/vector-icons";
 import addVid from "../functions/addvid";
 import reportRequestTwo from "../functions/reportRequestTwo";
 
+//Main Component
 const MapScreen = (props) => {
+  //Initialising variables
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [radius, setRadius] = useState(1000);
@@ -25,6 +41,11 @@ const MapScreen = (props) => {
   const db = firebase.firestore();
   var user = firebase.auth().currentUser;
 
+  /*
+   * The useEffect function below carries out the following:
+   * #1: Reads the firebase database for "Unassigned requests"
+   * #2: Stores them in a array known as request for use later
+   */
   useEffect(() => {
     db.collection("Assistance Request")
       .where("status", "==", "Unassigned")
@@ -42,6 +63,12 @@ const MapScreen = (props) => {
       });
   }, []);
 
+  /*
+   * The useEffect function below carries out the following:
+   * #1: Using the expo location library it asks checks users location permissions
+   * #2: User is provided with a prompt to allow or deny location services
+   * #3: If user allows location services there location is stored
+   */
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestPermissionsAsync();
@@ -55,9 +82,12 @@ const MapScreen = (props) => {
     })();
   }, []);
 
+  // Setting default lat and long for the map
   let text = "Waiting..";
   let latitude = -9.062691;
   let longitude = 53.270962;
+
+  //Pulling and storing users lat and long
   if (errorMsg) {
     text = errorMsg;
   } else if (location) {
@@ -68,6 +98,7 @@ const MapScreen = (props) => {
   console.log(longitude);
   console.log(latitude);
 
+  //empty fields function
   resetFieldsOne = () => {
     this.textInputOne.clear();
   };
@@ -89,6 +120,7 @@ const MapScreen = (props) => {
           </View>
           <TouchableOpacity
             style={styles.Btn}
+            //radius calculation in kilometers
             onPressIn={() => setUpdateRadius(radius * 1000)}
             onPress={resetFieldsOne}
           >
@@ -98,6 +130,7 @@ const MapScreen = (props) => {
 
         <View style={styles.mapView}>
           <MapView
+            //Displaying mapView
             style={styles.map}
             region={{
               latitude: latitude,
@@ -107,48 +140,60 @@ const MapScreen = (props) => {
             }}
           >
             <Marker
+              //Displaying user location on the map
               coordinate={{ latitude: latitude, longitude: longitude }}
               title="Your location"
             >
               <FontAwesome name="user-circle-o" size={25} color="blue" />
             </Marker>
             <Circle
+              //Displaying radius ring on the map
               center={{ latitude: latitude, longitude: longitude }}
               radius={updateRadius}
               fillColor={"rgba(43, 98, 227, 0.2)"}
             />
-            {request.map((marker) => (
-              <Marker
-                key={marker.request_ID}
-                coordinate={{
-                  latitude: marker.latitude,
-                  longitude: marker.longitude,
-                }}
-              >
-                <MaterialCommunityIcons
-                  name="map-marker-remove-variant"
-                  size={30}
-                  color="red"
-                />
-                <Callout style={styles.callOut}>
-                  <Text>{"Request Type: " + marker.request_Type}</Text>
-                  <Text>{"Area: " + marker.area}</Text>
-                  <Text>{"Description: " + marker.request_Description}</Text>
-                  <TouchableOpacity
-                    style={styles.BtnTwo}
-                    onPressIn={() => addVid(marker, db, user)}
-                  >
-                    <Text style={styles.subText}>Add request</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.BtnTwo}
-                    onPressIn={() => reportRequestTwo(marker, db, user)}
-                  >
-                    <Text style={styles.subText}>Report request</Text>
-                  </TouchableOpacity>
-                </Callout>
-              </Marker>
-            ))}
+
+            {
+              /*
+               * The mapping function below carries out the following:
+               * #1: Displaying all request as marker previously read from firebase above
+               * #2: Displaying information once these markers are interacted with
+               * #3: Displaying a report button per request to report the assistance request
+               * #4: Displaying a add button per request to add an the assistance request
+               */
+              request.map((marker) => (
+                <Marker
+                  key={marker.request_ID}
+                  coordinate={{
+                    latitude: marker.latitude,
+                    longitude: marker.longitude,
+                  }}
+                >
+                  <MaterialCommunityIcons
+                    name="map-marker-remove-variant"
+                    size={30}
+                    color="red"
+                  />
+                  <Callout style={styles.callOut}>
+                    <Text>{"Request Type: " + marker.request_Type}</Text>
+                    <Text>{"Area: " + marker.area}</Text>
+                    <Text>{"Description: " + marker.request_Description}</Text>
+                    <TouchableOpacity
+                      style={styles.BtnTwo}
+                      onPressIn={() => addVid(marker, db, user)}
+                    >
+                      <Text style={styles.subText}>Add request</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.BtnTwo}
+                      onPressIn={() => reportRequestTwo(marker, db, user)}
+                    >
+                      <Text style={styles.subText}>Report request</Text>
+                    </TouchableOpacity>
+                  </Callout>
+                </Marker>
+              ))
+            }
           </MapView>
         </View>
       </View>
@@ -156,6 +201,7 @@ const MapScreen = (props) => {
   );
 };
 
+//Navigation options: changing header displayed on the page
 MapScreen.navigationOptions = {
   headerTitle: "MAP ",
   headerStyle: {
@@ -164,6 +210,7 @@ MapScreen.navigationOptions = {
   headerTintColor: "white",
 };
 
+//CSS
 const styles = StyleSheet.create({
   screen: {
     width: "100%",

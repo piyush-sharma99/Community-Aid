@@ -1,6 +1,19 @@
+/*
+ *  ClassName: AppAssistanceSceen.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ *
+ */
+
+//Imports
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 
+//Main Component
 const AboutUsScreen = (props) => {
   return (
     <ImageBackground source={require("../assets/BG.png")} style={styles.bImage}>
@@ -26,6 +39,7 @@ const AboutUsScreen = (props) => {
   );
 };
 
+//Navigation options: changing header displayed on the page
 AboutUsScreen.navigationOptions = {
   headerTitle: "About us",
   headerStyle: {
@@ -34,6 +48,7 @@ AboutUsScreen.navigationOptions = {
   headerTintColor: "white",
 };
 
+//CSS
 const styles = StyleSheet.create({
   screen: {
     width: "100%",

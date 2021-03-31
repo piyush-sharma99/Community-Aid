@@ -1,3 +1,16 @@
+/*
+ *  ClassName: AppAssistanceSceen.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://www.udemy.com/course/react-native-the-practical-guide/
+ *
+ */
+
+//Imports
 import React from "react";
 import {
   StyleSheet,
@@ -7,6 +20,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+//Main Component
 const AppAssistanceScreen = (props) => {
   return (
     <ImageBackground source={require("../assets/BG.png")} style={styles.bImage}>
@@ -58,6 +72,7 @@ const AppAssistanceScreen = (props) => {
   );
 };
 
+//Navigation options: changing header displayed on the page
 AppAssistanceScreen.navigationOptions = {
   headerTitle: "Help ",
   headerStyle: {
@@ -66,6 +81,7 @@ AppAssistanceScreen.navigationOptions = {
   headerTintColor: "white",
 };
 
+//CSS
 const styles = StyleSheet.create({
   screen: {
     flex: 1,

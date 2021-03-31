@@ -1,3 +1,22 @@
+/*
+ *  ClassName: reportRequest.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://firebase.google.com/docs
+ * @reference https://docs.expo.io/
+ */
+
+/*
+ * The function below carries out the following:
+ * #1: Takes in inputs from the PickUpAssistanceRequestScreen.js
+ * #2: Reads request details from firebase
+ * #3: Updates the firebase assistance request
+ * #4: Writes the assistance request into a different collection called report request
+ */
 const reportRequest = (item, db, user) => {
   const reportRequest = item.request_ID;
 

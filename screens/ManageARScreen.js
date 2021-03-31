@@ -1,3 +1,16 @@
+/*
+ *  ClassName: ManageARScreen.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://www.udemy.com/course/react-native-the-practical-guide/
+ * @reference https://icons.expo.fyi/
+ */
+
+//Imports
 import React from "react";
 import {
   StyleSheet,
@@ -9,6 +22,7 @@ import {
 import { Card } from "react-native-paper";
 import { Octicons, Entypo } from "@expo/vector-icons";
 
+//Main Component
 const ManageARScreen = (props) => {
   return (
     <ImageBackground source={require("../assets/BG.png")} style={styles.bImage}>
@@ -49,6 +63,7 @@ const ManageARScreen = (props) => {
   );
 };
 
+//Navigation options: changing header displayed on the page
 ManageARScreen.navigationOptions = {
   headerTitle: "Manage Assistance Requests",
   headerStyle: {
@@ -57,6 +72,7 @@ ManageARScreen.navigationOptions = {
   headerTintColor: "white",
 };
 
+//CSS
 const styles = StyleSheet.create({
   screen: {
     width: "100%",

@@ -1,3 +1,16 @@
+/*
+ *  ClassName: LoggedInNavigator.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://www.udemy.com/course/react-native-the-practical-guide/
+ *
+ */
+
+//Imports
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import IndexScreen from "../screens/IndexScreen";
@@ -22,6 +35,7 @@ import SettingsVideoScreen from "../screens/SettingsVideoScreen";
 import ForgotVideoScreen from "../screens/ForgotVideoScreen";
 import AboutUsScreen from "../screens/AboutUsScreen";
 
+//Main Component
 const LoggedInNav = createStackNavigator({
   Home: HomeScreen,
   Map: MapScreen,
@@ -47,6 +61,3 @@ const LoggedInNav = createStackNavigator({
 });
 
 export default createAppContainer(LoggedInNav);
-
-//Navigation Syntax
-//props.navigation.navigate({routeName: 'SomeIdentifier'});

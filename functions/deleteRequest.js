@@ -1,3 +1,22 @@
+/*
+ *  ClassName: deleteRequest.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://reactnative.dev/docs/activityindicator
+ * @reference https://firebase.google.com/docs
+ * @reference https://docs.expo.io/
+ */
+
+/*
+ * The function below carries out the following:
+ * #1: Takes in inputs from the ManageRequestScreen.js
+ * #2: Reads request details from firebase
+ * #3: Updates the firebase assistance request in order to delete it
+ * #4: If the request was picked up by a volunteer the volunteer recieves a notification
+ */
 import { Alert } from "react-native";
 
 const deleteRequest = (item, db) => {
