@@ -27,7 +27,7 @@ const AboutUsScreen = (props) => {
 };
 
 AboutUsScreen.navigationOptions = {
-  headerTitle: "Assistance Request Assistance ",
+  headerTitle: "About us",
   headerStyle: {
     backgroundColor: "#2c8ffa",
   },
