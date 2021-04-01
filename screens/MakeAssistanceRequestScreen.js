@@ -60,7 +60,7 @@ const MakeAssistanceRequestScreen = (props) => {
       var min = new Date().getMinutes(); //Current Minutes
       var sec = new Date().getSeconds(); //Current Seconds
       setCurrentDate(
-        hours + "/" + min + "/" + sec + "  " + date + ":" + month + ":" + year
+        hours + ":" + min + ":" + sec + "  " + date + "/" + month + "/" + year
       );
     })();
   }, []);

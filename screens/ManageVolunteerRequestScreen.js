@@ -66,7 +66,7 @@ const ManageVolunteerRequestScreen = (props) => {
     <View style={styles.screen2}>
       <Card style={styles.cardView2}>
         <View>
-          <Text style={styles.text2}>Request Date:</Text>
+          <Text style={styles.text2}>Request Time/Date:</Text>
           <Text style={styles.text3}>{item.date}</Text>
           <Text style={styles.text2}>Request Type:</Text>
           <Text style={styles.text3}>{item.request_Type}</Text>
