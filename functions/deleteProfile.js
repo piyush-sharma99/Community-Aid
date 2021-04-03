@@ -33,11 +33,50 @@ const profileDelete = (user, props, db, confirm) =>
         onPress: () => {
           try {
             if (confirm == "Confirm") {
-              user.delete().then(() => {
-                props.navigation.navigate({ routeName: "Index" });
-              });
+              db.collection("Assistance Request")
+                .where("uid", "==", user.uid)
+                .get()
+                .then((snapshot) => {
+                  snapshot.forEach((doc) => {
+                    const data = doc.data();
 
-              db.collection("users").doc(user.uid).delete();
+                    db.collection("Assistance Request").doc(doc.id).update({
+                      uid: "",
+                      vid: "",
+                      request_Description:
+                        "This user has deleted their account please drop the request if it is still assigned to you :)",
+                    }),
+                      user.delete().then(() => {
+                        props.navigation.navigate({ routeName: "Index" });
+                      }),
+                      db
+                        .collection("users")
+                        .doc(data.vid)
+                        .get()
+                        .then((snapshot) => {
+                          const userInfo = snapshot.data();
+                          console.log(userInfo);
+
+                          fetch("https://exp.host/--/api/v2/push/send", {
+                            method: "POST",
+                            headers: {
+                              Accept: "application/json",
+                              "Accept-Encoding": "gzip, deflate",
+                              "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                              to: userInfo.expoToken,
+                              data: {
+                                extraData: "Request ID: " + data.request_ID,
+                              },
+                              title: "Request picked is no longer valid",
+                              body: "Plese check your requests",
+                            }),
+                          });
+                        }),
+                      db.collection("users").doc(user.uid).delete();
+                  });
+                });
             } else {
               alert("Type Confirm exactly as stated in the field");
               return;
