@@ -12,6 +12,9 @@
 
 //The function below takes inputs from the MakeAssistanceRequestScreen.js and checks the ifromation for validity
 //If all imputs are valid an assistance request is created by storing data to firebase collesction called "Assistance Request"
+import * as firebase from "firebase";
+import "firebase/firestore";
+
 const makeRequest = (
   user,
   requestID,
@@ -65,6 +68,7 @@ const makeRequest = (
             latitude: latitude,
             request_Description: requestDescription,
             vid: "",
+            Time: firebase.firestore.FieldValue.serverTimestamp(),
           }),
             alert("Request was successfully created!"),
             console.log("Data uploaded");

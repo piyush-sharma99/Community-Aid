@@ -37,7 +37,7 @@ const ManageRequestScreens = (props) => {
     db.collection("Assistance Request")
       .where("uid", "==", user.uid)
       .onSnapshot((querySnapshot) => {
-        const requests = [];
+        var requests = [];
 
         querySnapshot.forEach((documentSnapshot) => {
           requests.push({
@@ -46,8 +46,11 @@ const ManageRequestScreens = (props) => {
           });
         });
 
-        setRequests(requests);
+        requests = requests.sort(
+          (a, b) => b.Time["seconds"] - a.Time["seconds"]
+        );
         console.log(requests);
+        setRequests(requests);
       });
   }, []);
 
