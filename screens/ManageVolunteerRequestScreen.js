@@ -42,7 +42,7 @@ const ManageVolunteerRequestScreen = (props) => {
     db.collection("Assistance Request")
       .where("vid", "==", user.uid)
       .onSnapshot((querySnapshot) => {
-        const requests = [];
+        var requests = [];
 
         querySnapshot.forEach((documentSnapshot) => {
           requests.push({
@@ -51,6 +51,9 @@ const ManageVolunteerRequestScreen = (props) => {
           });
         });
 
+        requests = requests.sort(
+          (a, b) => b.Time["seconds"] - a.Time["seconds"]
+        );
         setRequests(requests);
         console.log(requests);
       });

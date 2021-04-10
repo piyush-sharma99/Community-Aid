@@ -47,7 +47,7 @@ const PickUpAssistanceRequestScreen = (props) => {
         .where("area", "==", area)
         .where("status", "==", "Unassigned")
         .onSnapshot((querySnapshot) => {
-          const requests = [];
+          var requests = [];
 
           querySnapshot.forEach((documentSnapshot) => {
             requests.push({
@@ -56,10 +56,11 @@ const PickUpAssistanceRequestScreen = (props) => {
             });
           });
 
+          requests = requests.sort(
+            (a, b) => b.Time["seconds"] - a.Time["seconds"]
+          );
+
           setRequests(requests);
-          Alert.alert("Successful:", "All requests are displayed below", [
-            { text: "OK", onPress: () => console.log("OK Pressed") },
-          ]);
           console.log(requests);
         });
     }
