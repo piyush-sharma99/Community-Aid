@@ -37,7 +37,7 @@ const ManageVolunteerRequestScreen = (props) => {
   const [status, setStatus] = useState("");
   var user = firebase.auth().currentUser;
 
-  //The function below reads assistance requests available for picked up by the user
+  //The function below reads assistance requests available for picked up by the user in a time sorted order
   useEffect(() => {
     db.collection("Assistance Request")
       .where("vid", "==", user.uid)

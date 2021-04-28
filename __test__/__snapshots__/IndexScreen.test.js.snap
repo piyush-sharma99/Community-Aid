@@ -46,7 +46,7 @@ exports[`Index renders correctly 1`] = `
         Object {
           "height": 200,
           "justifyContent": "center",
-          "marginTop": -300,
+          "marginTop": -210,
           "width": 200,
         }
       }

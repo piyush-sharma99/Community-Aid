@@ -14,6 +14,7 @@
 
 //Imports
 import React, { useState, useEffect } from "react";
+import { LogBox } from "react-native";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import NavigatorCA from "./navigation/CommunityAidNavigator";
@@ -22,6 +23,10 @@ import * as firebase from "firebase";
 import { firebaseConfig } from "./apikey";
 import * as Notifications from "expo-notifications";
 import { Asset } from "expo-asset";
+
+//Ingnores log notifications for EXPO CLI
+LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 //Async function that allows notifications to be seen on the device
 Notifications.setNotificationHandler({

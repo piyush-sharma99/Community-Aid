@@ -35,7 +35,7 @@ const PickUpAssistanceRequestScreen = (props) => {
   const [area, setArea] = useState("");
   var user = firebase.auth().currentUser;
 
-  //The function below reads assistance requests available for pickup in the area provided by the user
+  //The function below reads assistance requests available for pickup in the area provided by the user in a time sorted order
   readRequest = () => {
     if (area == "" || area == " ") {
       Alert.alert("Error:", "Area field can not be empty!", [
