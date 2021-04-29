@@ -13,7 +13,7 @@
 
 /*
  * The function below carries out the following:
- * #1: Takes in inputs from the mapScreen.js
+ * #1: Takes in inputs from the PickUpAssistanceRequest screen.js
  * #2: Reads request details from firebase
  * #3: Updates the firebase assistance request if it can be added
  * #4: Then a notification is sent to the user that created the assistance request using expo notifications and a post request
