@@ -103,12 +103,7 @@ const IndexScreen = (props) => {
 
 //Navigation options: changing header displayed on the page
 IndexScreen.navigationOptions = {
-  headerTitle: "Welcome",
-  headerTitleStyle: { alignSelf: "center" },
-  headerStyle: {
-    backgroundColor: "#2c8ffa",
-  },
-  headerTintColor: "white",
+  headerShown: false,
 };
 
 //CSS
