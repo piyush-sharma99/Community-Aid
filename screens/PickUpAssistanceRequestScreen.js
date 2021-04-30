@@ -61,6 +61,9 @@ const PickUpAssistanceRequestScreen = (props) => {
           );
 
           setRequests(requests);
+          alert(
+            "If there are any requests in the area you searched they will be shown below!"
+          );
           console.log(requests);
         });
     }
