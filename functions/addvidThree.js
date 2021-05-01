@@ -20,7 +20,7 @@
  */
 const addVidThree = (addRequest, db, user) => {
   if (addRequest == "" || addRequest == " ") {
-    alert("issue has occured :(");
+    alert("request id field can not be empty :(");
     return;
   } else {
     try {

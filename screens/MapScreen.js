@@ -116,6 +116,7 @@ const MapScreen = (props) => {
               placeholder="Radius in kilometers eg (3)..."
               placeholderTextColor="#003f5c"
               onChangeText={(radius) => setRadius(parseInt(radius))}
+              keyboardType={"numeric"}
               ref={(input) => {
                 this.textInputOne = input;
               }}
