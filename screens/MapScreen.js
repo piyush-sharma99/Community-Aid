@@ -29,6 +29,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import addVid from "../functions/addvid";
 import reportRequestTwo from "../functions/reportRequestTwo";
+import addVidThree from "../functions/addvidThree";
 
 //Main Component
 const MapScreen = (props) => {
@@ -37,6 +38,7 @@ const MapScreen = (props) => {
   const [errorMsg, setErrorMsg] = useState(null);
   const [radius, setRadius] = useState(1000);
   const [request, setRequest] = useState([]);
+  const [addRequest, setAddRequest] = useState("");
   const [updateRadius, setUpdateRadius] = useState(1000);
   const db = firebase.firestore();
   var user = firebase.auth().currentUser;
@@ -101,6 +103,7 @@ const MapScreen = (props) => {
   //empty fields function
   resetFieldsOne = () => {
     this.textInputOne.clear();
+    this.textInputTwo.clear();
   };
 
   return (
@@ -128,6 +131,27 @@ const MapScreen = (props) => {
           </TouchableOpacity>
         </Card>
 
+        <Card style={styles.cardViewTwo}>
+          <View style={styles.inputView}>
+            <TextInput
+              //add request for android users because google map does not allow callout button flexability
+              style={styles.inputText}
+              placeholder="Request ID..."
+              placeholderTextColor="#003f5c"
+              onChangeText={(Request) => setAddRequest(Request)}
+              ref={(input) => {
+                this.textInputTwo = input;
+              }}
+            />
+          </View>
+          <TouchableOpacity
+            style={styles.Btn}
+            onPressIn={() => addVidThree(addRequest, db, user)}
+            onPress={resetFieldsOne}
+          >
+            <Text style={styles.subText}>Add request</Text>
+          </TouchableOpacity>
+        </Card>
         <View style={styles.mapView}>
           <MapView
             //Displaying mapView
@@ -175,9 +199,14 @@ const MapScreen = (props) => {
                     color="red"
                   />
                   <Callout style={styles.callOut}>
-                    <Text>{"Request Type: " + marker.request_Type}</Text>
+                    <Text>{"Request ID: " + marker.request_ID}</Text>
                     <Text>{"Area: " + marker.area}</Text>
+                    <Text>{"Type: " + marker.request_Type}</Text>
                     <Text>{"Description: " + marker.request_Description}</Text>
+                    <Text style={styles.notice}>
+                      Android users should use the requst id to add the request
+                      of their choice
+                    </Text>
                     <TouchableOpacity
                       style={styles.BtnTwo}
                       onPressIn={() => addVid(marker, db, user)}
@@ -238,6 +267,24 @@ const styles = StyleSheet.create({
     backgroundColor: "#61dafb",
   },
   cardView: {
+    width: "95%",
+    padding: 5,
+    backgroundColor: "#fb5b5a",
+    shadowColor: "black",
+    alignItems: "center",
+    borderRadius: 25,
+    marginBottom: 10,
+    marginTop: 200,
+    shadowOpacity: 2,
+    elevation: 5,
+    borderWidth: 3,
+    borderColor: "white",
+    shadowOffset: {
+      width: 3,
+      height: 3,
+    },
+  },
+  cardViewTwo: {
     width: "95%",
     padding: 5,
     backgroundColor: "#fb5b5a",
@@ -306,6 +353,9 @@ const styles = StyleSheet.create({
   },
   callOut: {
     width: 250,
+  },
+  notice: {
+    fontWeight: "bold",
   },
 });
 
