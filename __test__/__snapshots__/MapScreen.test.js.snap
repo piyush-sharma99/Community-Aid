@@ -50,6 +50,124 @@ exports[`Map renders correctly 1`] = `
           "borderWidth": 3,
           "elevation": 5,
           "marginBottom": 10,
+          "marginTop": 200,
+          "padding": 5,
+          "shadowColor": "black",
+          "shadowOffset": Object {
+            "height": 3,
+            "width": 3,
+          },
+          "shadowOpacity": 2,
+          "shadowRadius": 5,
+          "width": "95%",
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={false}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "flexGrow": 1,
+            "flexShrink": 1,
+          }
+        }
+      >
+        <View
+          index={0}
+          siblings={
+            Array [
+              "View",
+            ]
+          }
+          style={
+            Object {
+              "backgroundColor": "#FDFEFE",
+              "borderColor": "#2E86C1",
+              "borderRadius": 25,
+              "borderWidth": 4,
+              "height": 50,
+              "justifyContent": "center",
+              "marginTop": 10,
+              "padding": 20,
+              "shadowColor": "black",
+              "width": 250,
+            }
+          }
+          total={2}
+        >
+          <TextInput
+            allowFontScaling={true}
+            keyboardType="numeric"
+            onChangeText={[Function]}
+            placeholder="Radius in kilometers eg (3)..."
+            placeholderTextColor="#003f5c"
+            rejectResponderTermination={true}
+            style={
+              Object {
+                "color": "black",
+                "height": 50,
+              }
+            }
+            underlineColorAndroid="transparent"
+          />
+        </View>
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#2E86C1",
+              "borderColor": "white",
+              "borderRadius": 10,
+              "borderWidth": 2,
+              "height": 50,
+              "justifyContent": "center",
+              "marginBottom": 10,
+              "marginTop": 20,
+              "opacity": 1,
+              "width": 250,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 20,
+              }
+            }
+          >
+            Change radius
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fb5b5a",
+          "borderColor": "white",
+          "borderRadius": 25,
+          "borderWidth": 3,
+          "elevation": 5,
+          "marginBottom": 10,
           "marginTop": 20,
           "padding": 5,
           "shadowColor": "black",
@@ -106,7 +224,7 @@ exports[`Map renders correctly 1`] = `
           <TextInput
             allowFontScaling={true}
             onChangeText={[Function]}
-            placeholder="Radius in kilometers eg (3)..."
+            placeholder="Request ID..."
             placeholderTextColor="#003f5c"
             rejectResponderTermination={true}
             style={
@@ -152,7 +270,7 @@ exports[`Map renders correctly 1`] = `
               }
             }
           >
-            Change radius
+            Add request
           </Text>
         </View>
       </View>

@@ -1,3 +1,12 @@
+/*
+ *  ClassName: ManageARScreen.test.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://docs.expo.io/
+ */
 import React from "react";
 import ManageARScreen from "../screens/ManageARScreen";
 import { firebaseConfig } from "../apikey";

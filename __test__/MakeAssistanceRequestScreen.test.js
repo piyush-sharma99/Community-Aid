@@ -1,3 +1,12 @@
+/*
+ *  ClassName: MakeAssistanceRequestScreen.test.js
+ *
+ *  Date: 28/03/2021
+ *
+ * @author Piyush Sharma, X17342356
+ *
+ * @reference https://docs.expo.io/
+ */
 import React from "react";
 import MakeAssistanceRequestScreen from "../screens/MakeAssistanceRequestScreen";
 import { firebaseConfig } from "../apikey";
