@@ -49,7 +49,8 @@ const deleteRequest = (item, db) => {
                     console.log(docID);
 
                     db.collection("Assistance Request").doc(doc.id).update({
-                      uid: "request Deleted by user",
+                      uid: "",
+                      status: "request Deleted by user",
                       vid: "",
                     }),
                       db
